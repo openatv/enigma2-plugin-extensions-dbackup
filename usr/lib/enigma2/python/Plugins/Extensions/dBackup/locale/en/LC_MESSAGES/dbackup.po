@@ -1,0 +1,292 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dBackup\n"
+"POT-Creation-Date: 2014-09-07 10:12+0100\n"
+"PO-Revision-Date: 2014-10-03 18:32+0100\n"
+"Last-Translator: gutemine <gutemine@unknown.com>\n"
+"Language-Team: gutemine <gutemine@oozoon.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"X-Generator: Poedit 1.6.3\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "no"
+msgstr "no"
+
+msgid "yes"
+msgstr "yes"
+
+msgid "Pluginlist"
+msgstr "Pluginlist"
+
+msgid "Extension"
+msgstr "Extension"
+
+msgid "both"
+msgstr "both"
+
+msgid "Recovery Bios"
+msgstr "Recovery Bios"
+
+msgid "direct"
+msgstr "direct"
+
+msgid "USB recovery stick"
+msgstr "USB recovery stick"
+
+msgid "nfiwrite"
+msgstr "nfiwrite"
+
+msgid "daemon"
+msgstr "daemon"
+
+msgid "system"
+msgstr "system"
+
+msgid "container"
+msgstr "container"
+
+msgid "Select tar.*z image for flashing"
+msgstr "Select tar.*z image for flashing"
+
+msgid "Disclaimer"
+msgstr "Disclaimer"
+
+msgid ""
+"This way of flashing your Dreambox is not supported by DMM.\n"
+"\n"
+"You are using it completely at you own risk!\n"
+"If you want to flash your Dreambox safely use the Recovery Webinterface or DreamUP!\n"
+"\n"
+"May the Mini USB cable be with you!"
+msgstr ""
+"This way of flashing your Dreambox is not supported by DMM.\n"
+"\n"
+"You are using it completely at you own risk!\n"
+"If you want to flash your Dreambox safely use the Recovery Webinterface or DreamUP!\n"
+"\n"
+"May the Mini USB cable be with you!"
+
+msgid "Dreambox Backup Plugin by gutemine Version %s"
+msgstr "Dreambox Backup Plugin by gutemine Version %s"
+
+msgid "Flashing"
+msgstr "Flashing"
+
+msgid "Backup"
+msgstr "Backup"
+
+msgid "Configuring"
+msgstr "Configuring"
+
+msgid "Checking"
+msgstr "Checking"
+
+msgid "dBackup is busy ..."
+msgstr "dBackup is busy ..."
+
+msgid "Enter Backup Imagename"
+msgstr "Enter Backup Imagename"
+
+msgid "Enter Backup Path"
+msgstr "Enter Backup Path"
+
+msgid "Sorry, currently not supported on this Dreambox type"
+msgstr "Sorry, currently not supported on this Dreambox type"
+
+msgid "Sorry, no correct tar.*z file selected"
+msgstr "Sorry, no correct tar.*z file selected"
+
+msgid "Sorry, no xz binary found"
+msgstr "Sorry, no xz binary found"
+
+msgid "Refresh"
+msgstr "Refresh"
+
+msgid "Nothing mounted at %s"
+msgstr "Nothing mounted at %s"
+
+msgid "Sorry, use Barry Allen for Backup"
+msgstr "Sorry, use Barry Allen for Backup"
+
+msgid "Sorry, use LowFAT for Backup"
+msgstr "Sorry, use LowFAT for Backup"
+
+msgid "Sorry, use Dumbo for Backup"
+msgstr "Sorry, use Dumbo for Backup"
+
+msgid "use back button in browser and try again!"
+msgstr "use back button in browser and try again!"
+
+msgid "Are you sure that you want to flash now %s ?"
+msgstr "Are you sure that you want to flash now %s ?"
+
+msgid "Recovery Image from Feed"
+msgstr "Recovery Image from Feed"
+
+msgid ""
+"Press OK now for flashing\n"
+"\n"
+"%s\n"
+"\n"
+"Box will reboot automatically when finished!"
+msgstr ""
+"Press OK now for flashing\n"
+"\n"
+"%s\n"
+"\n"
+"Box will reboot automatically when finished!"
+
+msgid "Sorry, Flashing of %s was canceled!"
+msgstr "Sorry, Flashing of %s was canceled!"
+
+msgid "Sorry, no device choosen"
+msgstr "Sorry, no device choosen"
+
+msgid "Sorry, no device found"
+msgstr "Sorry, no device found"
+
+msgid "Are you sure that you want to FORMAT recovery device %s now for %s?"
+msgstr "Are you sure that you want to FORMAT recovery device %s now for %s?"
+
+msgid "umount failed, Sorry!"
+msgstr "umount failed, Sorry!"
+
+msgid "Sorry, %s device not mounted"
+msgstr "Sorry, %s device not mounted"
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.tar.gz\n"
+"\n"
+"BUT it has I/O Errors"
+msgstr ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.tar.gz\n"
+"\n"
+"BUT it has I/O Errors"
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.tar.gz"
+msgstr ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.tar.gz"
+
+msgid "nothing entered"
+msgstr "nothing entered"
+
+msgid "already exists,"
+msgstr "already exists,"
+
+msgid "overwrite ?"
+msgstr "overwrite ?"
+
+msgid "Press OK for starting backup to"
+msgstr "Press OK for starting backup to"
+
+msgid "Be patient, this takes 1-2 min ..."
+msgstr "Be patient, this takes 1-2 min ..."
+
+msgid "not confirmed"
+msgstr "not confirmed"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "About"
+msgstr "About"
+
+msgid "check root"
+msgstr "check root"
+
+msgid "check & repair recovery"
+msgstr "check & repair recovery"
+
+msgid "badblocks recovery > 1min"
+msgstr "badblocks recovery > 1min"
+
+msgid "no badblocks binary - get e2fsprogs"
+msgstr "no badblocks binary - get e2fsprogs"
+
+msgid "If you install e2fsprogs the badblocks binary will allow to check and mark also bad blocks"
+msgstr "If you install e2fsprogs the badblocks binary will allow to check and mark also bad blocks"
+
+msgid "Flashtool"
+msgstr "Flashtool"
+
+msgid "Backuptool"
+msgstr "Backuptool"
+
+msgid "Create signature file"
+msgstr "Create signature file"
+
+msgid "Extract loader from Flash"
+msgstr "Extract loader from Flash"
+
+msgid "Extract kernel from Flash"
+msgstr "Extract kernel from Flash"
+
+msgid "Clean apt cache before backup"
+msgstr "Clean apt cache before backup"
+
+msgid "Fading"
+msgstr "Fading"
+
+msgid "Sort Imagelist alphabetic"
+msgstr "Sort Imagelist alphabetic"
+
+msgid "Show plugin"
+msgstr "Show plugin"
+
+msgid "Webinterface"
+msgstr "Webinterface"
+
+msgid ""
+"Root Filesystem\n"
+"\n"
+"total: %s MB\n"
+"used:  %s MB\n"
+"free:  %s MB"
+msgstr ""
+"Root Filesystem\n"
+"\n"
+"total: %s MB\n"
+"used:  %s MB\n"
+"free:  %s MB"
+
+msgid ""
+"Memory\n"
+"\n"
+"total: %i MB\n"
+"used: %i MB\n"
+"free: %i MB"
+msgstr ""
+"Memory\n"
+"\n"
+"total: %i MB\n"
+"used: %i MB\n"
+"free: %i MB"
+

@@ -1,0 +1,291 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dBackup\n"
+"POT-Creation-Date: 2014-09-07 10:12+0100\n"
+"PO-Revision-Date: 2014-10-05 21:14+0100\n"
+"Last-Translator: gutemine <gutemine@unknown.com>\n"
+"Language-Team: blu8_user <blu8@>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"X-Generator: Poedit 1.6.4\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "no"
+msgstr "No"
+
+msgid "yes"
+msgstr "Si"
+
+msgid "Pluginlist"
+msgstr "Lista Plugin"
+
+msgid "Extension"
+msgstr "Estensioni"
+
+msgid "both"
+msgstr "entrambi"
+
+msgid "Recovery Bios"
+msgstr "Bios Recovery"
+
+msgid "direct"
+msgstr "diretto"
+
+msgid "USB recovery stick"
+msgstr "USB recovery stick"
+
+msgid "nfiwrite"
+msgstr "nfiwrite"
+
+msgid "daemon"
+msgstr "Sfondo"
+
+msgid "system"
+msgstr "Sistema"
+
+msgid "container"
+msgstr "Container"
+
+msgid "Select tar.*z image for flashing"
+msgstr "Scegliere image tar.*z da flashare"
+
+msgid "Disclaimer"
+msgstr "Disclaimer"
+
+msgid ""
+"This way of flashing your Dreambox is not supported by DMM.\n"
+"\n"
+"You are using it completely at you own risk!\n"
+"If you want to flash your Dreambox safely use the Recovery Webinterface or DreamUP!\n"
+"\n"
+"May the Mini USB cable be with you!"
+msgstr ""
+"Questo modo di flashare il Dreambox non è supportato da DMM.\n"
+"\n"
+"Si utilizza completamente a vostro rischio!\n"
+"Se volete flashare il Dreambox in modo sicuro, usare la Webinterface o Dreamup!\n"
+"\n"
+"Che il cavo Mini USB sia con voi!"
+
+msgid "Dreambox Backup Plugin by gutemine Version %s"
+msgstr "Dreambox Backup Plugin di gutemine versione %s"
+
+msgid "Flashing"
+msgstr "Flashing"
+
+msgid "Backup"
+msgstr "Backup"
+
+msgid "Configuring"
+msgstr "Configurazione"
+
+msgid "Checking"
+msgstr "Controllare"
+
+msgid "dBackup is busy ..."
+msgstr "dBackup occupato..."
+
+msgid "Enter Backup Imagename"
+msgstr "Inserire il nome del Backup"
+
+msgid "Enter Backup Path"
+msgstr "Inserire il percorso del Backup"
+
+msgid "Sorry, currently not supported on this Dreambox type"
+msgstr "attualmente non supportato su questo tipo di Dreambox"
+
+msgid "Sorry, no correct tar.*z file selected"
+msgstr "Nessun file tar.*z corretto selezionato"
+
+msgid "Sorry, no xz binary found"
+msgstr "nessun xz Binary trovato"
+
+msgid "Refresh"
+msgstr "Aggiornare"
+
+msgid "Nothing mounted at %s"
+msgstr "Nulla gemountet su %s"
+
+msgid "Sorry, use Barry Allen for Backup"
+msgstr "Usa Barry Allen per il Backup"
+
+msgid "Sorry, use LowFAT for Backup"
+msgstr "Usa LowFAT per il Backup"
+
+msgid "Sorry, use Dumbo for Backup"
+msgstr "Usa Dumbo per il Backup"
+
+msgid "use back button in browser and try again!"
+msgstr "Usa il tasto indietro del browser e riprova!"
+
+msgid "Are you sure that you want to flash now %s ?"
+msgstr "Flashare adesso %s ?"
+
+msgid "Recovery Image from Feed"
+msgstr "Recupero Immagine dal Feed"
+
+msgid ""
+"Press OK now for flashing\n"
+"\n"
+"%s\n"
+"\n"
+"Box will reboot automatically when finished!"
+msgstr ""
+"Premere OK per flashare \n"
+"\n"
+"%s\n"
+"\n"
+"Il Box  si riavvierà automaticamente a operazione conclusa!"
+
+msgid "Sorry, Flashing of %s was canceled!"
+msgstr "Flashing di %s cancellata!"
+
+msgid "Sorry, no device choosen"
+msgstr "nessun dispositivo scelto"
+
+msgid "Sorry, no device found"
+msgstr "nessun dispositivo trovato"
+
+msgid "Are you sure that you want to FORMAT recovery device %s now for %s?"
+msgstr "FORMATTARE il dispositivo recovery  %s per %s?"
+
+msgid "umount failed, Sorry!"
+msgstr "umount fallito!"
+
+msgid "Sorry, %s device not mounted"
+msgstr "%s dispositivo non mounted"
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.tar.gz\n"
+"\n"
+"BUT it has I/O Errors"
+msgstr ""
+"Flash terminato su %s\n"
+"\n"
+"terminato con nome image:\n"
+"\n"
+"%s.tar.gz\n"
+"\n"
+"MA con errori I/O "
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.tar.gz"
+msgstr ""
+"Flash Backup %s:\n"
+"\n"
+"terminato con nome image:\n"
+"%s.tar.gz"
+
+msgid "nothing entered"
+msgstr "nessuna voce"
+
+msgid "already exists,"
+msgstr "gia esistente,"
+
+msgid "overwrite ?"
+msgstr "sovrascrivere?"
+
+msgid "Press OK for starting backup to"
+msgstr "Premere OK per avviare il backup su"
+
+msgid "Be patient, this takes 1-2 min ..."
+msgstr "Attendere, richiesti 1-2min. ..."
+
+msgid "not confirmed"
+msgstr "non confermato"
+
+msgid "Cancel"
+msgstr "Annullato"
+
+msgid "Info"
+msgstr "Informazioni"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "About"
+msgstr "About"
+
+msgid "check root"
+msgstr "controllare la root "
+
+msgid "check & repair recovery"
+msgstr "controllare & riparare recovery"
+
+msgid "badblocks recovery > 1min"
+msgstr "badblocks recupero > 1min"
+
+msgid "no badblocks binary - get e2fsprogs"
+msgstr "nessun badblocks binario - installare e2fsprog"
+
+msgid "If you install e2fsprogs the badblocks binary will allow to check and mark also bad blocks"
+msgstr "Se si installa e2fsprogs i badblocks binari permetteranno di controllare e marcare anche i blocchi danneggiati"
+
+msgid "Flashtool"
+msgstr "Strumento di Flash"
+
+msgid "Backuptool"
+msgstr "Strumento di Backup"
+
+msgid "Create signature file"
+msgstr "Creare file di firma"
+
+msgid "Extract loader from Flash"
+msgstr "Estrarre il Loader dalla Flash"
+
+msgid "Extract kernel from Flash"
+msgstr "Estrarre il Kernel dalla Flash"
+
+msgid "Clean apt cache before backup"
+msgstr "Pulire la cache apt prima del Backup"
+
+msgid "Fading"
+msgstr "Dissolvenza"
+
+msgid "Sort Imagelist alphabetic"
+msgstr "Ordine albabetico lista immagini "
+
+msgid "Show plugin"
+msgstr "Visualizza Plugin"
+
+msgid "Webinterface"
+msgstr "Webinterface"
+
+msgid ""
+"Root Filesystem\n"
+"\n"
+"total: %s MB\n"
+"used:  %s MB\n"
+"free:  %s MB"
+msgstr ""
+"Root Filesystem\n"
+"\n"
+"totale: %s MB\n"
+"usato:  %s MB\n"
+"libero:  %s MB"
+
+msgid ""
+"Memory\n"
+"\n"
+"total: %i MB\n"
+"used: %i MB\n"
+"free: %i MB"
+msgstr ""
+"Memoria\n"
+"\n"
+"totale: %i MB\n"
+"usato: %i MB\n"
+"libero: %i MB"
+
