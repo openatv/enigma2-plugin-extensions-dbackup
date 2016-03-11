@@ -1,0 +1,364 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dBackup\n"
+"POT-Creation-Date: 2015-09-04 23:18+0100\n"
+"PO-Revision-Date: 2015-11-15 12:23+0200\n"
+"Last-Translator: Ni Hao <ni_hao_1@hotmail.com>\n"
+"Language-Team: gutemine <gutemine@oozoon.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de_DE\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "no"
+msgstr "Nee"
+
+msgid "yes"
+msgstr "Ja"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Pluginlist"
+msgstr "Pluginlijst"
+
+msgid "Extension"
+msgstr "Uitbreidingen"
+
+msgid "both"
+msgstr "beide"
+
+msgid "all"
+msgstr "alle"
+
+msgid "Rescue Bios"
+msgstr "Bios herstellen"
+
+msgid "direct"
+msgstr "direct"
+
+msgid "tar.gz"
+msgstr "tar.gz"
+
+msgid "tar.xz"
+msgstr "tar.xz"
+
+msgid "tar.bz2"
+msgstr "tar.bz2"
+
+msgid "tar"
+msgstr "tar"
+
+msgid "daemon"
+msgstr "daemon"
+
+msgid "system"
+msgstr "systeem"
+
+msgid "container"
+msgstr "container"
+
+msgid "Select tar.*z image for flashing"
+msgstr "Kies tar.*z image om te flashen"
+
+msgid "Disclaimer"
+msgstr "Vrijwaring"
+
+msgid "Info"
+msgstr "Info"
+
+msgid ""
+"This way of flashing your Dreambox is not ported by DMM.\n"
+"\n"
+"You are using it completely at you own risk!\n"
+"If you want to flash your Dreambox safely use the Recovery Webinterface!\n"
+"\n"
+"May the Power button be with you!"
+msgstr ""
+"Deze manier van flashen wordt NIET door DreamMultiMedia ondersteunt.\n"
+"\n"
+"Je doet het op eigen risico!\n"
+"Indien je deze dreambox veilig wilt flashen, gebruik Recovery Webinterface!\n"
+"\n"
+"Mag de aan/uit knop je bijstaan!"
+
+msgid "Dreambox Backup Plugin by gutemine Version %s"
+msgstr "Dreambox Backup Plugin van gutemine v%s"
+
+msgid "Flashing"
+msgstr "Flashen"
+
+msgid "Backup"
+msgstr "Backup"
+
+msgid "Configuring"
+msgstr "Configureren"
+
+msgid "Checking"
+msgstr "Contoleren"
+
+msgid "dBackup is busy ..."
+msgstr "dBackup is bezig ..."
+
+msgid "Enter Backup Imagename"
+msgstr "Geef backup imagenaam op"
+
+msgid "Enter Backup Path"
+msgstr "Geef backup pad op"
+
+msgid "Sorry, currently not supported on this Dreambox type"
+msgstr "Helaas, wordt niet ondersteund op dit type dreambox"
+
+msgid "Sorry, no correct tar.*z file selected"
+msgstr "Helaas, geen correct tar.*z bestand geselecteerd"
+
+msgid "Sorry, no xz binary found"
+msgstr "Helaas, geen xz bestand gevonden"
+
+msgid "Refresh"
+msgstr "Actualiseren"
+
+msgid "Nothing mounted at %s"
+msgstr "Niets gemount op %s"
+
+msgid "Sorry, use Barry Allen for Backup"
+msgstr "Helaas, gebruik Barry Allen om een backup te maken"
+
+msgid "Sorry, use LowFAT for Backup"
+msgstr "Helaas, gebruik LowFAT om een backup te maken"
+
+msgid "Sorry, Flashing works only in Flash"
+msgstr "Helaas, flashen werkt alleen in de Flash"
+
+msgid "Sorry, dBackup webinterface is currently disabled"
+msgstr "Helaas, dBackup webinterface is momenteel uitgeschakeld"
+
+msgid "use back button in browser and try again!"
+msgstr "bebruik de TERUG knop in je browser en probeer het opnieuw"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Exit"
+msgstr "Verlaten"
+
+msgid ""
+"Press OK now for flashing\n"
+"\n"
+"%s\n"
+"\n"
+"Box will reboot automatically when finished!"
+msgstr ""
+"Druk op OK om flashen van\n"
+"\n"
+"%s\n"
+"\n"
+"te starten. Dreambox start \n"
+"na het flashen automatisch op!"
+
+msgid "Are you sure that you want to flash now %s ?"
+msgstr "Weet je zeker dat je nu %s wilt flashen?"
+
+msgid "Recovery Image from Feed"
+msgstr "Herstel image van de feed"
+
+msgid "Sorry, Flashing of %s was canceled!"
+msgstr "Heaas, %s flashen is geannuleerd!"
+
+msgid "Sorry, no device choosen"
+msgstr "Helaas, geen apparaat opgegeven"
+
+msgid "Sorry, no device found"
+msgstr "Helaas, geen apparaat gevonden"
+
+msgid "Are you sure that you want to FORMAT recovery device %s now for %s ?"
+msgstr "Weet je zeker dat je het herstelapparaat %s nu wilt formatteren voor %s ?"
+
+msgid "umount failed, Sorry!"
+msgstr "unmounten niet gelukt, sorry!"
+
+msgid "Sorry, %s device not mounted writeable"
+msgstr "Helaas, %s niet beschrijfbaar ('writeable') gemount"
+
+msgid "recovery stick creation failed, Sorry!"
+msgstr "maken van een 'recovery stick' is mislukt, sorry!"
+
+msgid "Sorry, %s device not mounted"
+msgstr "Sorry %s is niet gemount"
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.%s\n"
+"\n"
+"BUT it has I/O Errors"
+msgstr ""
+"Flash Backup op %s\n"
+"\n"
+"is klaar met als imagenaam:\n"
+"\n"
+"%s.%s\n"
+"\n"
+"MAAR er zijn I/O fouten"
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.%s"
+msgstr ""
+"Flash Backup op %s\n"
+"\n"
+"is klaar met als imagenaam:\n"
+"\n"
+"%s.%s"
+
+msgid "nothing entered"
+msgstr "niets opgegeven"
+
+msgid "already exists,"
+msgstr "bestaat reeds,"
+
+msgid "overwrite ?"
+msgstr "overschrijven ?"
+
+msgid "Press OK for starting backup to"
+msgstr "Druk op OK om backup te maken in"
+
+msgid "Be patient, this takes 1-2 min ..."
+msgstr "Heb geduld a.u.b., dit kan enkele minuten duren ..."
+
+msgid "not confirmed"
+msgstr "niet bevestigd"
+
+msgid "Flash Backup finished"
+msgstr "Flash Backup is klaar"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "About"
+msgstr "Over"
+
+msgid "check root"
+msgstr "root controleren"
+
+msgid "check & repair recovery"
+msgstr "controleer & herstel 'recovery'"
+
+msgid "badblocks recovery > 1min"
+msgstr "'Bad blocks' ontdekt > 1min"
+
+msgid "no badblocks binary - get e2fsprogs"
+msgstr "geen 'Bad Blocks software; installeer: e2fsprogs"
+
+msgid "clean apt cache"
+msgstr "'apt cache' opschonen"
+
+msgid "check defragmentation root"
+msgstr "controleer root defragmentatie"
+
+msgid "defragment root"
+msgstr "root defragmenteren"
+
+msgid "check defragmentation recovery"
+msgstr "controleren/herstellen & recovery defragmentatie"
+
+msgid "defragment recovery"
+msgstr "defragmenteren recovery"
+
+msgid "check defragmentation Harddisk"
+msgstr "controleer defragmentatie op harddisk"
+
+msgid "defragment Harddisk"
+msgstr "defragmenteer harddisk"
+
+msgid "If you install e2fsprogs the badblocks binary will allow to check and mark also bad blocks"
+msgstr "als je e2fsprogs installeerd, zullen de 'bad blocks' worden gecontrolleerd en gemarkeerd "
+
+msgid "Flashtool"
+msgstr "Flash gereedschap"
+
+msgid "Backuptool"
+msgstr "Backup gereedschap"
+
+msgid "Flashing reboot delay [0-60 sec]"
+msgstr "Flashen herstart vertraging [0-60 sec]"
+
+msgid "Imagetype in backupname"
+msgstr "Imagetype in backupnaam"
+
+msgid "Boxtype in backupname"
+msgstr "Boxtype in backupnaam"
+
+msgid "deb in backupname"
+msgstr "deb in backupnaam"
+
+msgid "Date in backupname"
+msgstr "Datum in backupnaam"
+
+msgid "Time in backupname"
+msgstr "Tijd in backupnaam"
+
+msgid "Clean apt cache before backup"
+msgstr "'apt cache' opschonen voor het backuppen"
+
+msgid "Exclude epg.db"
+msgstr "epg.db overslaan"
+
+msgid "Exclude timers"
+msgstr "Timers overslaan"
+
+msgid "Exclude settings"
+msgstr "Instellingen oversaan"
+
+msgid "Exclude picons"
+msgstr "Picons overslaan"
+
+msgid "Fading"
+msgstr "Vervagen"
+
+msgid "Verbose"
+msgstr "Uitgebreide weergave"
+
+msgid "Sort Imagelist alphabetic"
+msgstr "Imagenamen in lijst alfabetisch sorteren"
+
+msgid "Show plugin"
+msgstr "Plugin tonen"
+
+msgid "Webinterface"
+msgstr "Webinterface"
+
+msgid ""
+"Root Filesystem\n"
+"\\\n"
+"total: %s MB\n"
+"used:  %s MB\n"
+"free:  %s MB"
+msgstr ""
+"Root bestandssysteem\n"
+"\n"
+"totaal:   %s MB\n"
+"gebruikt: %s MB\n"
+"vrij:     %s MB"
+
+msgid ""
+"Memory\n"
+"\n"
+"total: %i MB\n"
+"used: %i MB\n"
+"free: %i MB"
+msgstr ""
+"Geheugen\n"
+"\n"
+"totaal:   %i MB\n"
+"gebruikt: %i MB\n"
+"vrij:     %i MB"
