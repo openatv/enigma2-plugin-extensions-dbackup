@@ -1,76 +1,96 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dBackup\n"
-"POT-Creation-Date: 2015-09-04 23:18+0100\n"
-"PO-Revision-Date: 2015-09-04 23:44+0100\n"
-"Last-Translator: James Blond <alattka@freenet.de>\n"
+"POT-Creation-Date: 2016-05-05 21:44+0200\n"
+"PO-Revision-Date: 2016-05-05 21:44+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: gutemine <gutemine@oozoon.de>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de_DE\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
+#: ../plugin.py:51
 msgid "no"
 msgstr "Nein"
 
+#: ../plugin.py:51
 msgid "yes"
 msgstr "Ja"
 
+#: ../plugin.py:87
 msgid "Settings"
 msgstr "Einstellungen"
 
+#: ../plugin.py:88
 msgid "Pluginlist"
 msgstr "Pluginliste"
 
+#: ../plugin.py:89
 msgid "Extension"
 msgstr "Erweiterungen"
 
+#: ../plugin.py:90
 msgid "both"
 msgstr "beide"
 
+#: ../plugin.py:91
 msgid "all"
 msgstr "Alle"
 
+#: ../plugin.py:95
 msgid "Rescue Bios"
 msgstr "Wiederherstellungsbios"
 
+#: ../plugin.py:97
 msgid "direct"
 msgstr "direkt"
 
+#: ../plugin.py:105
 msgid "tar.gz"
 msgstr "tar.gz"
 
+#: ../plugin.py:106
 msgid "tar.xz"
 msgstr "tar.xz"
 
+#: ../plugin.py:107
 msgid "tar.bz2"
 msgstr "tar.bz2"
 
+#: ../plugin.py:108
 msgid "tar"
 msgstr "tar"
 
+#: ../plugin.py:113
 msgid "daemon"
 msgstr "Hintergrund"
 
+#: ../plugin.py:114
 msgid "system"
 msgstr "System"
 
+#: ../plugin.py:115
 msgid "container"
 msgstr "Container"
 
+#: ../plugin.py:118
 msgid "Select tar.*z image for flashing"
 msgstr "tar.*z Image zum Flashen auswählen"
 
+#: ../plugin.py:119
 msgid "Disclaimer"
 msgstr "Haftungsausschluss"
 
+#: ../plugin.py:120
 msgid "Info"
 msgstr "Information"
 
+#: ../plugin.py:121
 msgid ""
 "This way of flashing your Dreambox is not supported by DMM.\n"
 "\n"
@@ -87,64 +107,87 @@ msgstr ""
 "\n"
 "Möge das Mini USB Kabel mit Ihnen sein!"
 
+#: ../plugin.py:123
+#, python-format
 msgid "Dreambox Backup Plugin by gutemine Version %s"
 msgstr "Dreambox Sicherungs Plugin von gutemine Version %s"
 
+#: ../plugin.py:124 ../plugin.py:185
 msgid "Flashing"
 msgstr "Flashen"
 
+#: ../plugin.py:125 ../plugin.py:184
 msgid "Backup"
 msgstr "Sichern"
 
+#: ../plugin.py:126
 msgid "Configuring"
 msgstr "Konfigurieren"
 
+#: ../plugin.py:127
 msgid "Checking"
 msgstr "Überprüfen"
 
+#: ../plugin.py:128
 msgid "dBackup is busy ..."
 msgstr "dBackup ist beschäftigt..."
 
+#: ../plugin.py:129
 msgid "Enter Backup Imagename"
 msgstr "Sicherungs Imagenamen eingeben"
 
+#: ../plugin.py:130
 msgid "Enter Backup Path"
 msgstr "Sicherungs Pfad eingeben"
 
+#: ../plugin.py:131
 msgid "Sorry, currently not supported on this Dreambox type"
 msgstr "Tut mir leid, im Moment wird dieser Dreambox Typ nicht unterstützt"
 
+#: ../plugin.py:132
 msgid "Sorry, no correct tar.*z file selected"
 msgstr "Tut mir leid, kein korrektes tar.*z File ausgewählt"
 
+#: ../plugin.py:133
 msgid "Sorry, no xz binary found"
 msgstr "Tut mir leid, kein xz Binary gefunden"
 
+#: ../plugin.py:134
 msgid "Refresh"
 msgstr "Aktualisieren"
 
+#: ../plugin.py:135
+#, python-format
 msgid "Nothing mounted at %s"
 msgstr "Nichts gemountet auf %s"
 
+#: ../plugin.py:136
 msgid "Sorry, use Barry Allen for Backup"
 msgstr "Tut mir leid, verwenden Sie Barry Allen zur Sicherung"
 
+#: ../plugin.py:137
 msgid "Sorry, use LowFAT for Backup"
 msgstr "Tut mir leid, verwenden Sie LowFAT zur Sicherung"
 
+#: ../plugin.py:138
 msgid "Sorry, Flashing works only in Flash"
 msgstr "Tut mir leid, das Flashen wurde bei %s abgebrochen!"
 
+#: ../plugin.py:139
 msgid "Sorry, dBackup webinterface is currently disabled"
 msgstr "Entschuldigung, dBackup Webinterface ist momentan ausgeschaltet"
 
+#: ../plugin.py:151
 msgid "use back button in browser and try again!"
 msgstr ""
 "benutzen Sie den Zurück Knopf im Browser und versuchen sie es nochmals!"
 
-msgid "Cancel"
-msgstr "Abbruch"
+#: ../plugin.py:183 ../plugin.py:1591 ../plugin.py:1668 ../plugin.py:1788
+msgid "Exit"
+msgstr ""
 
+#: ../plugin.py:304 ../plugin.py:346
+#, python-format
 msgid ""
 "Press OK now for flashing\n"
 "\n"
@@ -158,38 +201,55 @@ msgstr ""
 "\n"
 "Die Box wird automatisch Neustarten, wenn fertig!"
 
+#: ../plugin.py:319 ../plugin.py:390
+#, python-format
 msgid "Are you sure that you want to flash now %s ?"
 msgstr "Sind Sie sicher das sie jetzt Flashen wollen %s ?"
 
+#: ../plugin.py:324 ../plugin.py:1079
 msgid "Recovery Image from Feed"
 msgstr "Wiederherstellungsimage vom Feed"
 
+#: ../plugin.py:348 ../plugin.py:394
+#, python-format
 msgid "Sorry, Flashing of %s was canceled!"
 msgstr "Tut mir leid, das Flashen wurde bei %s abgebrochen!"
 
+#: ../plugin.py:382
 msgid "Sorry, no device choosen"
 msgstr "Tut mir leid, kein Gerät ausgewählt"
 
+#: ../plugin.py:384
 msgid "Sorry, no device found"
 msgstr "Tut mir leid, kein Gerät gefunden"
 
+#: ../plugin.py:388
+#, python-format
 msgid "Are you sure that you want to FORMAT recovery device %s now for %s ?"
 msgstr ""
 "Sind Sie sicher das Sie das Wiederherstellungsgerät FORMATIEREN wollen %s "
 "jetzt für %s?"
 
+#: ../plugin.py:452
 msgid "umount failed, Sorry!"
 msgstr "Tut mir leid, das Unmounten ist schief gegangen!"
 
+#: ../plugin.py:497
+#, python-format
 msgid "Sorry, %s device not mounted writeable"
 msgstr "Tut mit leid, %s Gerät wurde nicht schreibbar gemountet"
 
+#: ../plugin.py:719
 msgid "recovery stick creation failed, Sorry!"
 msgstr "Wiederherstellungs Stick Erstellung gescheitert, Entschuldigung!"
 
+#: ../plugin.py:726
+#, python-format
 msgid "Sorry, %s device not mounted"
 msgstr "Tut mit leid, %s Gerät wurde nicht gemountet"
 
+#: ../plugin.py:782 ../plugin.py:989
+#, python-format
 msgid ""
 "Flash Backup to %s\n"
 "\n"
@@ -207,6 +267,8 @@ msgstr ""
 "\n"
 "ABER es gibt  I/O Fehler"
 
+#: ../plugin.py:784 ../plugin.py:991
+#, python-format
 msgid ""
 "Flash Backup to %s\n"
 "\n"
@@ -220,66 +282,87 @@ msgstr ""
 "\n"
 "%s.%s"
 
+#: ../plugin.py:802 ../plugin.py:878 ../plugin.py:1274
 msgid "nothing entered"
 msgstr "nichts eingegeben"
 
+#: ../plugin.py:882 ../plugin.py:1252
 msgid "already exists,"
 msgstr "existiert bereits,"
 
+#: ../plugin.py:882
 msgid "overwrite ?"
 msgstr "überschreiben ?"
 
+#: ../plugin.py:892
 msgid "Press OK for starting backup to"
 msgstr "OK drücken um Sicherung zu starten auf"
 
+#: ../plugin.py:892
 msgid "Be patient, this takes 1-2 min ..."
 msgstr "Geduldig sein, es dauert 1-2 min ..."
 
+#: ../plugin.py:894
 msgid "not confirmed"
 msgstr "nicht bestätigt"
 
+#: ../plugin.py:995
 msgid "Flash Backup finished"
 msgstr "Flash Sicherung fertig"
 
+#: ../plugin.py:1593 ../plugin.py:1669 ../plugin.py:1789
 msgid "OK"
 msgstr "OK"
 
+#: ../plugin.py:1594 ../plugin.py:1805
 msgid "About"
 msgstr "Über"
 
+#: ../plugin.py:1598
 msgid "check root"
 msgstr "root überprüfen"
 
+#: ../plugin.py:1599
 msgid "check & repair recovery"
 msgstr "überprüfen & reparieren Wiederherstellungsbereich"
 
+#: ../plugin.py:1601
 msgid "badblocks recovery > 1min"
 msgstr "Bad Blocks im Wiederherstellungsbereich > 1min"
 
+#: ../plugin.py:1603
 msgid "no badblocks binary - get e2fsprogs"
 msgstr "kein Bad Blocks Programm - installieren Sie e2fsprogs"
 
+#: ../plugin.py:1604
 msgid "clean apt cache"
 msgstr "Löschen des apt cache vor dem Sichern"
 
+#: ../plugin.py:1605
 msgid "check defragmentation root"
 msgstr "Überprüfe Defragmentation im root"
 
+#: ../plugin.py:1606
 msgid "defragment root"
 msgstr "Defragmentierung root"
 
+#: ../plugin.py:1607
 msgid "check defragmentation recovery"
 msgstr "überprüfen & reparieren Wiederherstellungsbereich"
 
+#: ../plugin.py:1608
 msgid "defragment recovery"
 msgstr "Defragmentierung Wiederherstellung"
 
+#: ../plugin.py:1613
 msgid "check defragmentation Harddisk"
 msgstr "Überprüfe Festplatten Defragmentation"
 
+#: ../plugin.py:1614
 msgid "defragment Harddisk"
 msgstr "Defragmentiere Festplatte"
 
+#: ../plugin.py:1639
 msgid ""
 "If you install e2fsprogs the badblocks binary will allow to check and mark "
 "also bad blocks"
@@ -287,63 +370,84 @@ msgstr ""
 "Wenn Sie e2fsprogs installieren, wird Ihnen das Bad Blocks Programm "
 "ermöglichen auch kaputte Blöcke zu erkennen und zu markieren"
 
+#: ../plugin.py:1685
 msgid "Flashtool"
 msgstr "Flashwerkzeug"
 
+#: ../plugin.py:1686
 msgid "Backuptool"
 msgstr "Sicherungswerkzeug"
 
+#: ../plugin.py:1690
 msgid "Flash kernel from image"
 msgstr "Flashen des Kernels aus dem Image"
 
+#: ../plugin.py:1691
 msgid "Flashing reboot delay [0-60 sec]"
 msgstr "Flashing Neustart Verzögerung [0-60 Sek.]"
 
+#: ../plugin.py:1692
 msgid "Imagetype in backupname"
 msgstr "Imagetyp im Sicherungsnamen"
 
+#: ../plugin.py:1693
 msgid "Boxtype in backupname"
 msgstr "Boxtyp im Sicherungsnamen"
 
+#: ../plugin.py:1694
 msgid "deb in backupname"
 msgstr "deb im Sicherungsnamen"
 
+#: ../plugin.py:1695
 msgid "Date in backupname"
 msgstr "Datum im Sicherungsnamen"
 
+#: ../plugin.py:1696
 msgid "Time in backupname"
 msgstr "Zeit im Sicherungsnamen"
 
+#: ../plugin.py:1698
 msgid "Clean apt cache before backup"
 msgstr "Löschen des apt cache vor dem Sichern"
 
+#: ../plugin.py:1699
 msgid "Exclude epg.db"
 msgstr "Ausschließen epg.db"
 
+#: ../plugin.py:1700
 msgid "Exclude timers"
 msgstr "Ausschließen Timer"
 
+#: ../plugin.py:1701
 msgid "Exclude settings"
 msgstr "Ausschließen Einstellungen"
 
+#: ../plugin.py:1703
 msgid "Exclude picons"
 msgstr "Ausschließen Picons"
 
-msgid "Fading"
-msgstr "Ausblenden"
+#: ../plugin.py:1704
+msgid "Minimal Fading Transparency"
+msgstr ""
 
+#: ../plugin.py:1705
 msgid "Verbose"
 msgstr "Ausführliche Ausgabe"
 
+#: ../plugin.py:1706
 msgid "Sort Imagelist alphabetic"
 msgstr "Imageliste alphabetisch sortieren"
 
+#: ../plugin.py:1707
 msgid "Show plugin"
 msgstr "Plugin anzeigen "
 
+#: ../plugin.py:1709
 msgid "Webinterface"
 msgstr "Weboberfläche"
 
+#: ../plugin.py:1772
+#, python-format
 msgid ""
 "Root Filesystem\n"
 "\n"
@@ -357,6 +461,8 @@ msgstr ""
 "benutzt:  %s MB\n"
 "frei:  %s MB"
 
+#: ../plugin.py:1786
+#, python-format
 msgid ""
 "Memory\n"
 "\n"
@@ -369,6 +475,12 @@ msgstr ""
 "gesamt: %i MB\n"
 "benutzt: %i MB\n"
 "frei: %i MB"
+
+#~ msgid "Cancel"
+#~ msgstr "Abbruch"
+
+#~ msgid "Fading"
+#~ msgstr "Ausblenden"
 
 #~ msgid "USB recovery stick"
 #~ msgstr "USB Wiederherstellungsstick"

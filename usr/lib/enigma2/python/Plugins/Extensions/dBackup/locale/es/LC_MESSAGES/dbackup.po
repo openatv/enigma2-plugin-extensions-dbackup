@@ -1,101 +1,248 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dBackup\n"
-"POT-Creation-Date: 2015-09-04 23:18+0100\n"
-"PO-Revision-Date: 2015-09-06 23:17+0100\n"
-"Last-Translator: gutemine <gutemine@oozoon.de>\n"
+"POT-Creation-Date: 2016-05-05 21:43+0200\n"
+"PO-Revision-Date: 2016-05-05 21:43+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: gutemine <gutemine@oozoon.de>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de_DE\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
-msgid "About"
-msgstr "Acerca de"
+#: ../plugin.py:51
+msgid "no"
+msgstr "No"
 
-msgid "Are you sure that you want to FORMAT recovery device %s now for %s ?"
-msgstr "¿Seguro que quiere FORMATEAR ahora el dispositivo de recuperación %s para %s ?"
+#: ../plugin.py:51
+msgid "yes"
+msgstr "sí"
 
-msgid "Are you sure that you want to flash now %s ?"
-msgstr "¿Seguro que quiere flashear ahora %s ?"
+#: ../plugin.py:87
+msgid "Settings"
+msgstr "Ajustes"
 
-msgid "Backup"
-msgstr "Backup"
+#: ../plugin.py:88
+msgid "Pluginlist"
+msgstr "Lista de Aplicaciones"
 
-msgid "Backuptool"
-msgstr "Herramientas de Backup"
-
-msgid "Be patient, this takes 1-2 min ..."
-msgstr "Ten paciencia, esto llevará 1-2 min..."
-
-msgid "Boxtype in backupname"
-msgstr "Tipo de Descodificador en Nombre del Backup"
-
-msgid "Cancel"
-msgstr "Cancelar"
-
-msgid "Checking"
-msgstr "Comprobando"
-
-msgid "Clean apt cache before backup"
-msgstr "Limpia el caché apt antes de hacer el backup"
-
-msgid "Configuring"
-msgstr "Configurando"
-
-msgid "Date in backupname"
-msgstr "Fecha en nombre del Backup"
-
-msgid "Disclaimer"
-msgstr "Descargo de Responsabilidad"
-
-msgid "Dreambox Backup Plugin by gutemine Version %s"
-msgstr "Aplicación de Backup de Dreambox por gutemine Versión %s"
-
-msgid "Enter Backup Imagename"
-msgstr "Introduce el Nombre del Backup"
-
-msgid "Enter Backup Path"
-msgstr "Introduce la Ruta del Backup"
-
-msgid "Exclude epg.db"
-msgstr "Excluir epg.db"
-
-msgid "Exclude picons"
-msgstr "Excluir Picones"
-
-msgid "Exclude settings"
-msgstr "Excluir Ajustes"
-
-msgid "Exclude timers"
-msgstr "Excluir Temporizadores"
-
+#: ../plugin.py:89
 msgid "Extension"
 msgstr "Extensión"
 
-msgid "Fading"
-msgstr "Atenuando"
+#: ../plugin.py:90
+msgid "both"
+msgstr "ambos"
 
-msgid "Flash Backup finished"
-msgstr "Terminó el Backup de Flash"
+#: ../plugin.py:91
+msgid "all"
+msgstr "todo"
 
+#: ../plugin.py:95
+msgid "Rescue Bios"
+msgstr "Bios de Rescate"
+
+#: ../plugin.py:97
+msgid "direct"
+msgstr "directo"
+
+#: ../plugin.py:105
+msgid "tar.gz"
+msgstr "tar.gz"
+
+#: ../plugin.py:106
+msgid "tar.xz"
+msgstr "tar.xz"
+
+#: ../plugin.py:107
+msgid "tar.bz2"
+msgstr "tar.bz2"
+
+#: ../plugin.py:108
+msgid "tar"
+msgstr "tar"
+
+#: ../plugin.py:113
+msgid "daemon"
+msgstr "programa"
+
+#: ../plugin.py:114
+msgid "system"
+msgstr "sistema"
+
+#: ../plugin.py:115
+msgid "container"
+msgstr "contenedor"
+
+#: ../plugin.py:118
+msgid "Select tar.*z image for flashing"
+msgstr "Selecciona imagen tar.*z para Flashear"
+
+#: ../plugin.py:119
+msgid "Disclaimer"
+msgstr "Descargo de Responsabilidad"
+
+#: ../plugin.py:120
+msgid "Info"
+msgstr "Información"
+
+#: ../plugin.py:121
 msgid ""
-"Flash Backup to %s\n"
+"This way of flashing your Dreambox is not supported by DMM.\n"
 "\n"
-"finished with imagename:\n"
+"You are using it completely at you own risk!\n"
+"If you want to flash your Dreambox safely use the Recovery Webinterface!\n"
 "\n"
-"%s.%s"
+"May the Power button be with you!"
 msgstr ""
-"El Backup de Flash para %s\n"
-"\n"
-"terminó con el nombre de imagen:\n"
-"\n"
-"%s.%s"
 
+#: ../plugin.py:123
+#, python-format
+msgid "Dreambox Backup Plugin by gutemine Version %s"
+msgstr "Aplicación de Backup de Dreambox por gutemine Versión %s"
+
+#: ../plugin.py:124 ../plugin.py:185
+msgid "Flashing"
+msgstr "Flasheando"
+
+#: ../plugin.py:125 ../plugin.py:184
+msgid "Backup"
+msgstr "Backup"
+
+#: ../plugin.py:126
+msgid "Configuring"
+msgstr "Configurando"
+
+#: ../plugin.py:127
+msgid "Checking"
+msgstr "Comprobando"
+
+#: ../plugin.py:128
+msgid "dBackup is busy ..."
+msgstr "dBackup está ocupado..."
+
+#: ../plugin.py:129
+msgid "Enter Backup Imagename"
+msgstr "Introduce el Nombre del Backup"
+
+#: ../plugin.py:130
+msgid "Enter Backup Path"
+msgstr "Introduce la Ruta del Backup"
+
+#: ../plugin.py:131
+msgid "Sorry, currently not supported on this Dreambox type"
+msgstr "Lo siento, Actualmente este tipo de Dreambox no es soportado"
+
+#: ../plugin.py:132
+msgid "Sorry, no correct tar.*z file selected"
+msgstr "Lo siento, No se seleccionó un archivo tar.*z correcto"
+
+#: ../plugin.py:133
+msgid "Sorry, no xz binary found"
+msgstr "Lo siento, No se encontró el binario xz"
+
+#: ../plugin.py:134
+msgid "Refresh"
+msgstr "Refrescar"
+
+#: ../plugin.py:135
+#, python-format
+msgid "Nothing mounted at %s"
+msgstr "No hay Nada Montado en %s"
+
+#: ../plugin.py:136
+msgid "Sorry, use Barry Allen for Backup"
+msgstr "Lo siento, Use Barry Allen para el Backup"
+
+#: ../plugin.py:137
+msgid "Sorry, use LowFAT for Backup"
+msgstr "Lo siento, Use LowFAT para el Backup"
+
+#: ../plugin.py:138
+msgid "Sorry, Flashing works only in Flash"
+msgstr "Lo siento,  Sólo se puede Flashear en la Flash"
+
+#: ../plugin.py:139
+msgid "Sorry, dBackup webinterface is currently disabled"
+msgstr "Lo siento, El interfaz Web de dBackup está deshabilitado"
+
+#: ../plugin.py:151
+msgid "use back button in browser and try again!"
+msgstr "use el botón de retorno en el navegador e inténtelo de nuevo!"
+
+#: ../plugin.py:183 ../plugin.py:1591 ../plugin.py:1668 ../plugin.py:1788
+msgid "Exit"
+msgstr ""
+
+#: ../plugin.py:304 ../plugin.py:346
+#, python-format
+msgid ""
+"Press OK now for flashing\n"
+"\n"
+"%s\n"
+"\n"
+"Box will reboot automatically when finished!"
+msgstr ""
+"Presiona OK para Flashear\n"
+"\n"
+"%s\n"
+"\n"
+"El Descodificador se reiniciará\n"
+"automáticamente cuando acabe!"
+
+#: ../plugin.py:319 ../plugin.py:390
+#, python-format
+msgid "Are you sure that you want to flash now %s ?"
+msgstr "¿Seguro que quiere flashear ahora %s ?"
+
+#: ../plugin.py:324 ../plugin.py:1079
+msgid "Recovery Image from Feed"
+msgstr "Recuperador de Imagen desde Repositorio"
+
+#: ../plugin.py:348 ../plugin.py:394
+#, python-format
+msgid "Sorry, Flashing of %s was canceled!"
+msgstr "Lo siento, Se canceló el Flasheo de, %s !"
+
+#: ../plugin.py:382
+msgid "Sorry, no device choosen"
+msgstr "Lo siento, No se eligió dispositivo"
+
+#: ../plugin.py:384
+msgid "Sorry, no device found"
+msgstr "Lo siento, No se encontró el dispositivo"
+
+#: ../plugin.py:388
+#, python-format
+msgid "Are you sure that you want to FORMAT recovery device %s now for %s ?"
+msgstr ""
+"¿Seguro que quiere FORMATEAR ahora el dispositivo de recuperación %s para "
+"%s ?"
+
+#: ../plugin.py:452
+msgid "umount failed, Sorry!"
+msgstr "Lo siento, el montaje falló!"
+
+#: ../plugin.py:497
+#, python-format
+msgid "Sorry, %s device not mounted writeable"
+msgstr "Lo siento. el dispositivo %s no está montado, no se puede escribir"
+
+#: ../plugin.py:719
+msgid "recovery stick creation failed, Sorry!"
+msgstr "Lo siento, la creación de lápiz de recuperación falló!"
+
+#: ../plugin.py:726
+#, python-format
+msgid "Sorry, %s device not mounted"
+msgstr "Lo siento. el dispositivo %s no está montado"
+
+#: ../plugin.py:782 ../plugin.py:989
+#, python-format
 msgid ""
 "Flash Backup to %s\n"
 "\n"
@@ -113,24 +260,197 @@ msgstr ""
 "\n"
 "PERO con errores de lectura/escritura"
 
-msgid "Flashing"
-msgstr "Flasheando"
+#: ../plugin.py:784 ../plugin.py:991
+#, python-format
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.%s"
+msgstr ""
+"El Backup de Flash para %s\n"
+"\n"
+"terminó con el nombre de imagen:\n"
+"\n"
+"%s.%s"
 
-msgid "Flashing reboot delay [0-60 sec]"
-msgstr "Retraso del reinicio Flasheando [0-60 sec]"
+#: ../plugin.py:802 ../plugin.py:878 ../plugin.py:1274
+msgid "nothing entered"
+msgstr "no se introdujo nada"
 
+#: ../plugin.py:882 ../plugin.py:1252
+msgid "already exists,"
+msgstr "ya existe,"
+
+#: ../plugin.py:882
+msgid "overwrite ?"
+msgstr "sobreescribir ?"
+
+#: ../plugin.py:892
+msgid "Press OK for starting backup to"
+msgstr "Presiona OK para empezar el backup"
+
+#: ../plugin.py:892
+msgid "Be patient, this takes 1-2 min ..."
+msgstr "Ten paciencia, esto llevará 1-2 min..."
+
+#: ../plugin.py:894
+msgid "not confirmed"
+msgstr "no confirmado"
+
+#: ../plugin.py:995
+msgid "Flash Backup finished"
+msgstr "Terminó el Backup de Flash"
+
+#: ../plugin.py:1593 ../plugin.py:1669 ../plugin.py:1789
+msgid "OK"
+msgstr "OK"
+
+#: ../plugin.py:1594 ../plugin.py:1805
+msgid "About"
+msgstr "Acerca de"
+
+#: ../plugin.py:1598
+msgid "check root"
+msgstr "comprobar raiz"
+
+#: ../plugin.py:1599
+msgid "check & repair recovery"
+msgstr "recuperador comprobar & reparar"
+
+#: ../plugin.py:1601
+msgid "badblocks recovery > 1min"
+msgstr "recuperación de bloques malos > 1min"
+
+#: ../plugin.py:1603
+msgid "no badblocks binary - get e2fsprogs"
+msgstr "no hay binario de bloques malos - instala e2fsprogs"
+
+#: ../plugin.py:1604
+msgid "clean apt cache"
+msgstr "limpiar el caché apt"
+
+#: ../plugin.py:1605
+msgid "check defragmentation root"
+msgstr "comprobar raíz de desfragmentación"
+
+#: ../plugin.py:1606
+msgid "defragment root"
+msgstr "desfragmentar Raiz"
+
+#: ../plugin.py:1607
+msgid "check defragmentation recovery"
+msgstr "comprobar recuperación desfragmentación"
+
+#: ../plugin.py:1608
+msgid "defragment recovery"
+msgstr "desfragmentar Recuperación"
+
+#: ../plugin.py:1613
+msgid "check defragmentation Harddisk"
+msgstr "comprobar desfragmentación de Disco Duro"
+
+#: ../plugin.py:1614
+msgid "defragment Harddisk"
+msgstr "desfragmentar Disco Duro"
+
+#: ../plugin.py:1639
+msgid ""
+"If you install e2fsprogs the badblocks binary will allow to check and mark "
+"also bad blocks"
+msgstr ""
+"Si instalas e2fsprogs el binario de los bloques malos te permitirán "
+"comprobar y marcar también estos bloques malos"
+
+#: ../plugin.py:1685
 msgid "Flashtool"
 msgstr "Herramientas de Flash"
 
-msgid "If you install e2fsprogs the badblocks binary will allow to check and mark also bad blocks"
-msgstr "Si instalas e2fsprogs el binario de los bloques malos te permitirán comprobar y marcar también estos bloques malos"
+#: ../plugin.py:1686
+msgid "Backuptool"
+msgstr "Herramientas de Backup"
 
+#: ../plugin.py:1690
+msgid "Flash kernel from image"
+msgstr ""
+
+#: ../plugin.py:1691
+msgid "Flashing reboot delay [0-60 sec]"
+msgstr "Retraso del reinicio Flasheando [0-60 sec]"
+
+#: ../plugin.py:1692
 msgid "Imagetype in backupname"
 msgstr "Tipo de Imagen en Nombre de Imagen"
 
-msgid "Info"
-msgstr "Información"
+#: ../plugin.py:1693
+msgid "Boxtype in backupname"
+msgstr "Tipo de Descodificador en Nombre del Backup"
 
+#: ../plugin.py:1694
+msgid "deb in backupname"
+msgstr "deb en el nombre de backup"
+
+#: ../plugin.py:1695
+msgid "Date in backupname"
+msgstr "Fecha en nombre del Backup"
+
+#: ../plugin.py:1696
+msgid "Time in backupname"
+msgstr "Hora en Nombre de Imagen"
+
+#: ../plugin.py:1698
+msgid "Clean apt cache before backup"
+msgstr "Limpia el caché apt antes de hacer el backup"
+
+#: ../plugin.py:1699
+msgid "Exclude epg.db"
+msgstr "Excluir epg.db"
+
+#: ../plugin.py:1700
+msgid "Exclude timers"
+msgstr "Excluir Temporizadores"
+
+#: ../plugin.py:1701
+msgid "Exclude settings"
+msgstr "Excluir Ajustes"
+
+#: ../plugin.py:1703
+msgid "Exclude picons"
+msgstr "Excluir Picones"
+
+#: ../plugin.py:1704
+msgid "Minimal Fading Transparency"
+msgstr ""
+
+#: ../plugin.py:1705
+msgid "Verbose"
+msgstr "Detallado"
+
+#: ../plugin.py:1706
+msgid "Sort Imagelist alphabetic"
+msgstr "Ordenar la lista de imágenes alfabéticamente"
+
+#: ../plugin.py:1707
+msgid "Show plugin"
+msgstr "Mostrar Aplicaciones"
+
+#: ../plugin.py:1709
+msgid "Webinterface"
+msgstr "Interfaz Web"
+
+#: ../plugin.py:1772
+#, python-format
+msgid ""
+"Root Filesystem\n"
+"\n"
+"total: %s MB\n"
+"used:  %s MB\n"
+"free:  %s MB"
+msgstr ""
+
+#: ../plugin.py:1786
+#, python-format
 msgid ""
 "Memory\n"
 "\n"
@@ -144,219 +464,38 @@ msgstr ""
 "usada: %i MB\n"
 "libre:     %i MB"
 
-msgid "Nothing mounted at %s"
-msgstr "No hay Nada Montado en %s"
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
 
-msgid "OK"
-msgstr "OK"
+#~ msgid "Fading"
+#~ msgstr "Atenuando"
 
-msgid "Pluginlist"
-msgstr "Lista de Aplicaciones"
+#~ msgid ""
+#~ "Root Filesystem\n"
+#~ "\\\n"
+#~ "total: %s MB\n"
+#~ "used:  %s MB\n"
+#~ "free:  %s MB"
+#~ msgstr ""
+#~ "Sistema de Archivos de Raiz\n"
+#~ "\n"
+#~ "total:   %s MB\n"
+#~ "usado: %s MB\n"
+#~ "libre:     %s MB"
 
-msgid "Press OK for starting backup to"
-msgstr "Presiona OK para empezar el backup"
-
-msgid ""
-"Press OK now for flashing\n"
-"\n"
-"%s\n"
-"\n"
-"Box will reboot automatically when finished!"
-msgstr ""
-"Presiona OK para Flashear\n"
-"\n"
-"%s\n"
-"\n"
-"El Descodificador se reiniciará\n"
-"automáticamente cuando acabe!"
-
-msgid "Recovery Image from Feed"
-msgstr "Recuperador de Imagen desde Repositorio"
-
-msgid "Refresh"
-msgstr "Refrescar"
-
-msgid "Rescue Bios"
-msgstr "Bios de Rescate"
-
-msgid ""
-"Root Filesystem\n"
-"\\\n"
-"total: %s MB\n"
-"used:  %s MB\n"
-"free:  %s MB"
-msgstr ""
-"Sistema de Archivos de Raiz\n"
-"\n"
-"total:   %s MB\n"
-"usado: %s MB\n"
-"libre:     %s MB"
-
-msgid "Select tar.*z image for flashing"
-msgstr "Selecciona imagen tar.*z para Flashear"
-
-msgid "Settings"
-msgstr "Ajustes"
-
-msgid "Show plugin"
-msgstr "Mostrar Aplicaciones"
-
-msgid "Sorry, %s device not mounted"
-msgstr "Lo siento. el dispositivo %s no está montado"
-
-msgid "Sorry, %s device not mounted writeable"
-msgstr "Lo siento. el dispositivo %s no está montado, no se puede escribir"
-
-msgid "Sorry, Flashing of %s was canceled!"
-msgstr "Lo siento, Se canceló el Flasheo de, %s !"
-
-msgid "Sorry, Flashing works only in Flash"
-msgstr "Lo siento,  Sólo se puede Flashear en la Flash"
-
-msgid "Sorry, currently not supported on this Dreambox type"
-msgstr "Lo siento, Actualmente este tipo de Dreambox no es soportado"
-
-msgid "Sorry, dBackup webinterface is currently disabled"
-msgstr "Lo siento, El interfaz Web de dBackup está deshabilitado"
-
-msgid "Sorry, no correct tar.*z file selected"
-msgstr "Lo siento, No se seleccionó un archivo tar.*z correcto"
-
-msgid "Sorry, no device choosen"
-msgstr "Lo siento, No se eligió dispositivo"
-
-msgid "Sorry, no device found"
-msgstr "Lo siento, No se encontró el dispositivo"
-
-msgid "Sorry, no xz binary found"
-msgstr "Lo siento, No se encontró el binario xz"
-
-msgid "Sorry, use Barry Allen for Backup"
-msgstr "Lo siento, Use Barry Allen para el Backup"
-
-msgid "Sorry, use LowFAT for Backup"
-msgstr "Lo siento, Use LowFAT para el Backup"
-
-msgid "Sort Imagelist alphabetic"
-msgstr "Ordenar la lista de imágenes alfabéticamente"
-
-msgid ""
-"This way of flashing your Dreambox is not ported by DMM.\n"
-"\n"
-"You are using it completely at you own risk!\n"
-"If you want to flash your Dreambox safely use the Recovery Webinterface!\n"
-"\n"
-"May the Power button be with you!"
-msgstr ""
-"Esta manera de Flashear NO está soportada por DMM.\n"
-"\n"
-"Lo puedes usar bajo tu propio riesgo!!\n"
-"Si quieres Flashear tu Dreambox con seguridad usa el Webinterface de Recuperación!\n"
-"\n"
-"Quizá el botón de Encendido esté contigo!"
-
-msgid "Time in backupname"
-msgstr "Hora en Nombre de Imagen"
-
-msgid "Verbose"
-msgstr "Detallado"
-
-msgid "Webinterface"
-msgstr "Interfaz Web"
-
-msgid "all"
-msgstr "todo"
-
-msgid "already exists,"
-msgstr "ya existe,"
-
-msgid "badblocks recovery > 1min"
-msgstr "recuperación de bloques malos > 1min"
-
-msgid "both"
-msgstr "ambos"
-
-msgid "check & repair recovery"
-msgstr "recuperador comprobar & reparar"
-
-msgid "check defragmentation Harddisk"
-msgstr "comprobar desfragmentación de Disco Duro"
-
-msgid "check defragmentation recovery"
-msgstr "comprobar recuperación desfragmentación"
-
-msgid "check defragmentation root"
-msgstr "comprobar raíz de desfragmentación"
-
-msgid "check root"
-msgstr "comprobar raiz"
-
-msgid "clean apt cache"
-msgstr "limpiar el caché apt"
-
-msgid "container"
-msgstr "contenedor"
-
-msgid "dBackup is busy ..."
-msgstr "dBackup está ocupado..."
-
-msgid "daemon"
-msgstr "programa"
-
-msgid "deb in backupname"
-msgstr "deb en el nombre de backup"
-
-msgid "defragment Harddisk"
-msgstr "desfragmentar Disco Duro"
-
-msgid "defragment recovery"
-msgstr "desfragmentar Recuperación"
-
-msgid "defragment root"
-msgstr "desfragmentar Raiz"
-
-msgid "direct"
-msgstr "directo"
-
-msgid "no"
-msgstr "No"
-
-msgid "no badblocks binary - get e2fsprogs"
-msgstr "no hay binario de bloques malos - instala e2fsprogs"
-
-msgid "not confirmed"
-msgstr "no confirmado"
-
-msgid "nothing entered"
-msgstr "no se introdujo nada"
-
-msgid "overwrite ?"
-msgstr "sobreescribir ?"
-
-msgid "recovery stick creation failed, Sorry!"
-msgstr "Lo siento, la creación de lápiz de recuperación falló!"
-
-msgid "system"
-msgstr "sistema"
-
-msgid "tar"
-msgstr "tar"
-
-msgid "tar.bz2"
-msgstr "tar.bz2"
-
-msgid "tar.gz"
-msgstr "tar.gz"
-
-msgid "tar.xz"
-msgstr "tar.xz"
-
-msgid "umount failed, Sorry!"
-msgstr "Lo siento, el montaje falló!"
-
-msgid "use back button in browser and try again!"
-msgstr "use el botón de retorno en el navegador e inténtelo de nuevo!"
-
-msgid "yes"
-msgstr "sí"
-
+#~ msgid ""
+#~ "This way of flashing your Dreambox is not ported by DMM.\n"
+#~ "\n"
+#~ "You are using it completely at you own risk!\n"
+#~ "If you want to flash your Dreambox safely use the Recovery "
+#~ "Webinterface!\n"
+#~ "\n"
+#~ "May the Power button be with you!"
+#~ msgstr ""
+#~ "Esta manera de Flashear NO está soportada por DMM.\n"
+#~ "\n"
+#~ "Lo puedes usar bajo tu propio riesgo!!\n"
+#~ "Si quieres Flashear tu Dreambox con seguridad usa el Webinterface de "
+#~ "Recuperación!\n"
+#~ "\n"
+#~ "Quizá el botón de Encendido esté contigo!"
