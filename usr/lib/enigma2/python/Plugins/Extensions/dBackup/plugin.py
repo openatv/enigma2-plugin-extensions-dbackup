@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.31 MOD for ATV"
+dbackup_version="0.34 MOD for ATV"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -58,7 +58,7 @@ if m.find("/media/hdd") is not -1:
 	config.plugins.dbackup.backuplocation = ConfigText(default = "/media/hdd/backup", fixed_size=True, visible_width=20)
 else:
 	config.plugins.dbackup.backuplocation = ConfigText(default = "/autofs/sda1", fixed_size=True, visible_width=20)
-config.plugins.dbackup.backupdeb = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.backupdeb = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.backupimagetype = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.backupboxtype = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.backupdate = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
@@ -92,9 +92,14 @@ dbackup_options.append(( "all",_("all") ))
 config.plugins.dbackup.showing = ConfigSelection(default = "settings", choices = dbackup_options)
 
 flashtools=[]
-flashtools.append(( "rescue", _("Rescue Bios") ))
-#flashtools.append(( "recovery", _("Recovery USB") ))
 flashtools.append(( "direct", _("direct") ))
+if boxtype != "dm520":
+	flashtools.append(( "rescue", _("Rescue Bios") ))
+else:
+	if os.path.exists("/dev/disk/by-label/dreambox-data"):
+		flashtools.append(( "rescue", _("Rescue data USB") ))
+	
+#flashtools.append(( "recovery", _("Recovery USB") ))
 config.plugins.dbackup.flashtool = ConfigSelection(default = "direct", choices = flashtools)
 config.plugins.dbackup.console = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
 
@@ -217,7 +222,7 @@ class dBackup(Screen):
        			self["logo"].instance.setPixmapFromFile("%s/ring.png" % dbackup_plugindir)
 		else:                                                                            
        			self["logo"].instance.setPixmapFromFile("%s/dbackup.png" % dbackup_plugindir)
-		self.setTitle(backup_string+" & "+flashing_string+" V%s" % dbackup_version)
+		self.setTitle(backup_string+" & "+flashing_string+" V%s" % (dbackup_version+" "+boxtype))
 
         def byLayoutEnd(self):
                 self["logo"].instance.setPixmapFromFile("%s/dbackup.png" % dbackup_plugindir)
@@ -287,13 +292,17 @@ class dBackup(Screen):
 		k=open("/proc/cmdline","r")       
 		cmd=k.read()     
 		k.close()                
+		if boxtype == "dm520":
+			rootfs="root=ubi0:dreambox-rootfs"
+		else:
+			rootfs="root=/dev/mmcblk0"
 	        if os.path.exists(dbackup_busy):
 			self.session.open(MessageBox, running_string, MessageBox.TYPE_ERROR)
 		elif os.path.exists("/.bainfo"):
 			self.session.open(MessageBox, noflashing_string, MessageBox.TYPE_ERROR)
 		elif os.path.exists("/.lfinfo"):
 			self.session.open(MessageBox, noflashing_string, MessageBox.TYPE_ERROR)
-		elif cmd.find("root=/dev/mmcblk0") is -1:
+		elif cmd.find(rootfs) is -1:
 			self.session.open(MessageBox, noflashing_string, MessageBox.TYPE_ERROR)
 		else:
 			if config.plugins.dbackup.flashtool.value != "rescue":
@@ -321,7 +330,13 @@ class dBackup(Screen):
         def getImageList(self):                                               
         	liststart = []                                                        
         	list = []                                                        
-        	liststart.append((_("Recovery Image from Feed"), "recovery" ))                         
+		if boxtype != "dm520":
+	        	liststart.append((_("Recovery Image from Feed"), "recovery" ))                         
+	        	liststart.append((_("Rescue Bios from Feed"), "rescue" ))                         
+		else:
+			if os.path.exists("/dev/disk/by-label/dreambox-data"):
+		        	liststart.append((_("Recovery Image from Feed"), "recovery" ))                         
+		        	liststart.append((_("Rescue Bios from Feed"), "rescue" ))                         
         	for name in os.listdir("/tmp"):                          
 			if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
         	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar",""), "/tmp/%s" % name ))                         
@@ -337,7 +352,7 @@ class dBackup(Screen):
 		        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar",""), "%s/%s" % (directory,name) ))                         
 		if config.plugins.dbackup.sort.value:
 			list.sort()
-		# recovery image is always first ...
+		# recovery image and rescue bios is always first ...
 		liststart=liststart+list
         	return liststart                                                
 
@@ -803,7 +818,19 @@ class dBackup(Screen):
 		elif path == "/data/.recovery":
 			if not os.path.exists("/data"):
 				os.mkdir("/data")
-			os.system("mount /dev/mmcblk0p2 /data")
+			if boxtype != "dm520":
+				os.system("umount /dev/mmcblk0p2; mount /dev/mmcblk0p2 /data")
+			else:
+				os.system("umount /dev/disk/by-label/dreambox-data; mount /dev/disk/by-label/dreambox-data /data")
+			os.system("mount -o remount,async /data")
+			f=open("/proc/mounts","r")
+			mounts=f.read()
+			f.close()
+       		 	if mounts.find("/data") is -1:
+ 	             		self.session.open(MessageBox,mounted_string % path,  MessageBox.TYPE_ERROR)                 
+				return
+			if not os.path.exists("/data/.recovery"):
+				os.mkdir("/data/.recovery")
 		        self.backupname="backup"
                 	self.askForBackupName("backup")
            	else:
@@ -870,7 +897,7 @@ class dBackup(Screen):
 				suggested_backupname=suggested_backupname+"-"+ctime
 			if config.plugins.dbackup.flashtool.value == "rescue":
 				suggested_backupname="backup"
-			print "suggested backupname !%s!" % suggested_backupname
+			print "suggested backupname %s" % suggested_backupname
                 	self.session.openWithCallback(self.askForBackupName,InputBox, title=backupimage_string, text=suggested_backupname, maxSize=40, type=Input.TEXT)
 
         def askForBackupName(self,name):
@@ -923,7 +950,10 @@ class dBackup(Screen):
 			total_size=rsize
 			st = os.statvfs("/")                                                    
 			rused = (st.f_blocks - st.f_bfree) * st.f_frsize        
-			used=rused
+			if boxtype=="dm520":
+				used=rused*3
+			else:
+				used=rused
 			if used < 0:
 				used=0
 			print "[dBackup] total size %d used %d\n" % (total_size,used)
@@ -1077,6 +1107,7 @@ class wFlash(resource.Resource):
 			b.close()
 			htmlnfi=""
 			htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("recovery",_("Recovery Image from Feed"))
+			htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("rescue",_("Reschue Bios from Feed"))
 			entries=os.listdir("/tmp")
 	 		for name in sorted(entries):                          
 				if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
@@ -1171,11 +1202,15 @@ class wFlash(resource.Resource):
 			k=open("/proc/cmdline","r")       
 			cmd=k.read()     
 			k.close()                
+			if boxtype == "dm520":
+				rootfs="root=ubi0:dreambox-rootfs"
+			else:
+				rootfs="root=/dev/mmcblk0"
 			if os.path.exists("/.bainfo"):
 				return header_string+noflashing_string
 			elif os.path.exists("/.lfinfo"):
 				return header_string+noflashing_string
-			elif cmd.find("root=/dev/mmcblk0") is -1:
+			elif cmd.find(rootfs) is -1:
 				return header_string+noflashing_string
 		        # file command is received and we are in Flash - let the fun begin ...
 			self.nfifile=file[0]
@@ -1221,10 +1256,21 @@ class wFlash(resource.Resource):
 				path="/data/.recovery"
 				if not os.path.exists("/data"):
 					os.mkdir("/data")
-				os.system("mount /dev/mmcblk0p2 /data")
-				self.backupname="backup"
+				if boxtype != "dm520":
+					os.system("umount /dev/mmcblk0p2; mount /dev/mmcblk0p2 /data")
+				else:
+					os.system("umount /dev/disk/by-label/dreambox-data; mount /dev/disk/by-label/dreambox-data /data")
+				os.system("mount -o remount,async /data")
+				f=open("/proc/mounts","r")
+				mounts=f.read()
+				f.close()
+	       		 	if mounts.find("/data") is -1:
+					return header_string+" "+mounted_string % path +", "+dbackup_backbutton
+				if not os.path.exists("/data/.recovery"):
+					os.mkdir("/data/.recovery")
 				if os.path.exists("/data/.recovery/backup.tar.gz"):
 					os.remove("/data/.recovery/backup.tar.gz")
+				self.backupname="backup"
 			else:
 				self.backupname=file[0].replace(" ","").replace("[","").replace("]","").replace(">","").replace("<","").replace("|","").rstrip().lstrip()
 				path=directory[0]
@@ -1285,7 +1331,10 @@ class wFlash(resource.Resource):
 			total_size=rsize
 			st = os.statvfs("/")                                                    
 			rused = (st.f_blocks - st.f_bfree) * st.f_frsize        
-			used=rused
+			if boxtype == "dm520":
+				used=rused*3
+			else:
+				used=rused
 			if used < 0:
 				used=0
 			print "[dBackup] total size %d used %d\n" % (total_size,used)
@@ -1348,7 +1397,12 @@ class FlashingImage(Screen):
 		elif config.plugins.dbackup.flashtool.value == "recovery":
 			command  = "#!/bin/sh -x\n"
 			command += "mkdir /tmp/recovery\n"
-			command += "mount -t ext4 /dev/mmcblk0p2 /tmp/recovery\n"
+			if boxtype != "dm520":
+				command += "umount /dev/mmcblk0p2; mount -t ext4 /dev/mmcblk0p2 /tmp/recovery\n"
+			else:
+				command += "umount /dev/disk/by-label/dreambox-data; mount /dev/disk/by-label/dreambox-data /data\n"
+			command += "mount -o remount,async /data\n"
+			command += "mkdir /tmp/recovery/.recovery\n"
 			command += "cp %s /tmp/recovery/.recovery/backup.tar.gz\n" % flashimage
 			command += "umount /tmp/recovery\n"
 			command += "systemctl stop enigma2\n"
@@ -1373,12 +1427,38 @@ class FlashingImage(Screen):
 			if not os.path.exists("/dbackup.old"):
 				os.mkdir("/dbackup.old")
 			command  = "#!/bin/sh -x\n"
+			if flashimage == "rescue":
+				# default values from DMM recovery Image
+				if boxtype == "dm7080":
+					url="http://www.dreamboxupdate.com/opendreambox/2.2/stable/images/%s" % boxtype
+					img="vmlinuz-rescue--3.4-r0.51-dm7080-20160405.bin"
+				if boxtype == "dm820":
+					url="http://www.dreamboxupdate.com/opendreambox/2.2/stable/images/%s" % boxtype
+					img="vmlinuz-rescue--3.4-r0.3-dm820-20160405.bin"
+				if boxtype == "dm520":
+					url="http://www.dreamboxupdate.com/opendreambox/2.2/unstable/images/%s" % boxtype
+					img="vmlinuz-rescue--3.4-r0.1-dm520-20160706.bin"
+				rescue_image="%s/%s" % (url,img)
+				flashimage="%s/%s" % (config.plugins.dbackup.backuplocation.value,img)
+		        	print "[dBackup] downloads %s to %s" % (rescue_image,flashimage)
+				command += "wget %s -O %s\n" % (rescue_image,flashimage)
 			if flashimage == "recovery":
 				# default values from DMM recovery Image
-				url="http://dreamboxupdate.com/download/recovery/dm7080/release"
-				img="dreambox-image-dm7080.tar.xz"
+				if boxtype == "dm7080":
+					url="http://dreamboxupdate.com/download/recovery/%s/release" % boxtype
+					img="dreambox-image-dm7080.tar.xz"
+				if boxtype == "dm820":
+					url="http://dreamboxupdate.com/download/recovery/dm7080/release"
+					img="dreambox-image-dm820.tar.xz"
+				if boxtype == "dm820":
+					url="http://dreamboxupdate.com/download/recovery/dm520/release"
+					img="dreambox-image-dm520.tar.xz"
 				os.mkdir ("/tmp/recovery")
-			        os.system("mount -t ext4 /dev/mmcblk0p2 /tmp/recovery")
+				if boxtype != "dm520":
+			        	os.system("umount /dev/mmcblk0p2; mount -t ext4 /dev/mmcblk0p2 /tmp/recovery")
+				else:
+					os.system("umount /dev/disk/by-label/dreambox-data; mount /dev/disk/by-label/dreambox-data /tmp/recovery")
+				os.system("mount -o remount,async /tmp/recovery")
 				if os.path.exists("/tmp/recover/.recovery/recovery"):
 					r=open("/tmp/recover/.recovery/recovery")
 			                line = r.readline()                                                                                                                  
@@ -1430,6 +1510,11 @@ class FlashingImage(Screen):
 					command += "tar -xvjf %s -C /dbackup.new\n" % (flashimage)
 				else:
 					command += "tar -xjf %s -C /dbackup.new\n" % (flashimage)
+			elif flashimage.endswith(".bin"):
+				if config.plugins.dbackup.verbose.value:
+					command += "flash-rescue -v %s\n" % (flashimage)
+				else:
+					command += "flash-rescue %s\n" % (flashimage)
 			else:
 				tarimage=flashimage
 				if config.plugins.dbackup.verbose.value:
@@ -1437,12 +1522,15 @@ class FlashingImage(Screen):
 				else:
 					command += "tar -xf %s -C /dbackup.new\n" % (tarimage)
 
-			if config.plugins.dbackup.kernelflash.value:
-				command += "flash-kernel -a /dbackup.new/usr/share/fastboot/lcd_anim.bin -m 0x10000000 -o A  /dbackup.new/boot/vmlinux.bin*\n"
+			if flashimage.endswith(".bin") is False:
+				if config.plugins.dbackup.kernelflash.value:
+					command += "flash-kernel -a /dbackup.new/usr/share/fastboot/lcd_anim.bin -m 0x10000000 -o A  /dbackup.new/boot/vmlinux.bin*\n"
 	
-			command += "cp %s/bin/swaproot /tmp/swaproot\n" % dbackup_plugindir
-			command += "chmod 755 /tmp/swaproot\n"
-			command += "/tmp/swaproot %s\n" % config.plugins.dbackup.delay.value
+				command += "cp %s/bin/swaproot /tmp/swaproot\n" % dbackup_plugindir
+				command += "chmod 755 /tmp/swaproot\n"
+				command += "/tmp/swaproot %s\n" % config.plugins.dbackup.delay.value
+			else:
+				command += "shutdown -r now\n"
 			command += "exit 0\n"
 			b=open(dbackup_script,"w")
 			b.write(command)
@@ -1595,17 +1683,30 @@ class dBackupChecking(Screen):
 	self["logo"] = Pixmap()
         if not os.path.exists("/data"):
 		os.mkdir("/data")
-       	flashchecklist.append((_("check root"), "/sbin/fsck.ext4 -n  -f -v /dev/mmcblk0p1"))
-       	flashchecklist.append((_("check & repair recovery"), "/sbin/fsck.ext4 -p -f -v /dev/mmcblk0p2")) 
-	if os.path.exists("/sbin/badblocks"):
-        	flashchecklist.append((_("badblocks recovery > 1min"), "/sbin/fsck.ext4 -p -f -c -v /dev/mmcblk0p2")) 
+	if boxtype != "dm520":
+	       	flashchecklist.append((_("check root"), "/sbin/fsck.ext4 -n  -f -v /dev/mmcblk0p1"))
+	       	flashchecklist.append((_("check & repair recovery"), "/sbin/fsck.ext4 -p -f -v /dev/mmcblk0p2")) 
+		if os.path.exists("/sbin/badblocks"):
+	        	flashchecklist.append((_("badblocks recovery > 1min"), "/sbin/fsck.ext4 -p -f -c -v /dev/mmcblk0p2")) 
+		else:
+	        	flashchecklist.append((_("no badblocks binary - get e2fsprogs"), "none")) 
 	else:
-        	flashchecklist.append((_("no badblocks binary - get e2fsprogs"), "none")) 
+		if os.path.exists("/dev/disk/by-label/dreambox-data"):
+		       	flashchecklist.append((_("check & repair recovery"), "umount /dev/disk/by-label/dreambox-data; /sbin/fsck.ext4 -p -f -v /dev/disk/by-label/dreambox-data")) 
+			if os.path.exists("/sbin/badblocks"):
+		        	flashchecklist.append((_("badblocks recovery > 1min"), "umount /dev/disk/by-label/dreambox-data; /sbin/fsck.ext4 -p -f -c -v /dev/disk/by-label/dreambox-data")) 
+			else:
+		        	flashchecklist.append((_("no badblocks binary - get e2fsprogs"), "none")) 
        	flashchecklist.append((_("clean apt cache"), "apt-get -v; apt-get clean")) 
-       	flashchecklist.append((_("check defragmentation root"), "ln -sfn /dev/mmcblk0p1 /dev/root; %s/bin/e4defrag -c /dev/root" % dbackup_plugindir)) 
-       	flashchecklist.append((_("defragment root"), "ln -sfn /dev/mmcblk0p1 /dev/root; %s/bin/e4defrag /dev/root" % dbackup_plugindir)) 
-       	flashchecklist.append((_("check defragmentation recovery"), "mount /dev/mmcblk0p2 /data; %s/bin/e4defrag -c /dev/mmcblk0p2; umount /data" % dbackup_plugindir)) 
-       	flashchecklist.append((_("defragment recovery"), "mount /dev/mmcblk0p2 /data; %s/bin/e4defrag /dev/mmcblk0p2; umount /data" % dbackup_plugindir)) 
+	if boxtype != "dm520":
+	       	flashchecklist.append((_("check defragmentation root"), "ln -sfn /dev/mmcblk0p1 /dev/root; %s/bin/e4defrag -c /dev/root" % dbackup_plugindir)) 
+	       	flashchecklist.append((_("defragment root"), "ln -sfn /dev/mmcblk0p1 /dev/root; %s/bin/e4defrag /dev/root" % dbackup_plugindir)) 
+	       	flashchecklist.append((_("check defragmentation recovery"), "mount /dev/mmcblk0p2 /data; %s/bin/e4defrag -c /dev/mmcblk0p2; umount /data" % dbackup_plugindir)) 
+	       	flashchecklist.append((_("defragment recovery"), "mount /dev/mmcblk0p2 /data; %s/bin/e4defrag /dev/mmcblk0p2; umount /data" % dbackup_plugindir)) 
+	else:
+		if os.path.exists("/dev/disk/by-label/dreambox-data"):
+		       	flashchecklist.append((_("check defragmentation recovery"), "mount /dev/disk/by-label/dreambox-data /data; %s/bin/e4defrag -c /dev/disk/by-label/dreambox-data; umount /data" % dbackup_plugindir)) 
+		       	flashchecklist.append((_("defragment recovery"), "mount /dev/disk/by-label/dreambox-data /data; %s/bin/e4defrag /dev/disk/by-label/dreambox-data; umount /data" % dbackup_plugindir)) 
 	m=open("/proc/mounts")
 	mounts=m.read()
 	m.close()
