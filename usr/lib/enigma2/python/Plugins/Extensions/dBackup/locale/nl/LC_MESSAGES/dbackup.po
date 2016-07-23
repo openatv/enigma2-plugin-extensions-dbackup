@@ -1,192 +1,151 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dBackup\n"
-"POT-Creation-Date: 2016-05-05 21:43+0200\n"
-"PO-Revision-Date: 2016-05-05 21:43+0200\n"
-"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
+"POT-Creation-Date: 2015-09-04 23:18+0100\n"
+"PO-Revision-Date: 2015-11-15 12:23+0200\n"
+"Last-Translator: Ni Hao <ni_hao_1@hotmail.com>\n"
 "Language-Team: gutemine <gutemine@oozoon.de>\n"
-"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"Language: de_DE\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
-"X-Poedit-SearchPath-0: ..\n"
 
-#: ../plugin.py:51
 msgid "no"
 msgstr "Nee"
 
-#: ../plugin.py:51
 msgid "yes"
 msgstr "Ja"
 
-#: ../plugin.py:87
 msgid "Settings"
 msgstr "Instellingen"
 
-#: ../plugin.py:88
 msgid "Pluginlist"
 msgstr "Pluginlijst"
 
-#: ../plugin.py:89
 msgid "Extension"
 msgstr "Uitbreidingen"
 
-#: ../plugin.py:90
 msgid "both"
 msgstr "beide"
 
-#: ../plugin.py:91
 msgid "all"
 msgstr "alle"
 
-#: ../plugin.py:95
 msgid "Rescue Bios"
 msgstr "Bios herstellen"
 
-#: ../plugin.py:97
 msgid "direct"
 msgstr "direct"
 
-#: ../plugin.py:105
 msgid "tar.gz"
 msgstr "tar.gz"
 
-#: ../plugin.py:106
 msgid "tar.xz"
 msgstr "tar.xz"
 
-#: ../plugin.py:107
 msgid "tar.bz2"
 msgstr "tar.bz2"
 
-#: ../plugin.py:108
 msgid "tar"
 msgstr "tar"
 
-#: ../plugin.py:113
 msgid "daemon"
 msgstr "daemon"
 
-#: ../plugin.py:114
 msgid "system"
 msgstr "systeem"
 
-#: ../plugin.py:115
 msgid "container"
 msgstr "container"
 
-#: ../plugin.py:118
 msgid "Select tar.*z image for flashing"
 msgstr "Kies tar.*z image om te flashen"
 
-#: ../plugin.py:119
 msgid "Disclaimer"
 msgstr "Vrijwaring"
 
-#: ../plugin.py:120
 msgid "Info"
 msgstr "Info"
 
-#: ../plugin.py:121
 msgid ""
-"This way of flashing your Dreambox is not supported by DMM.\n"
+"This way of flashing your Dreambox is not ported by DMM.\n"
 "\n"
 "You are using it completely at you own risk!\n"
 "If you want to flash your Dreambox safely use the Recovery Webinterface!\n"
 "\n"
 "May the Power button be with you!"
 msgstr ""
-"Deze manier van uw Dreambox flashen wordt niet ondersteund door DMM.\n"
+"Deze manier van flashen wordt NIET door DreamMultiMedia ondersteunt.\n"
 "\n"
-"U gebruikt het volledig op je eigen risico!\n"
-"Als u uw Dreambox veilig wilt flashen gebruik de Recovery Webinterface!\n"
+"Je doet het op eigen risico!\n"
+"Indien je deze dreambox veilig wilt flashen, gebruik Recovery Webinterface!\n"
 "\n"
-"Zij de Power knop met u!"
+"Mag de aan/uit knop je bijstaan!"
 
-#: ../plugin.py:123
-#, python-format
 msgid "Dreambox Backup Plugin by gutemine Version %s"
 msgstr "Dreambox Backup Plugin van gutemine v%s"
 
-#: ../plugin.py:124 ../plugin.py:185
 msgid "Flashing"
 msgstr "Flashen"
 
-#: ../plugin.py:125 ../plugin.py:184
 msgid "Backup"
 msgstr "Backup"
 
-#: ../plugin.py:126
 msgid "Configuring"
 msgstr "Configureren"
 
-#: ../plugin.py:127
 msgid "Checking"
 msgstr "Contoleren"
 
-#: ../plugin.py:128
 msgid "dBackup is busy ..."
 msgstr "dBackup is bezig ..."
 
-#: ../plugin.py:129
 msgid "Enter Backup Imagename"
 msgstr "Geef backup imagenaam op"
 
-#: ../plugin.py:130
 msgid "Enter Backup Path"
 msgstr "Geef backup pad op"
 
-#: ../plugin.py:131
 msgid "Sorry, currently not supported on this Dreambox type"
 msgstr "Helaas, wordt niet ondersteund op dit type dreambox"
 
-#: ../plugin.py:132
 msgid "Sorry, no correct tar.*z file selected"
 msgstr "Helaas, geen correct tar.*z bestand geselecteerd"
 
-#: ../plugin.py:133
 msgid "Sorry, no xz binary found"
 msgstr "Helaas, geen xz bestand gevonden"
 
-#: ../plugin.py:134
 msgid "Refresh"
 msgstr "Actualiseren"
 
-#: ../plugin.py:135
-#, python-format
 msgid "Nothing mounted at %s"
 msgstr "Niets gemount op %s"
 
-#: ../plugin.py:136
 msgid "Sorry, use Barry Allen for Backup"
 msgstr "Helaas, gebruik Barry Allen om een backup te maken"
 
-#: ../plugin.py:137
 msgid "Sorry, use LowFAT for Backup"
 msgstr "Helaas, gebruik LowFAT om een backup te maken"
 
-#: ../plugin.py:138
 msgid "Sorry, Flashing works only in Flash"
 msgstr "Helaas, flashen werkt alleen in de Flash"
 
-#: ../plugin.py:139
 msgid "Sorry, dBackup webinterface is currently disabled"
 msgstr "Helaas, dBackup webinterface is momenteel uitgeschakeld"
 
-#: ../plugin.py:151
 msgid "use back button in browser and try again!"
 msgstr "bebruik de TERUG knop in je browser en probeer het opnieuw"
 
-#: ../plugin.py:183 ../plugin.py:1591 ../plugin.py:1668 ../plugin.py:1788
+msgid "Cancel"
+msgstr "Annuleren"
+
 msgid "Exit"
 msgstr "Verlaten"
 
-#: ../plugin.py:304 ../plugin.py:346
-#, python-format
 msgid ""
 "Press OK now for flashing\n"
 "\n"
@@ -201,54 +160,36 @@ msgstr ""
 "te starten. Dreambox start \n"
 "na het flashen automatisch op!"
 
-#: ../plugin.py:319 ../plugin.py:390
-#, python-format
 msgid "Are you sure that you want to flash now %s ?"
 msgstr "Weet je zeker dat je nu %s wilt flashen?"
 
-#: ../plugin.py:324 ../plugin.py:1079
 msgid "Recovery Image from Feed"
 msgstr "Herstel image van de feed"
 
-#: ../plugin.py:348 ../plugin.py:394
-#, python-format
 msgid "Sorry, Flashing of %s was canceled!"
 msgstr "Heaas, %s flashen is geannuleerd!"
 
-#: ../plugin.py:382
 msgid "Sorry, no device choosen"
 msgstr "Helaas, geen apparaat opgegeven"
 
-#: ../plugin.py:384
 msgid "Sorry, no device found"
 msgstr "Helaas, geen apparaat gevonden"
 
-#: ../plugin.py:388
-#, python-format
 msgid "Are you sure that you want to FORMAT recovery device %s now for %s ?"
-msgstr ""
-"Weet je zeker dat je het herstelapparaat %s nu wilt formatteren voor %s ?"
+msgstr "Weet je zeker dat je het herstelapparaat %s nu wilt formatteren voor %s ?"
 
-#: ../plugin.py:452
 msgid "umount failed, Sorry!"
 msgstr "unmounten niet gelukt, sorry!"
 
-#: ../plugin.py:497
-#, python-format
 msgid "Sorry, %s device not mounted writeable"
 msgstr "Helaas, %s niet beschrijfbaar ('writeable') gemount"
 
-#: ../plugin.py:719
 msgid "recovery stick creation failed, Sorry!"
 msgstr "maken van een 'recovery stick' is mislukt, sorry!"
 
-#: ../plugin.py:726
-#, python-format
 msgid "Sorry, %s device not mounted"
 msgstr "Sorry %s is niet gemount"
 
-#: ../plugin.py:782 ../plugin.py:989
-#, python-format
 msgid ""
 "Flash Backup to %s\n"
 "\n"
@@ -266,8 +207,6 @@ msgstr ""
 "\n"
 "MAAR er zijn I/O fouten"
 
-#: ../plugin.py:784 ../plugin.py:991
-#, python-format
 msgid ""
 "Flash Backup to %s\n"
 "\n"
@@ -281,187 +220,136 @@ msgstr ""
 "\n"
 "%s.%s"
 
-#: ../plugin.py:802 ../plugin.py:878 ../plugin.py:1274
 msgid "nothing entered"
 msgstr "niets opgegeven"
 
-#: ../plugin.py:882 ../plugin.py:1252
 msgid "already exists,"
 msgstr "bestaat reeds,"
 
-#: ../plugin.py:882
 msgid "overwrite ?"
 msgstr "overschrijven ?"
 
-#: ../plugin.py:892
 msgid "Press OK for starting backup to"
 msgstr "Druk op OK om backup te maken in"
 
-#: ../plugin.py:892
 msgid "Be patient, this takes 1-2 min ..."
 msgstr "Heb geduld a.u.b., dit kan enkele minuten duren ..."
 
-#: ../plugin.py:894
 msgid "not confirmed"
 msgstr "niet bevestigd"
 
-#: ../plugin.py:995
 msgid "Flash Backup finished"
 msgstr "Flash Backup is klaar"
 
-#: ../plugin.py:1593 ../plugin.py:1669 ../plugin.py:1789
 msgid "OK"
 msgstr "OK"
 
-#: ../plugin.py:1594 ../plugin.py:1805
 msgid "About"
 msgstr "Over"
 
-#: ../plugin.py:1598
 msgid "check root"
 msgstr "root controleren"
 
-#: ../plugin.py:1599
 msgid "check & repair recovery"
 msgstr "controleer & herstel 'recovery'"
 
-#: ../plugin.py:1601
 msgid "badblocks recovery > 1min"
 msgstr "'Bad blocks' ontdekt > 1min"
 
-#: ../plugin.py:1603
 msgid "no badblocks binary - get e2fsprogs"
 msgstr "geen 'Bad Blocks software; installeer: e2fsprogs"
 
-#: ../plugin.py:1604
 msgid "clean apt cache"
 msgstr "'apt cache' opschonen"
 
-#: ../plugin.py:1605
 msgid "check defragmentation root"
 msgstr "controleer root defragmentatie"
 
-#: ../plugin.py:1606
 msgid "defragment root"
 msgstr "root defragmenteren"
 
-#: ../plugin.py:1607
 msgid "check defragmentation recovery"
 msgstr "controleren/herstellen & recovery defragmentatie"
 
-#: ../plugin.py:1608
 msgid "defragment recovery"
 msgstr "defragmenteren recovery"
 
-#: ../plugin.py:1613
 msgid "check defragmentation Harddisk"
 msgstr "controleer defragmentatie op harddisk"
 
-#: ../plugin.py:1614
 msgid "defragment Harddisk"
 msgstr "defragmenteer harddisk"
 
-#: ../plugin.py:1639
-msgid ""
-"If you install e2fsprogs the badblocks binary will allow to check and mark "
-"also bad blocks"
-msgstr ""
-"als je e2fsprogs installeerd, zullen de 'bad blocks' worden gecontrolleerd "
-"en gemarkeerd "
+msgid "If you install e2fsprogs the badblocks binary will allow to check and mark also bad blocks"
+msgstr "als je e2fsprogs installeerd, zullen de 'bad blocks' worden gecontrolleerd en gemarkeerd "
 
-#: ../plugin.py:1685
 msgid "Flashtool"
 msgstr "Flash gereedschap"
 
-#: ../plugin.py:1686
 msgid "Backuptool"
 msgstr "Backup gereedschap"
 
-#: ../plugin.py:1690
-msgid "Flash kernel from image"
-msgstr "Flash kernel van image"
-
-#: ../plugin.py:1691
 msgid "Flashing reboot delay [0-60 sec]"
 msgstr "Flashen herstart vertraging [0-60 sec]"
 
-#: ../plugin.py:1692
 msgid "Imagetype in backupname"
 msgstr "Imagetype in backupnaam"
 
-#: ../plugin.py:1693
 msgid "Boxtype in backupname"
 msgstr "Boxtype in backupnaam"
 
-#: ../plugin.py:1694
 msgid "deb in backupname"
 msgstr "deb in backupnaam"
 
-#: ../plugin.py:1695
 msgid "Date in backupname"
 msgstr "Datum in backupnaam"
 
-#: ../plugin.py:1696
 msgid "Time in backupname"
 msgstr "Tijd in backupnaam"
 
-#: ../plugin.py:1698
 msgid "Clean apt cache before backup"
 msgstr "'apt cache' opschonen voor het backuppen"
 
-#: ../plugin.py:1699
 msgid "Exclude epg.db"
 msgstr "epg.db overslaan"
 
-#: ../plugin.py:1700
 msgid "Exclude timers"
 msgstr "Timers overslaan"
 
-#: ../plugin.py:1701
 msgid "Exclude settings"
 msgstr "Instellingen oversaan"
 
-#: ../plugin.py:1703
 msgid "Exclude picons"
 msgstr "Picons overslaan"
 
-#: ../plugin.py:1704
-msgid "Minimal Fading Transparency"
-msgstr "Minimale vervaging transparantie"
+msgid "Fading"
+msgstr "Vervagen"
 
-#: ../plugin.py:1705
 msgid "Verbose"
 msgstr "Uitgebreide weergave"
 
-#: ../plugin.py:1706
 msgid "Sort Imagelist alphabetic"
 msgstr "Imagenamen in lijst alfabetisch sorteren"
 
-#: ../plugin.py:1707
 msgid "Show plugin"
 msgstr "Plugin tonen"
 
-#: ../plugin.py:1709
 msgid "Webinterface"
 msgstr "Webinterface"
 
-#: ../plugin.py:1772
-#, python-format
 msgid ""
 "Root Filesystem\n"
-"\n"
+"\\\n"
 "total: %s MB\n"
 "used:  %s MB\n"
 "free:  %s MB"
 msgstr ""
-"Root bestandssyteem\n"
+"Root bestandssysteem\n"
 "\n"
-"totaal: %s MB\n"
+"totaal:   %s MB\n"
 "gebruikt: %s MB\n"
-"vrij: %s MB"
+"vrij:     %s MB"
 
-#: ../plugin.py:1786
-#, python-format
 msgid ""
 "Memory\n"
 "\n"
@@ -474,39 +362,3 @@ msgstr ""
 "totaal:   %i MB\n"
 "gebruikt: %i MB\n"
 "vrij:     %i MB"
-
-#~ msgid ""
-#~ "This way of flashing your Dreambox is not ported by DMM.\n"
-#~ "\n"
-#~ "You are using it completely at you own risk!\n"
-#~ "If you want to flash your Dreambox safely use the Recovery "
-#~ "Webinterface!\n"
-#~ "\n"
-#~ "May the Power button be with you!"
-#~ msgstr ""
-#~ "Deze manier van flashen wordt NIET door DreamMultiMedia ondersteunt.\n"
-#~ "\n"
-#~ "Je doet het op eigen risico!\n"
-#~ "Indien je deze dreambox veilig wilt flashen, gebruik Recovery "
-#~ "Webinterface!\n"
-#~ "\n"
-#~ "Mag de aan/uit knop je bijstaan!"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuleren"
-
-#~ msgid "Fading"
-#~ msgstr "Vervagen"
-
-#~ msgid ""
-#~ "Root Filesystem\n"
-#~ "\\\n"
-#~ "total: %s MB\n"
-#~ "used:  %s MB\n"
-#~ "free:  %s MB"
-#~ msgstr ""
-#~ "Root bestandssysteem\n"
-#~ "\n"
-#~ "totaal:   %s MB\n"
-#~ "gebruikt: %s MB\n"
-#~ "vrij:     %s MB"

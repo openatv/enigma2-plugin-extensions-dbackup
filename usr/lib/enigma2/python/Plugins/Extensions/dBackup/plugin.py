@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.34 MOD for ATV"
+dbackup_version="0.35"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -1588,6 +1588,10 @@ class BackupImage(Screen):
 			command +="mount -t tmpfs tmpfs /tmp/root/usr/share/enigma2/picon\n"
 		target ="%s/%s.tar" % (config.plugins.dbackup.backuplocation.value, backupname)
 		# tar.gz is now default
+#		if boxtype == "dm520":
+#   			command +="dd if=/dev/zero of=%s/swapfile bs=1024 count=512000\n" % config.plugins.dbackup.backuplocation.value  
+#   			command +="mkswap %s/swapfile\n" % config.plugins.dbackup.backuplocation.value
+#   			command +="swapon %s/swapfile\n" % config.plugins.dbackup.backuplocation.value
 		if config.plugins.dbackup.backuptool.value == "tar.gz":
 			if os.path.exists("%s/bin/pigz" % dbackup_plugindir):
 				if config.plugins.dbackup.verbose.value:
@@ -1606,7 +1610,11 @@ class BackupImage(Screen):
 					command +="%s/tar -cvf %s %s -C /tmp/root .\n" % (dbackup_bin, target, exclude)
 				else:
 					command +="%s/tar -cf %s %s -C /tmp/root .\n" % (dbackup_bin, target, exclude)
-				command +="%s/bin/xz < %s > %s.xz\n" % (dbackup_plugindir,target,target)
+				command +="ln -sfn %s/bin/xz /usr/bin/xz\n" % (dbackup_plugindir)
+				if boxtype == "dm520":
+					command +="/usr/bin/xz -4 -T 0 < %s > %s.xz\n" % (target,target)
+				else:
+					command +="/usr/bin/xz -T 0 < %s > %s.xz\n" % (target,target)
 				command +="rm %s\n" % (target)
 			else:
 				if config.plugins.dbackup.verbose.value:
@@ -1635,6 +1643,9 @@ class BackupImage(Screen):
 		command +="ls -alh %s*\n" % (target)
 		command +="du -h %s* > %s\n" % (target,dbackup_backup)
 		command +="df -h\n"
+#		if boxtype == "dm520":
+#   			command +="swapoff %s/swapfile\n" % config.plugins.dbackup.backuplocation.value
+#   			command +="rm %s/swapfile\n" % config.plugins.dbackup.backuplocation.value
 		command +="rm %s\n" % dbackup_busy
 		command +="exit 0\n"
 		print command
