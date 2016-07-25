@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.48"
+dbackup_version="0.49"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -333,7 +333,8 @@ class dBackup(Screen):
 			self.nfiname=image[0]
 			self.nfifile=image[1]
 			self.nfidirectory=self.nfifile.replace(self.nfiname,"")
-			if self.nfiname.find(boxtype) is -1:
+			print self.nfifile, self.nfidirectory
+			if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfiname.find(boxtype) is -1:
 				self.session.open(MessageBox, noboxtype_string, MessageBox.TYPE_ERROR)
 			else:
 				if os.path.exists(dbackup_busy):
@@ -1282,7 +1283,7 @@ class wBackup(resource.Resource):
 				return header_string+noflashing_string
 		        # file command is received and we are in Flash - let the fun begin ...
 			self.nfifile=file[0]
-			if self.nfifile.find(boxtype) is -1:
+			if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfiname.find(boxtype) is -1:
 				return header_string+noboxtype_string
 			if os.path.exists(self.nfifile):
 		 		if self.nfifile.endswith(".tar.gz"):
