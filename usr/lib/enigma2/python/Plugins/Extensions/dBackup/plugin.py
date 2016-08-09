@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.49"
+dbackup_version="0.52"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -85,6 +85,7 @@ config.plugins.dbackup.loaderflash = ConfigBoolean(default = False, descriptions
 config.plugins.dbackup.kernelextract = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.kernelflash = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.sort = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.backupaskdir = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.delay = ConfigInteger(default = 0, limits=(0,60))
 
 if not os.path.exists("/var/lib/opkg/status"):
@@ -333,7 +334,6 @@ class dBackup(Screen):
 			self.nfiname=image[0]
 			self.nfifile=image[1]
 			self.nfidirectory=self.nfifile.replace(self.nfiname,"")
-			print self.nfifile, self.nfidirectory
 			if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfiname.find(boxtype) is -1:
 				self.session.open(MessageBox, noboxtype_string, MessageBox.TYPE_ERROR)
 			else:
@@ -785,7 +785,6 @@ class dBackup(Screen):
 				        backup.append((backupdir,backupdir))                             
 	        return backup                                                          
 
-
 	def backup(self):
 		global dbackup_progress
 		if os.path.exists(dbackup_backup):
@@ -846,7 +845,12 @@ class dBackup(Screen):
 					backup.append(("/data/.recovery"))
 	               			self.askForBackupPath(backup)      
 				else:
-	               			self.session.openWithCallback(self.askForBackupPath,ChoiceBox,_("select backup path"),self.getBackupPath())      
+					if config.plugins.dbackup.backupaskdir.value:
+	               				self.session.openWithCallback(self.askForBackupPath,ChoiceBox,_("select backup path"),self.getBackupPath())      
+					else:
+					        backup = []                                                             
+				        	backup.append((config.plugins.dbackup.backuplocation.value))                             
+		               			self.askForBackupPath(backup)      
 
         def askForBackupPath(self,backup_path):
 	        self.imagetype=""                                       
@@ -1091,8 +1095,44 @@ def autostart(reason,**kwargs):
 			config.plugins.dbackup.backuptool.value = "tar.gz"
 			config.plugins.dbackup.backuplocation.save()
 			config.plugins.dbackup.backuptool.save()
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.pyo"):
+			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.pyo")
+			ps=p.read()
+			p.close()
+			if ps.find("type == 99:") is -1:
+				ps2=ps.replace("type = int(self.cmd)","type = int(self.cmd)\n\n			if type == 99:\n				b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n				b.write(\"rescue\")\n				b.close()\n				type=2\n")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.pyo","w")
+				p.write(ps2)
+				p.close()
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js"):
+			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js")
+			cs=p.read()
+			p.close()
+			if cs.find("rebootsetup") is -1:
+				cs2=cs.replace("\'gui\' : 3","\'gui\' : 3, \'rebootsetup\' : 99")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js","w")
+				p.write(cs2)
+				p.close()
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html"):
+			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html")
+			ix=p.read()
+			p.close()
+			if ix.find("rebootsetup") is -1:
+				ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>","data-state=\"gui\">Restart GUI</a></li>\n								<li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Reboot</a></li>")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html","w")
+				p.write(ix2)
+				p.close()
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm"):
+			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm")
+			df=p.read()
+			p.close()
+			if df.find("rebootsetup") is -1:
+				df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>\n										</tr>\n										<tr>\n											<td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Reboot</button></td>")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm","w")
+				p.write(df2)
+				p.close()
 
-def sessionstart(reason, **kwargs):                                               
+def sessionstart(reason, **kwargs):                                             
         if reason == 0 and "session" in kwargs:                                                        
 		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebChilds/Toplevel.pyo"):
                        	from Plugins.Extensions.WebInterface.WebChilds.Toplevel import addExternalChild
@@ -1151,23 +1191,24 @@ class wBackup(resource.Resource):
 		if command is None or command[0] == "Refresh":
 			htmlbackup=""
 			htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (config.plugins.dbackup.backuplocation.value,config.plugins.dbackup.backuplocation.value)
-	        	for mount in os.listdir("/media"):                                      
-        		    if mount.startswith(".") is False:
-				backupdir="/media/%s/backup" % mount
-       	        		if os.path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:                  
-					htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir,backupdir)
-	               	if os.path.exists("/media/net"):
-		        	for mount in os.listdir("/media/net"):                                      
+			if config.plugins.dbackup.backupaskdir.value:
+		        	for mount in os.listdir("/media"):                                      
         			    if mount.startswith(".") is False:
-					backupdir="/media/net/%s/backup" % mount
-                			if os.path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:                  
+					backupdir="/media/%s/backup" % mount
+       	        			if os.path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:                  
 						htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir,backupdir)
-	               	if os.path.exists("/autofs"):
-	        		for mount in os.listdir("/autofs"):                                      
-        			    if mount.startswith(".") is False:
-					backupdir="/autofs/%s/backup" % mount
-         			       	if os.path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:                  
-						htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir,backupdir)
+	    	           	if os.path.exists("/media/net"):
+			        	for mount in os.listdir("/media/net"):                                      
+        				    if mount.startswith(".") is False:
+						backupdir="/media/net/%s/backup" % mount
+                				if os.path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:                  
+							htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir,backupdir)
+		               	if os.path.exists("/autofs"):
+	        			for mount in os.listdir("/autofs"):                                      
+        				    if mount.startswith(".") is False:
+						backupdir="/autofs/%s/backup" % mount
+         			       		if os.path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:                  
+							htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir,backupdir)
 			print htmlbackup
 
 			b=open("/proc/stb/info/model","r")
@@ -1283,7 +1324,7 @@ class wBackup(resource.Resource):
 				return header_string+noflashing_string
 		        # file command is received and we are in Flash - let the fun begin ...
 			self.nfifile=file[0]
-			if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfiname.find(boxtype) is -1:
+			if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfifile.find(boxtype) is -1:
 				return header_string+noboxtype_string
 			if os.path.exists(self.nfifile):
 		 		if self.nfifile.endswith(".tar.gz"):
@@ -1682,7 +1723,7 @@ class BackupImage(Screen):
 				if boxtype == "dm520":
 					command +="/usr/bin/xz -4 -T 0 < %s > %s.xz\n" % (target,target)
 				else:
-					command +="/usr/bin/xz -T 0 < %s > %s.xz\n" % (target,target)
+					command +="/usr/bin/xz -6 -T 0 < %s > %s.xz\n" % (target,target)
 				command +="rm %s\n" % (target)
 			else:
 				if config.plugins.dbackup.verbose.value:
@@ -1922,6 +1963,7 @@ class dBackupConfiguration(Screen, ConfigListScreen):
 #	self.list.append(getConfigListEntry(_("Extract kernel from Flash"), config.plugins.dbackup.kernelextract))
 	self.list.append(getConfigListEntry(_("Flash kernel from image"), config.plugins.dbackup.kernelflash))
         self.list.append(getConfigListEntry(_("Flashing reboot delay [0-60 sec]"), config.plugins.dbackup.delay))
+	self.list.append(getConfigListEntry(_("Choose backup location"), config.plugins.dbackup.backupaskdir))
 	self.list.append(getConfigListEntry(_("Imagetype in backupname"), config.plugins.dbackup.backupimagetype))
 #	self.list.append(getConfigListEntry(_("Boxtype in backupname"), config.plugins.dbackup.backupboxtype))
 	self.list.append(getConfigListEntry(_("deb in backupname"), config.plugins.dbackup.backupdeb))
