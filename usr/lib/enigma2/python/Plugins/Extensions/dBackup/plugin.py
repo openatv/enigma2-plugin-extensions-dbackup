@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.52"
+dbackup_version="0.54"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -63,7 +63,9 @@ if os.path.exists("/proc/stb/info/model"):
 	boxtype=f.read()
 	f.close()
 	boxtype=boxtype.replace("\n","").replace("\l","")
-	
+	if boxtype == "dm525":
+		boxtype="dm520"
+
 yes_no_descriptions = {False: _("no"), True: _("yes")}    
 
 config.plugins.dbackup = ConfigSubsection()
@@ -1080,6 +1082,18 @@ class dBackup(Screen):
 def startdBackup(session, **kwargs):
        	session.open(dBackup)   
 
+def startRecover(session, **kwargs):
+	session.openWithCallback(startRecovery,MessageBox,_("Recovery")+" "+_("boot")+" - "+_("Really shutdown now?"), MessageBox.TYPE_YESNO)
+
+def startRecovery(option):
+       	if option:
+		print "[dBACKUP] starting Recovery"
+		b=open("/proc/stb/fp/boot_mode","w")
+		b.write("rescue")
+		b.close()
+		quitMainloop(2) 
+	else:
+		print "[dBACKUP] cancelled Recovery"
 def autostart(reason,**kwargs):
         if kwargs.has_key("session") and reason == 0:           
 		session = kwargs["session"]                       
@@ -1095,13 +1109,13 @@ def autostart(reason,**kwargs):
 			config.plugins.dbackup.backuptool.value = "tar.gz"
 			config.plugins.dbackup.backuplocation.save()
 			config.plugins.dbackup.backuptool.save()
-		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.pyo"):
-			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.pyo")
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py"):
+			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py")
 			ps=p.read()
 			p.close()
 			if ps.find("type == 99:") is -1:
 				ps2=ps.replace("type = int(self.cmd)","type = int(self.cmd)\n\n			if type == 99:\n				b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n				b.write(\"rescue\")\n				b.close()\n				type=2\n")
-				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.pyo","w")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py","w")
 				p.write(ps2)
 				p.close()
 		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js"):
@@ -1118,7 +1132,7 @@ def autostart(reason,**kwargs):
 			ix=p.read()
 			p.close()
 			if ix.find("rebootsetup") is -1:
-				ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>","data-state=\"gui\">Restart GUI</a></li>\n								<li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Reboot</a></li>")
+				ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>","data-state=\"gui\">Restart GUI</a></li>\n								<li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery</a></li>")
 				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html","w")
 				p.write(ix2)
 				p.close()
@@ -1127,10 +1141,36 @@ def autostart(reason,**kwargs):
 			df=p.read()
 			p.close()
 			if df.find("rebootsetup") is -1:
-				df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>\n										</tr>\n										<tr>\n											<td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Reboot</button></td>")
+				df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>\n										</tr>\n										<tr>\n											<td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery</button></td>")
 				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm","w")
 				p.write(df2)
 				p.close()
+		return
+		########################################################
+#		if os.path.exists("/usr/share/enigma2/menu.xml"):
+#			p=open("/usr/share/enigma2/menu.xml")
+#			mx=p.read()
+#			p.close()
+#			if mx.find("rebootsetup") is -1:
+#				mx2=mx.replace("Dreambox.\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">1</screen></item>","Dreambox.\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">1</screen></item>\n			<item text=\"Recovery\" entryID=\"rebootsetup\" description=\"Put your Dreambox into Recovery mode.\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">99</screen></item>")
+#				Open menu.xml is different,
+#				but patching pyo is too hard.
+#				mx2=mx.replace("Restart Gui\" entryID=\"restart_enigma\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">3</screen></item>","Restart Gui\" entryID=\"restart_enigma\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">1</screen></item>\n			<item text=\"Recovery\" entryID=\"rebootsetup\" description=\"Put your Dreambox into Recovery mode.\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">99</screen></item>")
+#				if os.path.exists("/usr/share/enigma2/menu.xml.ori"):
+#					os.remove("/usr/share/enigma2/menu.xml.ori")
+#				os.rename("/usr/share/enigma2/menu.xml","/usr/share/enigma2/menu.xml.ori")
+#				p=open("/usr/share/enigma2/menu.xml","w")
+#				p.write(mx2)
+#				p.close()
+#		if os.path.exists("/usr/lib/enigma2/python/Screens/Standby.py"):
+#			p=open("/usr/lib/enigma2/python/Screens/Standby.py")
+#			sb=p.read()
+#			p.close()
+#			if sb.find("retvalue == 99:") is -1:
+#				sb2=sb.replace("self.retval=retvalue","if retvalue == 99:\n			b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n			b.write(\"rescue\")\n			b.close()\n			retvalue=2\n		self.retval=retvalue")
+#				p=open("/usr/lib/enigma2/python/Screens/Standby.py","w")
+#				p.write(sb2)
+#				p.close()
 
 def sessionstart(reason, **kwargs):                                             
         if reason == 0 and "session" in kwargs:                                                        
