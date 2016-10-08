@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.54"
+dbackup_version="0.58"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -20,12 +20,13 @@ from Components.SystemInfo import SystemInfo
 from Screens.Console import Console                                                                           
 from Components.MenuList import MenuList       
 from Components.Slider import Slider       
-from enigma import  ePoint, getDesktop, quitMainloop, eConsoleAppContainer, eDVBVolumecontrol, eTimer, eActionMap
+from enigma import  ePoint, eLCD, eDBoxLCD, getDesktop, quitMainloop, eConsoleAppContainer, eDVBVolumecontrol, eTimer, eActionMap
 from Tools.LoadPixmap import LoadPixmap
 import Screens.Standby  
 import sys, os, struct, stat, time
 from twisted.web import resource, http
 import gettext, datetime, shutil
+import os
 
 dbackup_plugindir="/usr/lib/enigma2/python/Plugins/Extensions/dBackup" 
 dbackup_bin="/bin"
@@ -109,6 +110,13 @@ dbackup_options.append(( "extension",_("Extension") ))
 dbackup_options.append(( "both",_("both") ))
 dbackup_options.append(( "all",_("all") ))
 config.plugins.dbackup.showing = ConfigSelection(default = "settings", choices = dbackup_options)
+
+dbackup_recovering = []                                                     
+dbackup_recovering.append(( "webif",_("Webinterface") ))
+dbackup_recovering.append(( "factory",_("Factory reset") ))
+dbackup_recovering.append(( "both",_("both") ))
+dbackup_recovering.append(( "none",_("none") ))
+config.plugins.dbackup.recovering = ConfigSelection(default = "none", choices = dbackup_recovering)
 
 flashtools=[]
 flashtools.append(( "direct", _("direct") ))
@@ -1094,6 +1102,91 @@ def startRecovery(option):
 		quitMainloop(2) 
 	else:
 		print "[dBACKUP] cancelled Recovery"
+
+def recovery2Webif(enable):
+	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	if enable:
+		print "[dBACKUP] recovery webinterface enabling"
+	else:
+		print "[dBACKUP] recovery webinterface disabling"
+	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py"):
+		p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py")
+		ps=p.read()
+		p.close()
+		if enable:
+			if ps.find("type == 99:") is -1:
+				print "[dBACKUP] recovery webinterface inserting #1"
+				ps2=ps.replace("type = int(self.cmd)","type = int(self.cmd)\n\n			if type == 99:\n				b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n				b.write(\"rescue\")\n				b.close()\n				type=2\n")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py","w")
+				p.write(ps2)
+				p.close()
+		else:
+			if ps.find("type == 99:") is not -1:
+				print "[dBACKUP] recovery webinterface removing #1"
+				ps2=ps.replace("type = int(self.cmd)\n\n			if type == 99:\n				b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n				b.write(\"rescue\")\n				b.close()\n				type=2\n","type = int(self.cmd)")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py","w")
+				p.write(ps2)
+				p.close()
+	if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js"):
+		p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js")
+		cs=p.read()
+		p.close()
+		if enable:
+			if cs.find("rebootsetup") is -1:
+				print "[dBACKUP] recovery webinterface inserting #2"
+				cs2=cs.replace("\'gui\' : 3","\'gui\' : 3, \'rebootsetup\' : 99")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js","w")
+				p.write(cs2)
+				p.close()
+		else:
+			if cs.find("rebootsetup") is not -1:
+				print "[dBACKUP] recovery webinterface removing #2"
+				cs2=cs.replace("\'gui\' : 3, \'rebootsetup\' : 99","\'gui\' : 3")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js","w")
+				p.write(cs2)
+				p.close()
+	if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html"):
+		p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html")
+		ix=p.read()
+		p.close()
+		if enable:
+			if ix.find("rebootsetup") is -1:
+				print "[dBACKUP] recovery webinterface inserting #3"
+				ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>","data-state=\"gui\">Restart GUI</a></li>\n								<li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Mode</a></li>")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html","w")
+				p.write(ix2)
+				p.close()
+		else:
+			if ix.find("rebootsetup") is not -1:
+				print "[dBACKUP] recovery webinterface removing #3"
+				ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>\n								<li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Mode</a></li>","data-state=\"gui\">Restart GUI</a></li>")
+				ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>\n								<li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery</a></li>","data-state=\"gui\">Restart GUI</a></li>")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html","w")
+				p.write(ix2)
+				p.close()
+	if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm"):
+		p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm")
+		df=p.read()
+		p.close()
+		if enable:
+			if df.find("rebootsetup") is -1:
+				print "[dBACKUP] recovery webinterface inserting #4"
+				df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>\n										</tr>\n										<tr>\n											<td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Mode</button></td>")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm","w")
+				p.write(df2)
+				p.close()
+		else:
+			if df.find("rebootsetup") is not -1:
+				print "[dBACKUP] recovery webinterface removing #4"
+				df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>\n									</tr>\n									<tr>\n										<td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Mode</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>")
+				df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>\n									</tr>\n									<tr>\n										<td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>")
+				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm","w")
+				p.write(df2)
+				p.close()
+	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+	return
+
 def autostart(reason,**kwargs):
         if kwargs.has_key("session") and reason == 0:           
 		session = kwargs["session"]                       
@@ -1109,72 +1202,15 @@ def autostart(reason,**kwargs):
 			config.plugins.dbackup.backuptool.value = "tar.gz"
 			config.plugins.dbackup.backuplocation.save()
 			config.plugins.dbackup.backuptool.save()
-		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py"):
-			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py")
-			ps=p.read()
-			p.close()
-			if ps.find("type == 99:") is -1:
-				ps2=ps.replace("type = int(self.cmd)","type = int(self.cmd)\n\n			if type == 99:\n				b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n				b.write(\"rescue\")\n				b.close()\n				type=2\n")
-				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py","w")
-				p.write(ps2)
-				p.close()
-		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js"):
-			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js")
-			cs=p.read()
-			p.close()
-			if cs.find("rebootsetup") is -1:
-				cs2=cs.replace("\'gui\' : 3","\'gui\' : 3, \'rebootsetup\' : 99")
-				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js","w")
-				p.write(cs2)
-				p.close()
-		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html"):
-			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html")
-			ix=p.read()
-			p.close()
-			if ix.find("rebootsetup") is -1:
-				ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>","data-state=\"gui\">Restart GUI</a></li>\n								<li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery</a></li>")
-				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html","w")
-				p.write(ix2)
-				p.close()
-		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm"):
-			p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm")
-			df=p.read()
-			p.close()
-			if df.find("rebootsetup") is -1:
-				df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>\n										</tr>\n										<tr>\n											<td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery</button></td>")
-				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm","w")
-				p.write(df2)
-				p.close()
+		if config.plugins.dbackup.recovering.value == "webif" or config.plugins.dbackup.recovering.value == "both":
+			recovery2Webif(True)
+		else:
+			recovery2Webif(False)
 		return
-		########################################################
-#		if os.path.exists("/usr/share/enigma2/menu.xml"):
-#			p=open("/usr/share/enigma2/menu.xml")
-#			mx=p.read()
-#			p.close()
-#			if mx.find("rebootsetup") is -1:
-#				mx2=mx.replace("Dreambox.\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">1</screen></item>","Dreambox.\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">1</screen></item>\n			<item text=\"Recovery\" entryID=\"rebootsetup\" description=\"Put your Dreambox into Recovery mode.\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">99</screen></item>")
-#				Open menu.xml is different,
-#				but patching pyo is too hard.
-#				mx2=mx.replace("Restart Gui\" entryID=\"restart_enigma\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">3</screen></item>","Restart Gui\" entryID=\"restart_enigma\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">1</screen></item>\n			<item text=\"Recovery\" entryID=\"rebootsetup\" description=\"Put your Dreambox into Recovery mode.\"><screen module=\"Standby\" screen=\"TryQuitMainloop\">99</screen></item>")
-#				if os.path.exists("/usr/share/enigma2/menu.xml.ori"):
-#					os.remove("/usr/share/enigma2/menu.xml.ori")
-#				os.rename("/usr/share/enigma2/menu.xml","/usr/share/enigma2/menu.xml.ori")
-#				p=open("/usr/share/enigma2/menu.xml","w")
-#				p.write(mx2)
-#				p.close()
-#		if os.path.exists("/usr/lib/enigma2/python/Screens/Standby.py"):
-#			p=open("/usr/lib/enigma2/python/Screens/Standby.py")
-#			sb=p.read()
-#			p.close()
-#			if sb.find("retvalue == 99:") is -1:
-#				sb2=sb.replace("self.retval=retvalue","if retvalue == 99:\n			b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n			b.write(\"rescue\")\n			b.close()\n			retvalue=2\n		self.retval=retvalue")
-#				p=open("/usr/lib/enigma2/python/Screens/Standby.py","w")
-#				p.write(sb2)
-#				p.close()
 
-def sessionstart(reason, **kwargs):                                             
+def sessionstart(reason, **kwargs):                                               
         if reason == 0 and "session" in kwargs:                                                        
-		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebChilds/Toplevel.pyo"):
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebChilds/Toplevel.py"):
                        	from Plugins.Extensions.WebInterface.WebChilds.Toplevel import addExternalChild
                        	addExternalChild( ("dbackup", wBackup(), "dBackup", "1", True) )          
                 else:                                                                                  
@@ -1535,6 +1571,8 @@ class FlashingImage(Screen):
         def __init__(self,flashimage):
         	global dreambox_data
         	print "[dBackup] does flashing %s" % flashimage
+#		lcdinst=eDBoxLCD.getInstance()
+#		eLCD.unlock(lcdinst)
                 open(dbackup_busy, 'a').close()
 		if config.plugins.dbackup.flashtool.value == "rescue":
 			command  = "#!/bin/sh -x\n"
@@ -2020,6 +2058,7 @@ class dBackupConfiguration(Screen, ConfigListScreen):
         self.list.append(getConfigListEntry(_("Verbose"), config.plugins.dbackup.verbose))
         self.list.append(getConfigListEntry(_("Sort Imagelist alphabetic"), config.plugins.dbackup.sort))
       	self.list.append(getConfigListEntry(_("Show plugin"), config.plugins.dbackup.showing)) 
+      	self.list.append(getConfigListEntry(_("Recovery Mode"), config.plugins.dbackup.recovering)) 
 	if not os.path.exists("/var/lib/opkg/status"):
 	        self.list.append(getConfigListEntry(_("Webinterface"), config.plugins.dbackup.webinterface))
 
