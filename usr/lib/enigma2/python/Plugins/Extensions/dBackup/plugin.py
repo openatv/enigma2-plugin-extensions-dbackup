@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.58"
+dbackup_version="0.59"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -915,6 +915,8 @@ class dBackup(Screen):
   			self.boxtype=f.read()
   			f.close()
   			self.boxtype=self.boxtype.replace("\n","").replace("\l","")
+			if self.boxtype == "dm525":
+				boxtype="dm520"
 			name="dreambox-image"
 			if os.path.exists("/etc/image-version"):
 				f=open("/etc/image-version")
@@ -1317,6 +1319,8 @@ class wBackup(resource.Resource):
   			self.boxtype=f.read()
   			f.close()
   			self.boxtype=self.boxtype.replace("\n","").replace("\l","")
+			if boxtype == "dm525":
+				boxtype="dm520"
 			name="dreambox-image"
 			if os.path.exists("/etc/image-version"):
 				f=open("/etc/image-version")
@@ -1628,7 +1632,7 @@ class FlashingImage(Screen):
 					img="vmlinuz-rescue--3.4-r0.3-%s-20160405.bin" % boxtype
 				if boxtype == "dm520":
 					url="http://www.dreamboxupdate.com/opendreambox/2.2/unstable/images/%s" % boxtype
-					img="vmlinuz-rescue--3.4-r0.1-%s-20160706.bin" % boxtype
+					img="vmlinuz-rescue--3.4-r0.3-%s-20160820.bin" % boxtype
 				rescue_image="%s/%s" % (url,img)
 				flashimage="%s/%s" % (config.plugins.dbackup.backuplocation.value,img)
 		        	print "[dBackup] downloads %s to %s" % (rescue_image,flashimage)
@@ -1744,6 +1748,8 @@ class BackupImage(Screen):
 		self.boxtype=f.read()
 		f.close()
 		self.boxtype=self.boxtype.replace("\n","").replace("\l","")
+		if boxtype == "dm525":
+			boxtype="dm520"
         	for name in os.listdir("/lib/modules"):                          
 			self.kernel = name
 		self.kernel = self.kernel.replace("\n","").replace("\l","").replace("\0","")
