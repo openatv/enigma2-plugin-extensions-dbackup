@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.59"
+dbackup_version="0.60"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -916,7 +916,7 @@ class dBackup(Screen):
   			f.close()
   			self.boxtype=self.boxtype.replace("\n","").replace("\l","")
 			if self.boxtype == "dm525":
-				boxtype="dm520"
+				self.boxtype="dm520"
 			name="dreambox-image"
 			if os.path.exists("/etc/image-version"):
 				f=open("/etc/image-version")
@@ -1319,8 +1319,8 @@ class wBackup(resource.Resource):
   			self.boxtype=f.read()
   			f.close()
   			self.boxtype=self.boxtype.replace("\n","").replace("\l","")
-			if boxtype == "dm525":
-				boxtype="dm520"
+			if self.boxtype == "dm525":
+				self.boxtype="dm520"
 			name="dreambox-image"
 			if os.path.exists("/etc/image-version"):
 				f=open("/etc/image-version")
@@ -1748,8 +1748,8 @@ class BackupImage(Screen):
 		self.boxtype=f.read()
 		f.close()
 		self.boxtype=self.boxtype.replace("\n","").replace("\l","")
-		if boxtype == "dm525":
-			boxtype="dm520"
+		if self.boxtype == "dm525":
+			self.boxtype="dm520"
         	for name in os.listdir("/lib/modules"):                          
 			self.kernel = name
 		self.kernel = self.kernel.replace("\n","").replace("\l","").replace("\0","")

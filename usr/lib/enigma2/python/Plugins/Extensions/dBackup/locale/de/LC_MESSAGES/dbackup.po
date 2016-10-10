@@ -1,18 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: dBackup\n"
-"POT-Creation-Date: 2015-09-04 23:18+0100\n"
-"PO-Revision-Date: 2016-04-06 20:06+0200\n"
-"Last-Translator: James Blond <alattka@freenet.de>\n"
+"POT-Creation-Date: 2016-10-05 12:15+0200\n"
+"PO-Revision-Date: 2016-10-05 12:29+0200\n"
+"Last-Translator: James Blond <jb@unknown.com>\n"
 "Language-Team: gutemine <gutemine@oozoon.de>\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de_DE\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Poedit-SearchPath-0: .\n"
 
 msgid "no"
 msgstr "Nein"
@@ -30,16 +31,25 @@ msgid "Extension"
 msgstr "Erweiterungen"
 
 msgid "both"
-msgstr "beide"
+msgstr "Beide"
 
 msgid "all"
 msgstr "Alle"
 
-msgid "Rescue Bios"
-msgstr "Wiederherstellungsbios"
+msgid "Webinterface"
+msgstr "Weboberfläche "
+
+msgid "Factory reset"
+msgstr "Werkseinstellungen"
+
+msgid "none"
+msgstr "Keine"
 
 msgid "direct"
-msgstr "direkt"
+msgstr "Direkt"
+
+msgid "Rescue Bios"
+msgstr "Wiederherstellungsbios"
 
 msgid "tar.gz"
 msgstr "tar.gz"
@@ -120,6 +130,9 @@ msgstr "Tut mir leid, kein korrektes tar.*z File ausgewählt"
 msgid "Sorry, no xz binary found"
 msgstr "Tut mir leid, kein xz Binary gefunden"
 
+msgid "Sorry, no %s image"
+msgstr "Tut mir leid, kein %s Image vorhanden"
+
 msgid "Refresh"
 msgstr "Aktualisieren"
 
@@ -133,7 +146,7 @@ msgid "Sorry, use LowFAT for Backup"
 msgstr "Tut mir leid, verwenden Sie LowFAT zur Sicherung"
 
 msgid "Sorry, Flashing works only in Flash"
-msgstr "Tut mir leid, das Flashen wurde bei %s abgebrochen!"
+msgstr "Tut mir leid, das Flashen funktioniert nur im Flash!"
 
 msgid "Sorry, dBackup webinterface is currently disabled"
 msgstr "Entschuldigung, dBackup Webinterface ist momentan ausgeschaltet"
@@ -142,8 +155,8 @@ msgid "use back button in browser and try again!"
 msgstr ""
 "benutzen Sie den Zurück Knopf im Browser und versuchen sie es nochmals!"
 
-msgid "Cancel"
-msgstr "Abbruch"
+msgid "Exit"
+msgstr "Schließen"
 
 msgid ""
 "Press OK now for flashing\n"
@@ -223,14 +236,17 @@ msgstr ""
 "\n"
 "%s.%s"
 
+msgid "select backup path"
+msgstr "Wähle Backup Verzeichnis"
+
 msgid "nothing entered"
-msgstr "nichts eingegeben"
+msgstr "Nichts eingegeben"
 
 msgid "already exists,"
-msgstr "existiert bereits,"
+msgstr "Existiert bereits,"
 
 msgid "overwrite ?"
-msgstr "überschreiben ?"
+msgstr "Überschreiben ?"
 
 msgid "Press OK for starting backup to"
 msgstr "OK drücken um Sicherung zu starten auf"
@@ -239,10 +255,16 @@ msgid "Be patient, this takes 1-2 min ..."
 msgstr "Geduldig sein, es dauert 1-2 min ..."
 
 msgid "not confirmed"
-msgstr "nicht bestätigt"
+msgstr "Nicht bestätigt"
 
 msgid "Flash Backup finished"
 msgstr "Flash Sicherung fertig"
+
+msgid "Recovery Mode"
+msgstr "Wartungsmodus"
+
+msgid "Really shutdown now?"
+msgstr "Wirklich jetzt herunterfahren?"
 
 msgid "OK"
 msgstr "OK"
@@ -251,16 +273,19 @@ msgid "About"
 msgstr "Über"
 
 msgid "check root"
-msgstr "root überprüfen"
+msgstr "Root überprüfen"
 
 msgid "check & repair recovery"
-msgstr "überprüfen & reparieren Wiederherstellungsbereich"
+msgstr "Überprüfen & reparieren Wiederherstellungsbereich"
 
 msgid "badblocks recovery > 1min"
 msgstr "Bad Blocks im Wiederherstellungsbereich > 1min"
 
 msgid "no badblocks binary - get e2fsprogs"
-msgstr "kein Bad Blocks Programm - installieren Sie e2fsprogs"
+msgstr "Kein Bad Blocks Programm - installieren Sie e2fsprogs"
+
+msgid "create recovery USB stick"
+msgstr "USB Wiederherstellungsstick erstellen"
 
 msgid "clean apt cache"
 msgstr "Löschen des apt cache vor dem Sichern"
@@ -272,7 +297,7 @@ msgid "defragment root"
 msgstr "Defragmentierung root"
 
 msgid "check defragmentation recovery"
-msgstr "überprüfen & reparieren Wiederherstellungsbereich"
+msgstr "Überprüfe Defragmentierung im Wiederherstellungsbereich"
 
 msgid "defragment recovery"
 msgstr "Defragmentierung Wiederherstellung"
@@ -283,12 +308,24 @@ msgstr "Überprüfe Festplatten Defragmentation"
 msgid "defragment Harddisk"
 msgstr "Defragmentiere Festplatte"
 
+msgid "Select device for recovery USB stick"
+msgstr "Wähle das Gerät für die USB-Stick Wiederherstellung"
+
 msgid ""
 "If you install e2fsprogs the badblocks binary will allow to check and mark "
 "also bad blocks"
 msgstr ""
 "Wenn Sie e2fsprogs installieren, wird Ihnen das Bad Blocks Programm "
 "ermöglichen auch kaputte Blöcke zu erkennen und zu markieren"
+
+msgid "Are you sure that you want to erase now %s ?"
+msgstr "Sind Sie sicher das sie jetzt löschen wollen %s ?"
+
+msgid "Sorry, Erasing of %s was canceled!"
+msgstr "Tut mir leid, löschen wurde bei %s abgebrochen!"
+
+msgid "Sorry, %s has no primary partition"
+msgstr "Tut mir leid, %s hat keine Primäre Partition"
 
 msgid "Flashtool"
 msgstr "Flashwerkzeug"
@@ -302,14 +339,14 @@ msgstr "Flashen des Kernels aus dem Image"
 msgid "Flashing reboot delay [0-60 sec]"
 msgstr "Flashing Neustart Verzögerung [0-60 Sek.]"
 
+msgid "Choose backup location"
+msgstr "Wähle den Speicherort für das Backup"
+
 msgid "Imagetype in backupname"
 msgstr "Imagetyp im Sicherungsnamen"
 
-msgid "Boxtype in backupname"
-msgstr "Boxtyp im Sicherungsnamen"
-
 msgid "deb in backupname"
-msgstr "deb im Sicherungsnamen"
+msgstr "\"deb\" im Sicherungsnamen"
 
 msgid "Date in backupname"
 msgstr "Datum im Sicherungsnamen"
@@ -332,20 +369,17 @@ msgstr "Ausschließen Einstellungen"
 msgid "Exclude picons"
 msgstr "Ausschließen Picons"
 
-msgid "Fading"
-msgstr "Ausblenden"
+msgid "Minimal Fading Transparency"
+msgstr "Minimale Transparenz für Ausblenden"
 
 msgid "Verbose"
 msgstr "Ausführliche Ausgabe"
 
 msgid "Sort Imagelist alphabetic"
-msgstr "Imageliste alphabetisch sortieren"
+msgstr "Imageliste Alphabetisch sortieren"
 
 msgid "Show plugin"
-msgstr "Plugin anzeigen "
-
-msgid "Webinterface"
-msgstr "Weboberfläche"
+msgstr "Plugin anzeigen unter"
 
 msgid ""
 "Root Filesystem\n"
@@ -372,21 +406,3 @@ msgstr ""
 "gesamt: %i MB\n"
 "benutzt: %i MB\n"
 "frei: %i MB"
-
-#~ msgid "USB recovery stick"
-#~ msgstr "USB Wiederherstellungsstick"
-
-#~ msgid "nfiwrite"
-#~ msgstr "nfiwrite"
-
-#~ msgid "Sorry, use Dumbo for Backup"
-#~ msgstr "Tut mir leid, verwenden Sie Dumbo zur Sicherung"
-
-#~ msgid "Create signature file"
-#~ msgstr "Signaturdatei erstellen"
-
-#~ msgid "Extract loader from Flash"
-#~ msgstr "Loader vom Flash extrahieren"
-
-#~ msgid "Extract kernel from Flash"
-#~ msgstr "Kernel vom Flash extrahieren"
