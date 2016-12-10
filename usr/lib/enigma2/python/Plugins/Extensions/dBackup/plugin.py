@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.60"
+dbackup_version="0.65"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -957,7 +957,8 @@ class dBackup(Screen):
 			if config.plugins.dbackup.flashtool.value == "rescue":
 				suggested_backupname="backup"
 			print "suggested backupname %s" % suggested_backupname
-                	self.session.openWithCallback(self.askForBackupName,InputBox, title=backupimage_string, text=suggested_backupname, maxSize=40, type=Input.TEXT)
+			suggested_backupname=suggested_backupname+"          "
+                	self.session.openWithCallback(self.askForBackupName,InputBox, title=backupimage_string, text=suggested_backupname, maxSize=60, type=Input.TEXT)
 
         def askForBackupName(self,name):
            if name is None:
@@ -1379,7 +1380,7 @@ class wBackup(resource.Resource):
 				%s & %s @ Dreambox<br>
 				<form method="GET">
                 	       	<select name="directory">%s
- 				<input name="file" type="text" size="48" maxlength="48" value="%s">
+ 				<input name="file" type="text" size="60" maxlength="60" value="%s">
                                 <input type="reset" size="100px"> 
                 		<input name="command" type="submit" size=="100px" title=\"%s\" value="%s"> 
 				</select>
@@ -1714,6 +1715,8 @@ class FlashingImage(Screen):
 				if config.plugins.dbackup.kernelflash.value:
 					if boxtype == "dm520":
 						command += "flash-kernel -v /dbackup.new/boot/vmlinux*\n"
+					elif boxtype == "dm900":
+						command += "flash-kernel /dbackup.new/boot/zImage-*\n"
 					else:
 						command += "flash-kernel -a /dbackup.new/usr/share/fastboot/lcd_anim.bin -m 0x10000000 -o A  /dbackup.new/boot/vmlinux.bin*\n"
 	
