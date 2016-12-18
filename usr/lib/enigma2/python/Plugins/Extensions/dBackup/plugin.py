@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.65"
+dbackup_version="0.67"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -360,17 +360,17 @@ class dBackup(Screen):
 	        liststart.append((_("Recovery Image from Feed"), "recovery" ))                         
 	        liststart.append((_("Rescue Bios from Feed"), "rescue" ))                         
         	for name in os.listdir("/tmp"):                          
-			if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar",""), "/tmp/%s" % name ))                         
+			if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip",""), "/tmp/%s" % name ))                         
 		if os.path.exists(config.plugins.dbackup.backuplocation.value):
         		for name in os.listdir(config.plugins.dbackup.backuplocation.value):                          
-				if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-	        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar",""), "%s/%s" % (config.plugins.dbackup.backuplocation.value,name) ))                         
+				if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+	        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip",""), "%s/%s" % (config.plugins.dbackup.backuplocation.value,name) ))                         
            	for directory in os.listdir("/media"):                          
 			if os.path.exists("/media/%s" % directory) and os.path.isdir("/media/%s" % directory) and not directory.endswith("net") and not directory.endswith("hdd"):
            			for name in os.listdir("/media/%s" % directory):                          
-					if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-		        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar",""), "%s/%s" % (directory,name) ))                         
+					if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+		        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip",""), "%s/%s" % (directory,name) ))                         
 		if config.plugins.dbackup.sort.value:
 			list.sort()
 		# recovery image and rescue bios is always first ...
@@ -1107,12 +1107,10 @@ def startRecovery(option):
 		print "[dBACKUP] cancelled Recovery"
 
 def recovery2Webif(enable):
-	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 	if enable:
 		print "[dBACKUP] recovery webinterface enabling"
 	else:
 		print "[dBACKUP] recovery webinterface disabling"
-	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 	if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py"):
 		p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py")
 		ps=p.read()
@@ -1187,7 +1185,6 @@ def recovery2Webif(enable):
 				p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm","w")
 				p.write(df2)
 				p.close()
-	print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 	return
 
 def autostart(reason,**kwargs):
@@ -1196,10 +1193,9 @@ def autostart(reason,**kwargs):
 		print "[dBackup] autostart"
 		if os.path.exists(dbackup_busy):
 			os.remove(dbackup_busy)
-		if os.path.exists("/dbackup.new"):
-			shutil.rmtree("/dbackup.new",True)
-		if os.path.exists("/dbackup.old"):
-			shutil.rmtree("/dbackup.old",True)
+		tmp_extract="%s/tmp" % config.plugins.dbackup.backuplocation.value
+		if os.path.exists(tmp_extract):
+			shutil.rmtree(tmp_extract,True)
 		if config.plugins.dbackup.flashtool.value == "rescue":
 			config.plugins.dbackup.backuplocation.value = "/data/.recovery"
 			config.plugins.dbackup.backuptool.value = "tar.gz"
@@ -1298,22 +1294,22 @@ class wBackup(resource.Resource):
 			htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("rescue",_("Rescue Bios from Feed"))
 			entries=os.listdir("/tmp")
 	 		for name in sorted(entries):                          
-				if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-       			       		name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","")                        
+				if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+       			       		name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")                         
 					htmlnfi += "<option value=\"/tmp/%s\" class=\"black\">%s</option>\n" % (name,name2)
 #			if not config.plugins.dbackup.backuplocation.value.startswith("/media/net"):
 			if os.path.exists(config.plugins.dbackup.backuplocation.value):
 				entries=os.listdir(config.plugins.dbackup.backuplocation.value)
        				for name in sorted(entries):                          
-					if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-				       		name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","")                        
+					if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+				       		name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")                        
 						htmlnfi += "<option value=\"%s/%s\" class=\"black\">%s</option>\n" % (config.plugins.dbackup.backuplocation.value,name,name2)
 			entries=os.listdir("/media")
        			for directory in sorted(entries):                          
 				if os.path.exists("/media/%s" % directory) and os.path.isdir("/media/%s" % directory) and not directory.endswith("net") and not directory.endswith("hdd"):
        					for name in os.listdir("/media/%s" % directory):                          
-						if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-		       			       		name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","")                        
+						if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+		       			       		name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")                        
 							htmlnfi += "<option value=\"%s/%s\" class=\"black\">%s</option>\n" % (directory,name,name2)
 			print htmlnfi
   			f=open("/proc/stb/info/model")
@@ -1614,14 +1610,11 @@ class FlashingImage(Screen):
 		elif config.plugins.dbackup.flashtool.value == "usb":
 	        	print "[dBackup] recovery usb stick is not yet supported"
 		else:
-			if os.path.exists("/dbackup.new"):
-				shutil.rmtree("/dbackup.new",True)
-			if not os.path.exists("/dbackup.new"):
-				os.mkdir("/dbackup.new")
-			if os.path.exists("/dbackup.old"):
-				shutil.rmtree("/dbackup.old",True)
-			if not os.path.exists("/dbackup.old"):
-				os.mkdir("/dbackup.old")
+			tmp_extract="%s/tmp" % config.plugins.dbackup.backuplocation.value
+			if os.path.exists(tmp_extract):
+				shutil.rmtree(tmp_extract,True)
+			if not os.path.exists(tmp_extract):
+				os.mkdir(tmp_extract)
 			command  = "#!/bin/sh -x\n"
 			if flashimage == "rescue":
 				# default values from DMM recovery Image
@@ -1634,6 +1627,9 @@ class FlashingImage(Screen):
 				if boxtype == "dm520":
 					url="http://www.dreamboxupdate.com/opendreambox/2.2/unstable/images/%s" % boxtype
 					img="vmlinuz-rescue--3.4-r0.3-%s-20160820.bin" % boxtype
+				if boxtype == "dm900":
+					url="http://www.dreamboxupdate.com/opendreambox/2.5/unstable/images/%s" % boxtype
+					img="zImage-rescue-3.14-r0-%s-20161208.bin" % boxtype
 				rescue_image="%s/%s" % (url,img)
 				flashimage="%s/%s" % (config.plugins.dbackup.backuplocation.value,img)
 		        	print "[dBackup] downloads %s to %s" % (rescue_image,flashimage)
@@ -1665,64 +1661,40 @@ class FlashingImage(Screen):
 				command += "wget %s -O %s\n" % (recovery_image,flashimage)
 			if flashimage.endswith(".tar.gz"):
 				if os.path.exists("%s/bin/pigz" % dbackup_plugindir):
-					command += "%s/bin/pigz -d -f -k %s\n" % (dbackup_plugindir,flashimage)
-					tarimage=flashimage.replace("tar.gz","tar")
-					if config.plugins.dbackup.verbose.value:
-						command += "tar -xvf %s -C /dbackup.new\n" % (tarimage)
-					else:
-						command += "tar -xf %s -C /dbackup.new\n" % (tarimage)
-#					if os.path.exists(tarimage):
-#						os.remove(tarimage)
-				else:
-					if config.plugins.dbackup.verbose.value:
-						command += "tar -xvzf %s -C /dbackup.new\n" % (flashimage)
-					else:
-						command += "tar -xzf %s -C /dbackup.new\n" % (flashimage)
+					tarimage="%s/tmp/rootfs.tar" % config.plugins.dbackup.backuplocation.value
+					command += "%s/bin/pigz -d -f -c %s > %s\n" % (dbackup_plugindir,flashimage,tarimage)
 			elif flashimage.endswith(".tar.xz"):
-#				if os.path.exists("%s/bin/xz" % dbackup_plugindir):
-				if False:
-					command += "%s/bin/xz -d -c %s > %s\n" % (dbackup_plugindir,flashimage,flashimage.replace("tar.xz","tar"))
-					tarimage=flashimage.replace("tar.xz","tar")
-					if config.plugins.dbackup.verbose.value:
-						command += "tar -xvf %s -C /dbackup.new\n" % (tarimage)
-					else:
-						command += "tar -xf %s -C /dbackup.new\n" % (tarimage)
-					if os.path.exists(tarimage):
-						os.remove(tarimage)
-				else:
-					if config.plugins.dbackup.verbose.value:
-						command += "tar -xvJf %s -C /dbackup.new\n" % (flashimage)
-					else:
-						command += "tar -xJf %s -C /dbackup.new\n" % (flashimage)
+				if os.path.exists("%s/bin/xz" % dbackup_plugindir):
+					tarimage="%s/tmp/rootfs.tar" % config.plugins.dbackup.backuplocation.value
+					command += "%s/bin/xz -d -c %s > %s\n" % (dbackup_plugindir,flashimage,tarimage)
 			elif flashimage.endswith(".tar.bz2"):
-				if config.plugins.dbackup.verbose.value:
-					command += "tar -xvjf %s -C /dbackup.new\n" % (flashimage)
-				else:
-					command += "tar -xjf %s -C /dbackup.new\n" % (flashimage)
+				tarimage="%s/tmp/rootfs.tar" % config.plugins.dbackup.backuplocation.value
+				command += "bunzip2 -c -f %s > %s\n" % (flashimage,tarimage)
+			elif flashimage.endswith(".zip"):
+				command += "unzip %s -d %s/tmp\n" % (flashimage, config.plugins.dbackup.backuplocation.value)
+				tarimage="%s/tmp/%s/rootfs.tar\n" % (config.plugins.dbackup.backuplocation.value,boxtype)
+				command += "bunzip2 -c -f %s.bz2 > %s\n" % (tarimage,tarimage)
 			elif flashimage.endswith(".bin"):
 				if config.plugins.dbackup.verbose.value:
 					command += "flash-rescue -v %s\n" % (flashimage)
 				else:
 					command += "flash-rescue %s\n" % (flashimage)
 			else:
-				tarimage=flashimage
-				if config.plugins.dbackup.verbose.value:
-					command += "tar -xvf %s -C /dbackup.new\n" % (tarimage)
-				else:
-					command += "tar -xf %s -C /dbackup.new\n" % (tarimage)
-
+				tarimage="%s/tmp/rootfs.tar" % config.plugins.dbackup.backuplocation.value
+				command += "cp %s %s\n" % (flashimage, tarimage)
 			if flashimage.endswith(".bin") is False:
 				if config.plugins.dbackup.kernelflash.value:
+					command += "tar -x -f %s ./boot -C %s\n" % (tarimage, tmp_extract)
 					if boxtype == "dm520":
-						command += "flash-kernel -v /dbackup.new/boot/vmlinux*\n"
+						command += "flash-kernel -v %s/boot/vmlinux.gz-*\n" % tmp_extract
 					elif boxtype == "dm900":
-						command += "flash-kernel /dbackup.new/boot/zImage-*\n"
+						command += "flash-kernel %s/boot/zImage-*\n" % tmp_extract
 					else:
-						command += "flash-kernel -a /dbackup.new/usr/share/fastboot/lcd_anim.bin -m 0x10000000 -o A  /dbackup.new/boot/vmlinux.bin*\n"
+						command += "flash-kernel -a /usr/share/fastboot/lcd_anim.bin -m 0x10000000 -o A %s/boot/vmlinux.bin-*\n" % tmp_extract
 	
 				command += "cp %s/bin/swaproot /tmp/swaproot\n" % dbackup_plugindir
 				command += "chmod 755 /tmp/swaproot\n"
-				command += "/tmp/swaproot %s\n" % config.plugins.dbackup.delay.value
+				command += "/tmp/swaproot %s\n" % tarimage
 			else:
 				command += "shutdown -r now\n"
 			command += "exit 0\n"
@@ -1758,10 +1730,9 @@ class BackupImage(Screen):
 		self.kernel = self.kernel.replace("\n","").replace("\l","").replace("\0","")
 		print "[dBackup] boxtype %s kernel %s" % (self.boxtype,self.kernel)
 		# don't backup left overs from flashing ...
-		if os.path.exists("/dbackup.new"):
-			shutil.rmtree("/dbackup.new",True)
-		if not os.path.exists("/dbackup.new"):
-			os.mkdir("/dbackup.new")
+		tmp_extract="%s/tmp" % config.plugins.dbackup.backuplocation.value
+		if os.path.exists(tmp_extract):
+			shutil.rmtree(tmp_extract,True)
 		
 		# here comes the fun ...
 		
@@ -2049,7 +2020,7 @@ class dBackupConfiguration(Screen, ConfigListScreen):
 #	self.list.append(getConfigListEntry(_("Extract loader from Flash"), config.plugins.dbackup.loaderextract))
 #	self.list.append(getConfigListEntry(_("Extract kernel from Flash"), config.plugins.dbackup.kernelextract))
 	self.list.append(getConfigListEntry(_("Flash kernel from image"), config.plugins.dbackup.kernelflash))
-        self.list.append(getConfigListEntry(_("Flashing reboot delay [0-60 sec]"), config.plugins.dbackup.delay))
+#        self.list.append(getConfigListEntry(_("Flashing reboot delay [0-60 sec]"), config.plugins.dbackup.delay))
 	self.list.append(getConfigListEntry(_("Choose backup location"), config.plugins.dbackup.backupaskdir))
 	self.list.append(getConfigListEntry(_("Imagetype in backupname"), config.plugins.dbackup.backupimagetype))
 #	self.list.append(getConfigListEntry(_("Boxtype in backupname"), config.plugins.dbackup.backupboxtype))
@@ -2064,7 +2035,7 @@ class dBackupConfiguration(Screen, ConfigListScreen):
 	if os.path.exists("/usr/share/enigma2/picon"):
         	self.list.append(getConfigListEntry(_("Exclude picons"), config.plugins.dbackup.picons))
         self.list.append(getConfigListEntry(_("Minimal Fading Transparency"), config.plugins.dbackup.transparency))
-        self.list.append(getConfigListEntry(_("Verbose"), config.plugins.dbackup.verbose))
+#        self.list.append(getConfigListEntry(_("Verbose"), config.plugins.dbackup.verbose))
         self.list.append(getConfigListEntry(_("Sort Imagelist alphabetic"), config.plugins.dbackup.sort))
       	self.list.append(getConfigListEntry(_("Show plugin"), config.plugins.dbackup.showing)) 
       	self.list.append(getConfigListEntry(_("Recovery Mode"), config.plugins.dbackup.recovering)) 
