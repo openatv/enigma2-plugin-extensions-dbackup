@@ -1,0 +1,473 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dBackup\n"
+"POT-Creation-Date: 2017-07-07 12:26+0300\n"
+"PO-Revision-Date: 2017-07-14 12:47+0300\n"
+"Language-Team: Vytenis P. <vyteniui@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.2\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
+"Last-Translator: Vytenis P. <vyteniui@gmail.com>\n"
+"Language: lt\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../plugin.py:51
+msgid "no"
+msgstr "ne"
+
+#: ../plugin.py:51
+msgid "yes"
+msgstr "taip"
+
+#: ../plugin.py:87
+msgid "Settings"
+msgstr "Nuostatos"
+
+#: ../plugin.py:88
+msgid "Pluginlist"
+msgstr "Įskiepiai"
+
+#: ../plugin.py:89
+msgid "Extension"
+msgstr "Plėtinys"
+
+#: ../plugin.py:90
+msgid "both"
+msgstr "abu"
+
+#: ../plugin.py:91
+msgid "all"
+msgstr "visi"
+
+#: ../plugin.py:95
+msgid "Rescue Bios"
+msgstr "BIOS atkūrimas"
+
+#: ../plugin.py:97
+msgid "direct"
+msgstr "tiesioginis"
+
+#: ../plugin.py:105
+msgid "tar.gz"
+msgstr "tar.gz"
+
+#: ../plugin.py:106
+msgid "tar.xz"
+msgstr "tar.xz"
+
+#: ../plugin.py:107
+msgid "tar.bz2"
+msgstr "tar.bz2"
+
+#: ../plugin.py:108
+msgid "tar"
+msgstr "tar"
+
+#: ../plugin.py:113
+msgid "daemon"
+msgstr "valdiklis"
+
+#: ../plugin.py:114
+msgid "system"
+msgstr "sistema"
+
+#: ../plugin.py:115
+msgid "container"
+msgstr "talpa"
+
+#: ../plugin.py:118
+msgid "Select tar.*z image for flashing"
+msgstr "Pasirinkite tar.*z atvaizdą diegimui"
+
+#: ../plugin.py:119
+msgid "Disclaimer"
+msgstr "Atsakomybės ribojimas"
+
+#: ../plugin.py:120
+msgid "Info"
+msgstr "Informacija"
+
+#: ../plugin.py:121
+msgid ""
+"This way of flashing your Dreambox is not supported by DMM.\n"
+"\n"
+"You are using it completely at you own risk!\n"
+"If you want to flash your Dreambox safely use the Recovery Webinterface!\n"
+"\n"
+"May the Power button be with you!"
+msgstr ""
+"Toks jūsų Dreambox diegimas DMM nepalaikomas.\n"
+"\n"
+"Naudokite šį būdą vien savo atsakomybe!\n"
+"Jei norite įdiegti saugiai, naudokite internetinę atkūrimo sąsają!\n"
+"\n"
+"Tam naudokite įjungimo mygtuką!"
+
+#: ../plugin.py:123
+#, python-format
+msgid "Dreambox Backup Plugin by gutemine Version %s"
+msgstr "Dreambox atsarginio kopijavimo įskiepis, sukurtas gutemine; vers. %s"
+
+#: ../plugin.py:124 ../plugin.py:185
+msgid "Flashing"
+msgstr "Diegimas"
+
+#: ../plugin.py:125 ../plugin.py:184
+msgid "Backup"
+msgstr "Atsarginė kopija"
+
+#: ../plugin.py:126
+msgid "Configuring"
+msgstr "Konfigūruojama"
+
+#: ../plugin.py:127
+msgid "Checking"
+msgstr "Tikrinama"
+
+#: ../plugin.py:128
+msgid "dBackup is busy ..."
+msgstr "dBackup užimtas..."
+
+#: ../plugin.py:129
+msgid "Enter Backup Imagename"
+msgstr "Įrašykite atsarginės kopijos pavadinimą"
+
+#: ../plugin.py:130
+msgid "Enter Backup Path"
+msgstr "Nurodykite atsarginės kopijos kelią"
+
+#: ../plugin.py:131
+msgid "Sorry, currently not supported on this Dreambox type"
+msgstr "Atleiskite, šis Dreambox modelis dar nepalaikomas"
+
+#: ../plugin.py:132
+msgid "Sorry, no correct tar.*z file selected"
+msgstr "Atleiskite, nepasirinkta teisingo tar.*z failo"
+
+#: ../plugin.py:133
+msgid "Sorry, no xz binary found"
+msgstr "Nerasta dvejetainio xz failo"
+
+#: ../plugin.py:134
+msgid "Refresh"
+msgstr "Atnaujinti"
+
+#: ../plugin.py:135
+#, python-format
+msgid "Nothing mounted at %s"
+msgstr "Į %s nieko nepajungta"
+
+#: ../plugin.py:136
+msgid "Sorry, use Barry Allen for Backup"
+msgstr "Atleiskite, atsarginiam kopijavimui naudokite Barry Allen"
+
+#: ../plugin.py:137
+msgid "Sorry, use LowFAT for Backup"
+msgstr "Atleiskite, atsarginiam kopijavimui naudokite LowFAT"
+
+#: ../plugin.py:138
+msgid "Sorry, Flashing works only in Flash"
+msgstr "Atleiskite, diegimas veikia tik iš diegimo laikmenos"
+
+#: ../plugin.py:139
+msgid "Sorry, dBackup webinterface is currently disabled"
+msgstr "Sorry, dBackup internetinė sąsaja uždrausta"
+
+#: ../plugin.py:151
+msgid "use back button in browser and try again!"
+msgstr "grįžkite naršyklės 'atgal' mygtuku ir bandykite vėl!"
+
+#: ../plugin.py:183 ../plugin.py:1591 ../plugin.py:1668 ../plugin.py:1788
+msgid "Exit"
+msgstr "Uždaryti"
+
+#: ../plugin.py:304 ../plugin.py:346
+#, python-format
+msgid ""
+"Press OK now for flashing\n"
+"\n"
+"%s\n"
+"\n"
+"Box will reboot automatically when finished!"
+msgstr ""
+"Diegimui pradėti, spauskite 'OK'\n"
+"\n"
+"%s\n"
+"Pabaigus, sistema automatiškai pasileis iš naujo!"
+
+#: ../plugin.py:319 ../plugin.py:390
+#, python-format
+msgid "Are you sure that you want to flash now %s ?"
+msgstr "Ar tikrai norite įdiegti %s dabar?"
+
+#: ../plugin.py:324 ../plugin.py:1079
+msgid "Recovery Image from Feed"
+msgstr "Atkūrimo atvaizdas iš šaltinių"
+
+#: ../plugin.py:348 ../plugin.py:394
+#, python-format
+msgid "Sorry, Flashing of %s was canceled!"
+msgstr "Atleiskite, %s diegimas nutrauktas!"
+
+#: ../plugin.py:382
+msgid "Sorry, no device choosen"
+msgstr "Atleiskite, įrenginių nepasirinkta"
+
+#: ../plugin.py:384
+msgid "Sorry, no device found"
+msgstr "Atleiskite, įrenginių nerasta"
+
+#: ../plugin.py:388
+#, python-format
+msgid "Are you sure that you want to FORMAT recovery device %s now for %s ?"
+msgstr "Ar tikrai norite FORMATUOTI atkūrimo įrenginį %s dabar %s?"
+
+#: ../plugin.py:452
+msgid "umount failed, Sorry!"
+msgstr "atjungti nepavyko!"
+
+#: ../plugin.py:497
+#, python-format
+msgid "Sorry, %s device not mounted writeable"
+msgstr "Atleiskite, įrenginys %s nepajungtas rašymui"
+
+#: ../plugin.py:719
+msgid "recovery stick creation failed, Sorry!"
+msgstr "atkūrimo USB laikmenos sukurti nepavyko!"
+
+#: ../plugin.py:726
+#, python-format
+msgid "Sorry, %s device not mounted"
+msgstr "Atleiskite, įrenginys %s nepajungtas"
+
+#: ../plugin.py:782 ../plugin.py:989
+#, python-format
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.%s\n"
+"\n"
+"BUT it has I/O Errors"
+msgstr ""
+"Atsarginė kopija padaryta į %s\n"
+"\n"
+"ir vadinasi:\n"
+"\n"
+"%s.%s\n"
+"\n"
+"BET yra įv./išv. klaidų"
+
+#: ../plugin.py:784 ../plugin.py:991
+#, python-format
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.%s"
+msgstr ""
+"Atsarginė kopija padaryta į %s\n"
+"\n"
+"ir vadinasi:\n"
+"\n"
+"%s.%s"
+
+#: ../plugin.py:802 ../plugin.py:878 ../plugin.py:1274
+msgid "nothing entered"
+msgstr "nieko neįrašyta"
+
+#: ../plugin.py:882 ../plugin.py:1252
+msgid "already exists,"
+msgstr "jau yra,"
+
+#: ../plugin.py:882
+msgid "overwrite ?"
+msgstr "perrašyti?"
+
+#: ../plugin.py:892
+msgid "Press OK for starting backup to"
+msgstr "Spauskite 'OK', kad atsarginę kopiją daryti į"
+
+#: ../plugin.py:892
+msgid "Be patient, this takes 1-2 min ..."
+msgstr "Būkite kantrūs, tai užtruks 1-2 min..."
+
+#: ../plugin.py:894
+msgid "not confirmed"
+msgstr "nepatvirtinta"
+
+#: ../plugin.py:995
+msgid "Flash Backup finished"
+msgstr "Kopijos įdiegimas baigtas"
+
+#: ../plugin.py:1593 ../plugin.py:1669 ../plugin.py:1789
+msgid "OK"
+msgstr "Gerai"
+
+#: ../plugin.py:1594 ../plugin.py:1805
+msgid "About"
+msgstr "Apie"
+
+#: ../plugin.py:1598
+msgid "check root"
+msgstr "tikrinti pagrindinį"
+
+#: ../plugin.py:1599
+msgid "check & repair recovery"
+msgstr "atkūrimo taisymas"
+
+#: ../plugin.py:1601
+msgid "badblocks recovery > 1min"
+msgstr "blogų blokų atkūrimas > 1 min."
+
+#: ../plugin.py:1603
+msgid "no badblocks binary - get e2fsprogs"
+msgstr "blogų blokų dvejetainio vykdomojo nėra - įkelti e2fsprogs"
+
+#: ../plugin.py:1604
+msgid "clean apt cache"
+msgstr "valyti diegėjo podėlį"
+
+#: ../plugin.py:1605
+msgid "check defragmentation root"
+msgstr "tikrinti pagr.sistemos fragmentaciją"
+
+#: ../plugin.py:1606
+msgid "defragment root"
+msgstr "defragmentuoti pagr.sistemą"
+
+#: ../plugin.py:1607
+msgid "check defragmentation recovery"
+msgstr "tikrinti atkūrimo fragmentaciją"
+
+#: ../plugin.py:1608
+msgid "defragment recovery"
+msgstr "defragmentuoti atkūrimą"
+
+#: ../plugin.py:1613
+msgid "check defragmentation Harddisk"
+msgstr "tikrinti HDD fragmentaciją"
+
+#: ../plugin.py:1614
+msgid "defragment Harddisk"
+msgstr "defragmentuoti HDD"
+
+#: ../plugin.py:1639
+msgid ""
+"If you install e2fsprogs the badblocks binary will allow to check and mark "
+"also bad blocks"
+msgstr ""
+"Įdiegę e2fsprogs, blogų blokų dvejetainiu vykdomuoju galėsite surasti ir "
+"pažymėti blogus blokus"
+
+#: ../plugin.py:1685
+msgid "Flashtool"
+msgstr "Diegimo įrankis"
+
+#: ../plugin.py:1686
+msgid "Backuptool"
+msgstr "Atsarginio kopijavimo įrankis"
+
+#: ../plugin.py:1690
+msgid "Flash kernel from image"
+msgstr "Įdiekite branduolį iš atvaizdo"
+
+#: ../plugin.py:1691
+msgid "Flashing reboot delay [0-60 sec]"
+msgstr "Paleidimo iš naujo delsa įdiegiant [0-60 sek.]"
+
+#: ../plugin.py:1692
+msgid "Imagetype in backupname"
+msgstr "Atvaizdo tipas atsarginės kopijos pavadinime"
+
+#: ../plugin.py:1693
+msgid "Boxtype in backupname"
+msgstr "Aparato tipas atsarginės kopijos pavadinime"
+
+#: ../plugin.py:1694
+msgid "deb in backupname"
+msgstr "'deb' atsarginės kopijos pavadinime"
+
+#: ../plugin.py:1695
+msgid "Date in backupname"
+msgstr "Data atsarginės kopijos pavadinime"
+
+#: ../plugin.py:1696
+msgid "Time in backupname"
+msgstr "Laikas atsarginės kopijos pavadinime"
+
+#: ../plugin.py:1698
+msgid "Clean apt cache before backup"
+msgstr "Prieš atkūrimą išvalyti diegėjo podėlį"
+
+#: ../plugin.py:1699
+msgid "Exclude epg.db"
+msgstr "Išskirti epg.db"
+
+#: ../plugin.py:1700
+msgid "Exclude timers"
+msgstr "Išskirti laikmačius"
+
+#: ../plugin.py:1701
+msgid "Exclude settings"
+msgstr "Išskirti nustatymus"
+
+#: ../plugin.py:1703
+msgid "Exclude picons"
+msgstr "Išskirti piktogramas"
+
+#: ../plugin.py:1704
+msgid "Minimal Fading Transparency"
+msgstr "Minimalus blukimo skaidrumas"
+
+#: ../plugin.py:1705
+msgid "Verbose"
+msgstr "Išsamus"
+
+#: ../plugin.py:1706
+msgid "Sort Imagelist alphabetic"
+msgstr "Rūšiuoti atvaizdų sąrašą pagal abėcėlę"
+
+#: ../plugin.py:1707
+msgid "Show plugin"
+msgstr "Rodyti įskiepį"
+
+#: ../plugin.py:1709
+msgid "Webinterface"
+msgstr "Interneto sąsaja"
+
+#: ../plugin.py:1772
+#, python-format
+msgid ""
+"Root Filesystem\n"
+"\n"
+"total: %s MB\n"
+"used:  %s MB\n"
+"free:  %s MB"
+msgstr ""
+"Pagrindinė failų sistema\n"
+"\n"
+"iš viso: %s MB\n"
+"naudojama:  %s MB\n"
+"laisva:  %s MB"
+
+#: ../plugin.py:1786
+#, python-format
+msgid ""
+"Memory\n"
+"\n"
+"total: %i MB\n"
+"used: %i MB\n"
+"free: %i MB"
+msgstr ""
+"Atminties\n"
+"\n"
+"iš viso: %i MB\n"
+"naudojama: %i MB\n"
+"laisva: %i MB"
