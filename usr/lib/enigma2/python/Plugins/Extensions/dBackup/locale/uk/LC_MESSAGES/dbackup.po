@@ -1,0 +1,352 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dBackup\n"
+"POT-Creation-Date: 2014-09-07 10:12+0100\n"
+"PO-Revision-Date: 2017-06-08 18:43+0300\n"
+"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
+"Language-Team: igorrrrr <igorzhugan66@gmail.com>MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: uk_UA\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"MIME-Version: 1.0\n"
+
+msgid "About"
+msgstr "Про програму"
+
+msgid "Are you sure that you want to FORMAT recovery device %s now for %s?"
+msgstr "Ви впевнені, що хочете використовувати пристрій %s відновлення FORMA?"
+
+msgid "Are you sure that you want to flash now %s ?"
+msgstr "Ви впевнені, що хочете зараз прошити %s ?"
+
+msgid "Backup"
+msgstr "Копіювання"
+
+msgid "Backuptool"
+msgstr "Інструменти копіювання"
+
+msgid "Be patient, this takes 1-2 min ..."
+msgstr "Будьте терплячі, це займає 1-2 хвилини ..."
+
+msgid "Cancel"
+msgstr "Відміна"
+
+msgid "Checking"
+msgstr "Перевірка"
+
+msgid "Choose backup location"
+msgstr "Виберіть місце для копіювання"
+
+msgid "Clean apt cache before backup"
+msgstr "Очистити кеш-файл до копіювання"
+
+msgid "Configuring"
+msgstr "Конфігурація"
+
+msgid "Create signature file"
+msgstr "Створити файл підпису"
+
+msgid "Date in backupname"
+msgstr "Дата в імені копії"
+
+msgid "Disclaimer"
+msgstr "Відмова"
+
+msgid "Dreambox Backup Plugin by gutemine Version %s"
+msgstr "Плагін копіювання Dreambox від gutemine Версія %s"
+
+msgid "Enter Backup Imagename"
+msgstr "Введіть назву копії"
+
+msgid "Enter Backup Path"
+msgstr "Введіть місце розташування копії"
+
+msgid "Exclude epg.db"
+msgstr "Виключити epg.db"
+
+msgid "Exclude settings"
+msgstr "Виключити налаштування"
+
+msgid "Exclude timers"
+msgstr "Виключити таймери"
+
+msgid "Exit"
+msgstr "Вихід"
+
+msgid "Extension"
+msgstr "Розширення"
+
+msgid "Extract kernel from Flash"
+msgstr "Витяг ядра з флеш-пам'яті"
+
+msgid "Extract loader from Flash"
+msgstr "Витяг завантажувач з флеш-пам'яті"
+
+msgid "Fading"
+msgstr "Затухання"
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.tar.gz"
+msgstr ""
+"Копіювання для %s\n"
+"\n"
+"завершено з іменем:\n"
+"\n"
+"%s.tar.gz"
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.tar.gz\n"
+"\n"
+"BUT it has I/O Errors"
+msgstr ""
+"Копіювання для %s\n"
+"\n"
+"завершено з іменем:\n"
+"\n"
+"%s.tar.gz\n"
+"\n"
+"Але має помилки введення / виводу"
+
+msgid "Flash kernel from image"
+msgstr "Flash-ядро з іміджу"
+
+msgid "Flashing"
+msgstr "Прошивання"
+
+msgid "Flashtool"
+msgstr "Інструменти прошивання"
+
+msgid "If you install e2fsprogs the badblocks binary will allow to check and mark also bad blocks"
+msgstr "Якщо Ви встановлюєте e2fsprogs, двоїчний код badblocks дозволить перевірити і відзначити також погані блоки"
+
+msgid "Imagetype in backupname"
+msgstr "Тип іміджу в імені копії"
+
+msgid "Info"
+msgstr "Інфо"
+
+msgid ""
+"Memory\n"
+"\n"
+"total: %i MB\n"
+"used: %i MB\n"
+"free: %i MB"
+msgstr ""
+"Пам'ять\n"
+"\n"
+"загальна: %i MБ\n"
+"використовується: %i MБ\n"
+"вільна: %i MБ"
+
+msgid "Minimal Fading Transparency"
+msgstr "Прозорість мінімального затухання"
+
+msgid "Nothing mounted at %s"
+msgstr "Нічого не встановлено на %s"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Pluginlist"
+msgstr "Список плагінів"
+
+msgid ""
+"Press OK now for flashing\n"
+"\n"
+"%s\n"
+"\n"
+"Box will reboot automatically when finished!"
+msgstr ""
+"Натисніть OK для прошивання\n"
+"\n"
+"%s\n"
+"\n"
+"Ресивер автоматично перезавантажиться після завершення!"
+
+msgid "Recovery Bios"
+msgstr "Відновлення Bios"
+
+msgid "Recovery Image from Feed"
+msgstr "Відновлення іміджу з фида"
+
+msgid "Recovery Mode"
+msgstr "Режим відновлення"
+
+msgid "Refresh"
+msgstr "Оновлення"
+
+msgid "Rescue Bios from Feed"
+msgstr "Відновлення Bios з фида"
+
+msgid ""
+"Root Filesystem\n"
+"\n"
+"total: %s MB\n"
+"used:  %s MB\n"
+"free:  %s MB"
+msgstr ""
+"Коренева файлова система\n"
+"\n"
+"загальна: %s MБ\n"
+"використовується:  %s MБ\n"
+"вільна:  %s MБ"
+
+msgid "Select tar.*z image for flashing"
+msgstr "Виберіть імідж tar.*z для прошивання"
+
+msgid "Show plugin"
+msgstr "Показати плагін"
+
+msgid "Sorry, %s device not mounted"
+msgstr "Вибачте, %s пристрій не встановлено"
+
+msgid "Sorry, Flashing of %s was canceled!"
+msgstr "Вибачте, прошивання %s було скасовано!"
+
+msgid "Sorry, currently not supported on this Dreambox type"
+msgstr "На жаль, в даний час цей тип Dreambox не підтримується"
+
+msgid "Sorry, no correct tar.*z file selected"
+msgstr "Вибачте, не обрано правильний файл tar.*z"
+
+msgid "Sorry, no device choosen"
+msgstr "На жаль, ні один пристрій не вибрано"
+
+msgid "Sorry, no device found"
+msgstr "На жаль, не знайдено жодного пристрою"
+
+#, fuzzy
+msgid "Sorry, no xz binary found"
+msgstr "Вибачте, не знайдено xz binary"
+
+msgid "Sorry, use Barry Allen for Backup"
+msgstr "Вибачте, використовуйте Barry Allen для копіювання"
+
+msgid "Sorry, use Dumbo for Backup"
+msgstr "Вибачте, використовуйте Dumbo для копіювання"
+
+msgid "Sort Imagelist alphabetic"
+msgstr "Сортувати список іміджів за алфавітом"
+
+msgid ""
+"This way of flashing your Dreambox is not supported by DMM.\n"
+"\n"
+"You are using it completely at you own risk!\n"
+"If you want to flash your Dreambox safely use the Recovery Webinterface!\n"
+"\n"
+"May the Power button be with you!"
+msgstr ""
+"Цей засіб прошивання Dreambox не підтримується DMM.\n"
+"\n"
+"Ви використовуєте його повністю на свій страх і ризик!\n"
+"Якщо Ви хочете швидко прошити Dreambox, використовуйте веб-інтерфейс відновлення або DreamUP!\n"
+"\n"
+"Нехай кабель Mini USB буде з Вами!"
+
+msgid "Time in backupname"
+msgstr "Час в імені копії"
+
+msgid "USB recovery stick"
+msgstr "USB-накопичувач"
+
+msgid "Webinterface"
+msgstr "Веб-інтерфейс"
+
+msgid "already exists,"
+msgstr "вже існує,"
+
+msgid "badblocks recovery > 1min"
+msgstr "Відновлення пошкоджених блоків > 1min"
+
+msgid "both"
+msgstr "обидві"
+
+msgid "check & repair recovery"
+msgstr "перевірка і відновлення"
+
+msgid "check defragmentation recovery"
+msgstr "Перевірити відновлення дефрагментації"
+
+msgid "check defragmentation root"
+msgstr "Перевірити дефрагментацію кореня"
+
+msgid "check root"
+msgstr "Перевірити корінь"
+
+msgid "clean apt cache"
+msgstr "Очистити кеш-файл до копіювання"
+
+msgid "container"
+msgstr "контейнер"
+
+msgid "dBackup is busy ..."
+msgstr "dBackup зайнятий ..."
+
+msgid "daemon"
+msgstr "daemon"
+
+msgid "deb in backupname"
+msgstr "Deb в імені копії"
+
+msgid "defragment recovery"
+msgstr "відновлення дефрагментації"
+
+msgid "defragment root"
+msgstr "Дефрагментація кореня"
+
+msgid "direct"
+msgstr "директорія"
+
+msgid "nfiwrite"
+msgstr "nfiwrite"
+
+msgid "no"
+msgstr "ні"
+
+msgid "no badblocks binary - get e2fsprogs"
+msgstr "Немає двоїчних файлів badblocks - get e2fsprogs"
+
+msgid "not confirmed"
+msgstr "не підтверждено"
+
+msgid "nothing entered"
+msgstr "нічого не введено"
+
+msgid "overwrite ?"
+msgstr "перезаписати ?"
+
+msgid "select backup path"
+msgstr "Виберіть шлях резервного копіювання"
+
+msgid "system"
+msgstr "система"
+
+msgid "umount failed, Sorry!"
+msgstr "Розмонтування не вдалося, вибачте!"
+
+msgid "use back button in browser and try again!"
+msgstr "Використовуйте кнопку «Назад» у браузері і спробуйте ще раз!"
+
+msgid "yes"
+msgstr "так"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "select Image for deleting"
+msgstr "select Image for deleting"
+
+msgid "deleting %s ?"
+msgstr "deleting %s ?"

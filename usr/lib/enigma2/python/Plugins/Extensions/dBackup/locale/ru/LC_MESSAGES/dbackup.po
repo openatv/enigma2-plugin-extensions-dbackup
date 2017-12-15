@@ -1,0 +1,428 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dBackup\n"
+"POT-Creation-Date: 2014-09-07 10:12+0100\n"
+"PO-Revision-Date: 2017-11-09 14:06+0300\n"
+"Last-Translator: Oleg8000 <borisovich_light@mail.ru>\n"
+"Language-Team: Oleg8000 <borisovich_light@mail.ru>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"X-Generator: Poedit 1.7.3\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid "About"
+msgstr "Информация"
+
+msgid "Are you sure that you want to FORMAT recovery device %s now for %s?"
+msgstr "Отформатировать %s сейчас %s?"
+
+msgid "Are you sure that you want to erase now %s ?"
+msgstr "Хотите удалить %s ?"
+
+msgid "Are you sure that you want to flash now %s ?"
+msgstr "Загрузить во флеш %s ?"
+
+msgid "Backup"
+msgstr "Копирование"
+
+msgid "Backuptool"
+msgstr "Расширение резервной копии"
+
+msgid "Be patient, this takes 1-2 min ..."
+msgstr "Это займёт несколько минут!"
+
+msgid "Boxtype in backupname"
+msgstr "Добавлять название тюнера при копировании"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Checking"
+msgstr "Проверка"
+
+msgid "Choose backup location"
+msgstr "Выбрать место для резервной копии"
+
+msgid "Clean apt cache before backup"
+msgstr "Очистить кеш перед резервным копированием"
+
+msgid "Configuring"
+msgstr "Функции"
+
+msgid "Create signature file"
+msgstr "Создать файл с подписью"
+
+msgid "Date in backupname"
+msgstr "Добавлять текущюю дату при копировании"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Disclaimer"
+msgstr "Отказ"
+
+msgid "Dreambox Backup Plugin by gutemine Version %s"
+msgstr "Плагин для создания резервных копий. Версия %s"
+
+msgid "Enter Backup Imagename"
+msgstr "Введите название резервной копии"
+
+msgid "Enter Backup Path"
+msgstr "Введите путь для резервной копии"
+
+msgid "Blanks in backupname"
+msgstr "Кол-во пробелов после названия в меню ввода названия"
+
+msgid "Exclude epg.db"
+msgstr "Исключить из бекапа epg.db"
+
+msgid "Exclude settings"
+msgstr "Исключить из бекапа настройки"
+
+msgid "Exclude timers"
+msgstr "Исключить из бекапа установки таймеров"
+
+msgid "Exit"
+msgstr "Выход"
+
+msgid "Extension"
+msgstr "Меню расширений"
+
+msgid "Extract kernel from Flash"
+msgstr "Извлечь kernel из флеши"
+
+msgid "Extract loader from Flash"
+msgstr "Извлечь загрузчик из флеши"
+
+msgid "Factory reset"
+msgstr "Сброс настроек по умолчанию"
+
+msgid "Fading"
+msgstr "Затухание"
+
+msgid "Flash Backup finished"
+msgstr "Бэкап создан"
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.%s"
+msgstr ""
+"Резервная копия в %s\n"
+"\n"
+"Создана с названием:\n"
+"\n"
+"%s.%s"
+
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.%s\n"
+"\n"
+"BUT it has I/O Errors"
+msgstr ""
+"Резервная копия в%s\n"
+"\n"
+"Создана с названием:\n"
+"\n"
+"%s.%s\n"
+"\n"
+"Но есть ошибки..."
+
+msgid "Flash kernel from image"
+msgstr "Перепрошить флеш из имиджа"
+
+msgid "Flashing"
+msgstr "Перепрошивка"
+
+msgid "Flashing reboot delay [0-60 sec]"
+msgstr "Задержка перезагрузки после перепрошивки, в мин."
+
+msgid "Flashtool"
+msgstr "Источник перепрошивки флеши"
+
+msgid ""
+"If you install e2fsprogs the badblocks binary will allow to check and mark "
+"also bad blocks"
+msgstr ""
+"Установите e2fsprogs, для проверки и восстановления повреждённых блоков "
+"памяти."
+
+msgid "Imagetype in backupname"
+msgstr "Добавлять название имиджа при копировании"
+
+msgid "Info"
+msgstr "Информация"
+
+msgid ""
+"Memory\n"
+"\n"
+"total: %i MB\n"
+"used: %i MB\n"
+"free: %i MB"
+msgstr ""
+"Память\n"
+"\n"
+"Всего: %i MB\n"
+"Используется: %i MB\n"
+"Свободно: %i MB"
+
+msgid "Minimal Fading Transparency"
+msgstr "Выбор уровня прозрачности"
+
+msgid "Nothing mounted at %s"
+msgstr "Ничего нет на %s"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Pluginlist"
+msgstr "Меню плагинов"
+
+msgid "Press OK for starting backup to"
+msgstr "Нажмите 'OK' для резервного копирования"
+
+msgid ""
+"Press OK now for flashing\n"
+"\n"
+"%s\n"
+"\n"
+"Box will reboot automatically when finished!"
+msgstr ""
+"Нажмите 'OK' для начала прошивки\n"
+"\n"
+"%s\n"
+"\n"
+"Dreambox по окончании прошивки перезагрузится автоматически!"
+
+msgid "Really shutdown now?"
+msgstr "Выключить?"
+
+msgid "Recovery Bios"
+msgstr "Восстановление Bios"
+
+msgid "Recovery Image from Feed"
+msgstr "Перепрошить имиджем с фида"
+
+msgid "Recovery Mode"
+msgstr "Режим восстановления"
+
+msgid "Refresh"
+msgstr "Обновить"
+
+msgid "Rescue Bios"
+msgstr "Восстановить Bios"
+
+msgid "Rescue Bios from Feed"
+msgstr "Восстановить Bios с фида"
+
+msgid ""
+"Root Filesystem\n"
+"\n"
+"total: %s MB\n"
+"used:  %s MB\n"
+"free:  %s MB"
+msgstr ""
+"Файловая система\n"
+"\n"
+"Всего: %s MB\n"
+"Используется:  %s MB\n"
+"Свободно:  %s MB"
+
+msgid "Select device for recovery USB stick"
+msgstr "Выбрать устройство для восстановления"
+
+msgid "Select tar.*z image for flashing"
+msgstr "Выберите имидж tar.*z для прошивки"
+
+msgid "Settings"
+msgstr "Меню Настройки"
+
+msgid "Show plugin"
+msgstr "Показывать плагин в "
+
+msgid "Sorry, %s device not mounted"
+msgstr "Устройство %s не подключено!"
+
+msgid "Sorry, %s device not mounted writeable"
+msgstr "%s устройство не примонтированно для записи"
+
+msgid "Sorry, %s has no primary partition"
+msgstr "В %s нет основного раздела"
+
+msgid "Sorry, Erasing of %s was canceled!"
+msgstr "Удаление %s отменено!"
+
+msgid "Sorry, Flashing of %s was canceled!"
+msgstr "Перепрошивка %s отменена!"
+
+msgid "Sorry, Flashing works only in Flash"
+msgstr "Перепрошивается только флеш"
+
+msgid "Sorry, currently not supported on this Dreambox type"
+msgstr "Пока не поддерживается!"
+
+msgid "Sorry, dBackup webinterface is currently disabled"
+msgstr "Веб интерфейс отключён!"
+
+msgid "Sorry, no %s image"
+msgstr "Имиджа %s не существует"
+
+msgid "Sorry, no correct tar.*z file selected"
+msgstr "Выбран не корректный файл tar.*z"
+
+msgid "Sorry, no device choosen"
+msgstr "Не выбранно устройство!"
+
+msgid "Sorry, no device found"
+msgstr "Устройство не найдено!"
+
+msgid "Sorry, no xz binary found"
+msgstr "Бинарный файл xz не найден"
+
+msgid "Sorry, use Barry Allen for Backup"
+msgstr "Используется Barry Allen для резервного копирования"
+
+msgid "Sorry, use Dumbo for Backup"
+msgstr "Используется Dumbo для резервного копирования"
+
+msgid "Sorry, use LowFAT for Backup"
+msgstr "Используется LowFAT для резервного копирования"
+
+msgid "Sort Imagelist alphabetic"
+msgstr "Сортировать имиджи по алфавиту"
+
+msgid ""
+"This way of flashing your Dreambox is not supported by DMM.\n"
+"\n"
+"You are using it completely at you own risk!\n"
+"If you want to flash your Dreambox safely use the Recovery Webinterface!\n"
+"\n"
+"May the Power button be with you!"
+msgstr ""
+"Этот способ перепрошивки не поддерживается Dream Property.\n"
+"\n"
+"Вы всё делаете на свой риск!\n"
+"Безопасный способ прошивки - через Веб-Интерфейс или с помощью DreamUP!\n"
+"\n"
+"Используйте кабель Mini USB > USB!"
+
+msgid "Time in backupname"
+msgstr "Добавлять текущее время при копировании"
+
+msgid "USB recovery stick"
+msgstr "Восстановление с USB флеши"
+
+msgid "Verbose"
+msgstr "Подробно"
+
+msgid "Webinterface"
+msgstr "Веб-Интерфейс"
+
+msgid "all"
+msgstr "Везде"
+
+msgid "already exists,"
+msgstr "Уже существует,"
+
+msgid "badblocks recovery > 1min"
+msgstr "Восстановление блоков -меньше минуты"
+
+msgid "both"
+msgstr "Оба меню"
+
+msgid "check & repair recovery"
+msgstr "Проверка и восстановление"
+
+msgid "check defragmentation Harddisk"
+msgstr "Проверьте дефрагментацию HDD"
+
+msgid "check defragmentation recovery"
+msgstr "Проверьте дефрагментацию каталога 'recovery'"
+
+msgid "check defragmentation root"
+msgstr "Проверьте дефрагментацию каталога 'root'"
+
+msgid "check root"
+msgstr "Проверка каталога 'root'"
+
+msgid "clean apt cache"
+msgstr "Очистить кеш"
+
+msgid "container"
+msgstr "Контейнер"
+
+msgid "create recovery USB stick"
+msgstr "Создать USB-накопитель для восстановления"
+
+msgid "dBackup is busy ..."
+msgstr "Система занята!"
+
+msgid "daemon"
+msgstr "daemon"
+
+msgid "deb in backupname"
+msgstr "Добавлять расширение имиджа при копировании"
+
+msgid "defragment Harddisk"
+msgstr "Дефрагментация HDD"
+
+msgid "defragment recovery"
+msgstr "Дефрагментация каталога 'recovery'"
+
+msgid "defragment root"
+msgstr "Дефрагментация каталога 'root'"
+
+msgid "deleting %s ?"
+msgstr "Удалить %s ?"
+
+msgid "direct"
+msgstr "Из имиджа"
+
+msgid "nfiwrite"
+msgstr "Записать nfi"
+
+msgid "no"
+msgstr "Нет"
+
+msgid "no badblocks binary - get e2fsprogs"
+msgstr "Повреждённых секторов нет!"
+
+msgid "not confirmed"
+msgstr "Не подтвержденно"
+
+msgid "nothing entered"
+msgstr "Ничего не выбранно..."
+
+msgid "overwrite ?"
+msgstr "Перезаписать?"
+
+msgid "recovery stick creation failed, Sorry!"
+msgstr "Не удалось создать устройство для восстановления"
+
+msgid "select Image for deleting"
+msgstr "Выберите бэкап имиджа для удаления"
+
+msgid "select backup path"
+msgstr "Выберите путь для создания бэкап"
+
+msgid "system"
+msgstr "Система"
+
+msgid "umount failed, Sorry!"
+msgstr "Не удалось отмонтировать!"
+
+msgid "use back button in browser and try again!"
+msgstr "Используйте кнопку 'Назад' и попробуйте ещё раз!"
+
+msgid "yes"
+msgstr "Да"

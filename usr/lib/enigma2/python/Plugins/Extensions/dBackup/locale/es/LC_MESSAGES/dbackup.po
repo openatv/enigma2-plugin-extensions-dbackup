@@ -360,3 +360,11 @@ msgstr "use el botón de retorno en el navegador e inténtelo de nuevo!"
 msgid "yes"
 msgstr "sí"
 
+msgid "Delete"
+msgstr "Delete"
+
+msgid "select Image for deleting"
+msgstr "select Image for deleting"
+
+msgid "deleting %s ?"
+msgstr "deleting %s ?"

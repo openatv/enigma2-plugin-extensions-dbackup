@@ -292,3 +292,11 @@ msgstr ""
 msgid "Flash kernel from image"
 msgstr "Flash kernel from image"
 
+msgid "Delete"
+msgstr "Delete"
+
+msgid "select Image for deleting"
+msgstr "select Image for deleting"
+
+msgid "deleting %s ?"
+msgstr "deleting %s ?"

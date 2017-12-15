@@ -2,7 +2,7 @@
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="0.73"
+dbackup_version="0.85"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -67,6 +67,17 @@ if os.path.exists("/proc/stb/info/model"):
 	if boxtype == "dm525":
 		boxtype="dm520"
 
+#if boxtype == "dm900" or boxtype == "dm920":
+#	if os.path.exists("%s/bin") is False:
+#		if os.path.lexists("%s/bin" % dbackup_plugindir):
+#			os.remove("%s/bin" % dbackup_plugindir)
+#		os.symlink("%s/armhf" % dbackup_plugindir, "%s/bin" % dbackup_plugindir)
+#else:
+#	if os.path.exists("%s/bin" % dbackup_plugindir) is False:
+#		if os.path.lexists("%s/bin" % dbackup_plugindir):
+#			os.remove("%s/bin" % dbackup_plugindir)
+#		os.symlink("%s/mipsel" % dbackup_plugindir, "%s/bin" % dbackup_plugindir)
+	
 yes_no_descriptions = {False: _("no"), True: _("yes")}    
 
 config.plugins.dbackup = ConfigSubsection()
@@ -82,6 +93,7 @@ config.plugins.dbackup.backupimagetype = ConfigBoolean(default = True, descripti
 config.plugins.dbackup.backupboxtype = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.backupdate = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.backuptime = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.backupblanks = ConfigInteger(default = 10, limits=(0,40)) 
 config.plugins.dbackup.sig = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.loaderextract = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.loaderflash = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
@@ -99,16 +111,17 @@ else:
 	config.plugins.dbackup.aptclean = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 	config.plugins.dbackup.epgdb = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 	config.plugins.dbackup.webinterface = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
+
 config.plugins.dbackup.settings = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.timers = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.picons = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 
 dbackup_options = []                                                     
 dbackup_options.append(( "settings",_("Settings") ))
-dbackup_options.append(( "plugin",_("Pluginlist") ))   
-dbackup_options.append(( "extension",_("Extension") ))
-dbackup_options.append(( "both",_("both") ))
-dbackup_options.append(( "all",_("all") ))
+dbackup_options.append(( "plugin",_("Pluginlist")+" & "+_("Settings")  ))   
+dbackup_options.append(( "extension",_("Extension")+" & "+_("Settings") ))
+dbackup_options.append(( "both",_("Pluginlist")+" & "+_("Extension") ))
+dbackup_options.append(( "all",_("Settings")+" & "+_("Pluginlist")+" & "+_("Extension") ))
 config.plugins.dbackup.showing = ConfigSelection(default = "settings", choices = dbackup_options)
 
 dbackup_recovering = []                                                     
@@ -120,7 +133,7 @@ config.plugins.dbackup.recovering = ConfigSelection(default = "none", choices = 
 
 flashtools=[]
 flashtools.append(( "direct", _("direct") ))
-flashtools.append(( "rescue", _("Rescue Bios") ))
+flashtools.append(( "rescue", _("Rescue Loader") ))
 	
 #flashtools.append(( "recovery", _("Recovery USB") ))
 config.plugins.dbackup.flashtool = ConfigSelection(default = "direct", choices = flashtools)
@@ -167,6 +180,8 @@ lowfat_string=_("Sorry, use LowFAT for Backup")
 noflashing_string=_("Sorry, Flashing works only in Flash")
 nowebif_string=_("Sorry, dBackup webinterface is currently disabled")
 
+dbackup_skin=config.skin.primary_skin.value.replace("/skin.xml","")
+
 header_string  =""
 header_string +="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\""
 header_string +="\"http://www.w3.org/TR/html4/loose.dtd\">"
@@ -194,16 +209,36 @@ dbackup_backuping +="</form>"
 global dbackup_progress
 dbackup_progress=0
 
+sz_w = getDesktop(0).size().width()
+
 class dBackup(Screen):
-	skin = """
-		<screen position="center,80" size="680,70" title="Flashing" >
-		<widget name="logo" position="10,10" size="100,40" transparent="1" alphatest="on" />
-		<widget name="buttonred" position="120,10" size="130,40" backgroundColor="red" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-		<widget name="buttongreen" position="260,10" size="130,40" backgroundColor="green" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-		<widget name="buttonyellow" position="400,10" size="130,40" backgroundColor="yellow" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-		<widget name="buttonblue" position="540,10" size="130,40" backgroundColor="blue" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-		<widget name="slider" position="10,55" size="660,5"/>
-	</screen>"""
+	if sz_w == 1920:
+		skin = """
+		<screen position="center,170" size="1200,110" title="Flashing" >
+		<widget name="logo" position="20,10" size="150,60" />
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="buttonred" position="190,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="225,60" valign="center" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="buttongreen" position="425,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="225,60" valign="center" />
+		<widget backgroundColor="#a08500" font="Regular;30" halign="center" name="buttonyellow" position="660,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="225,60" valign="center" />
+		<widget backgroundColor="#18188b" font="Regular;30" halign="center" name="buttonblue" position="895,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="225,60" valign="center" />
+		<widget name="info" position="1125,10" size="60,30" alphatest="on" />
+		<widget name="menu" position="1125,40" size="60,30" alphatest="on" />
+		<eLabel backgroundColor="grey" position="10,80" size="1180,1" />
+		<widget name="slider" position="10,90" size="1180,10"/>
+		</screen>"""
+	else:
+		skin = """
+		<screen position="center,120" size="800,70" title="Flashing" >
+		<widget name="logo" position="10,5" size="100,40" />
+		<widget backgroundColor="#9f1313" font="Regular;19" halign="center" name="buttonred" position="120,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="150,40" valign="center" />
+		<widget backgroundColor="#1f771f" font="Regular;19" halign="center" name="buttongreen" position="280,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="150,40" valign="center" />
+		<widget backgroundColor="#a08500" font="Regular;19" halign="center" name="buttonyellow" position="440,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="150,40" valign="center" />
+		<widget backgroundColor="#18188b" font="Regular;19" halign="center" name="buttonblue" position="600,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="150,40" valign="center" />
+		<widget name="info" position="755,5" size="40,20" alphatest="on" />
+		<widget name="menu" position="755,25" size="40,20" alphatest="on" />
+		<eLabel backgroundColor="grey" position="5,50" size="790,1" />
+		<widget name="slider" position="5,55" size="790,5"/>
+		</screen>"""
+
 	def __init__(self, session, args = 0):
 		Screen.__init__(self, session)
 		self.onShown.append(self.setWindowTitle)      
@@ -212,7 +247,9 @@ class dBackup(Screen):
 		self["buttonred"] = Label(_("Exit"))
 		self["buttongreen"] = Label(_("Backup"))
 		self["buttonyellow"] = Label(_("Flashing"))
-		self["buttonblue"] = Label(setup_string)
+		self["buttonblue"] = Label(_("Delete"))
+		self["menu"] = Pixmap()                                        
+                self["info"] = Pixmap()   
 		self.slider = Slider(0, 500)
 	        self["slider"] = self.slider
 		                         
@@ -225,15 +262,47 @@ class dBackup(Screen):
 			config.plugins.dbackup.backuplocation.save()
 			config.plugins.dbackup.backuptool.save()
 		        
-		self["setupActions"] = ActionMap([ "ColorActions", "SetupActions" ],
+		self["setupActions"] = ActionMap([ "ColorActions", "SetupActions", "TextEntryActions", "ChannelSelectEPGActions", "ChannelSelectEditActions" ],
 			{
 			"green": self.backup,
 			"red": self.leaving,
-			"blue": self.config,
+			"blue": self.deleting,
 			"yellow": self.flash,
 			"save": self.leaving,
+			"deleteForward": self.deleting,
+			"deleteBackward": self.deleting,
+			"contextMenu": self.config,
+			"showEPGList": self.logging,
 			"cancel": self.leaving,
 			})
+
+	def getPiconPath(self,name):
+		if os.path.exists("/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)):
+#			print "[DBACKUP] found %s.svg in skin ..." % name
+			return "/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)
+		if os.path.exists("/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)):
+#			print "[DBACKUP] found %s.png in skin ..." % name
+			return "/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)
+		if os.path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)):
+#			print "[DBACKUP] found %s.png in skin ..." % name
+			return "/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)
+		if os.path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)):
+#			print "[DBACKUP] found %s.svg in skin ..." % name
+			return "/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)
+		if os.path.exists("/usr/share/enigma2/skin_default/%s.svg" % (name)):
+#			print "[DBACKUP] found %s.svg in default skin ..." % name
+			return "/usr/share/enigma2/skin_default/%s.svg" % (name)
+#		if os.path.exists("/usr/share/enigma2/skin_default/%s.png" % (name)):
+#			print "[DBACKUP] found %s.png in default skin ..." % name
+#			return "/usr/share/enigma2/skin_default/%s.png" % (name)
+		if os.path.exists("/usr/share/enigma2/skin_default/icons/%s.png" % (name)):
+#			print "[DBACKUP] found %s.png in default skin ..." % name
+			return "/usr/share/enigma2/skin_default/icons/%s.png" % (name)
+		if os.path.exists("/usr/share/enigma2/skin_default/buttons/key_%s.png" % (name)):
+#			print "[DBACKUP] found %s.png in default skin ..." % name
+			return "/usr/share/enigma2/skin_default/buttons/key_%s.png" % (name)
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/%s.png" % (name)
 
 	def connectHighPrioAction(self):
 		self.highPrioActionSlot = eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.doUnhide)
@@ -246,6 +315,8 @@ class dBackup(Screen):
        			self["logo"].instance.setPixmapFromFile("%s/ring.png" % dbackup_plugindir)
 		else:                                                                            
        			self["logo"].instance.setPixmapFromFile("%s/dbackup.png" % dbackup_plugindir)
+		self["menu"].instance.setPixmapFromFile(self.getPiconPath("menu"))
+		self["info"].instance.setPixmapFromFile(self.getPiconPath("info"))
 		self.setTitle(backup_string+" & "+flashing_string+" V%s" % (dbackup_version+" "+boxtype))
 
         def byLayoutEnd(self):
@@ -258,7 +329,71 @@ class dBackup(Screen):
 			self.session.openWithCallback(self.forcedexit,MessageBox, running_string, MessageBox.TYPE_WARNING)
 		else:
 			self.forcedexit([1,1])
-			
+	def logging(self):
+		if os.path.exists(dbackup_log):
+			cmd = "cat %s" % dbackup_log
+			self.session.open(Console,dbackup_log,[cmd])        
+		else:
+			self.session.open(MessageBox, _("none")+ " "+dbackup_log, MessageBox.TYPE_ERROR)
+
+	def deleting(self):
+               self.session.openWithCallback(self.askForDelete,ChoiceBox,_("select Image for deleting"), self.getListImages())
+        
+	def askForDelete(self,source):
+	        if source is None:
+	            return
+	        else:
+	            self.delimage = source [1].rstrip()
+                    self.session.openWithCallback(self.ImageDelete,MessageBox,_("deleting %s ?") %(self.delimage),MessageBox.TYPE_YESNO)
+
+	def ImageDelete(self,answer):
+	        if answer is None:
+		    return
+	        if answer is False:
+	            return
+	        else:
+		    print "[dBACKUP] DELETING %s" % self.delimage
+		    if self.delimage == "/data/.recovery/backup.tar.gz":
+			if not os.path.exists("/data"):
+				os.mkdir("/data")
+			os.system("umount %s; mount %s /data")  % (dreambox_data,dreambox_data)
+			os.system("mount -o remount,async /data")
+			f=open("/proc/mounts","r")
+			mounts=f.read()
+			f.close()
+	       		if mounts.find("/data") is -1:
+				return 
+			if not os.path.exists("/data/.recovery"):
+				return
+			if os.path.exists(self.delimage):
+				os.remove(self.delimage)
+		    else:
+		    	os.remove(self.delimage)
+            
+	def getListImages(self):
+        	list = []                                                        
+        	for name in os.listdir("/tmp"):                          
+			if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip",""), "/tmp/%s" % name ))                         
+		if os.path.exists(config.plugins.dbackup.backuplocation.value):
+        		for name in os.listdir(config.plugins.dbackup.backuplocation.value):                          
+				if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+	        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip",""), "%s/%s" % (config.plugins.dbackup.backuplocation.value,name) ))                         
+           	for directory in os.listdir("/media"):                          
+			if os.path.exists("/media/%s" % directory) and os.path.isdir("/media/%s" % directory) and not directory.endswith("net") and not directory.endswith("hdd"):
+				try:
+  	         			for name in os.listdir("/media/%s" % directory):                          
+						if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+			        	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip",""), "%s/%s" % (directory,name) ))                         
+				except:
+					pass
+		if config.plugins.dbackup.sort.value:
+			list.sort()
+		if os.path.exists("/data/.recovery/backup.tar.gz"):
+			# Backup in Rescue Loader is always last
+		        list.append((_("Rescue Loader")+" "+_("Image")+" "+_("/data"),"/data/.recovery/backup.tar.gz"))                         
+        	return list
+
 	def forcedexit(self,status):
 		if status > 0:
 		        self.doUnhide(0, 0)                                  
@@ -359,7 +494,7 @@ class dBackup(Screen):
         	list = []                                                        
 	        liststart.append((_("Recovery Image from Feed"), "recovery" ))                         
 		if os.path.exists("/usr/sbin/update-rescue"):
-		        liststart.append((_("Rescue Bios from Feed"), "rescue" ))                         
+		        liststart.append((_("Rescue Loader from Feed"), "rescue" ))                         
         	for name in os.listdir("/tmp"):                          
 			if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
         	       		list.append(( name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip",""), "/tmp/%s" % name ))                         
@@ -377,8 +512,8 @@ class dBackup(Screen):
 					pass
 		if config.plugins.dbackup.sort.value:
 			list.sort()
-		# recovery image and rescue bios is always first ...
-		liststart=liststart+list
+		# recovery image and rescue loader is always last ...
+		liststart=list+liststart
         	return liststart                                                
 
 	def startFlash(self,option):
@@ -782,7 +917,6 @@ class dBackup(Screen):
 		try:
 		        for mount in os.listdir("/media"):                                      
         		    if mount.startswith(".") is False:
-
 				backupdir="/media/%s/backup" % mount
        	        		if os.path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:                  
 			        	backup.append((backupdir,backupdir))                             
@@ -801,7 +935,6 @@ class dBackup(Screen):
 	        	for mount in os.listdir("/autofs"):                                      
 				try:
         			    if mount.startswith(".") is False:
-
 					backupdir="/autofs/%s/backup" % mount
 					# added to trigger automount
 					os.system("ls %s" % backupdir)
@@ -906,7 +1039,7 @@ class dBackup(Screen):
 		        self.backupname="backup"
                 	self.askForBackupName("backup")
            	else:
-			if not os.path.exists("path"):
+			if not os.path.exists(path):
 				os.system("ls %s" % path)
 			sp=[]
 			sp=path.split("/")
@@ -972,9 +1105,18 @@ class dBackup(Screen):
 				suggested_backupname=suggested_backupname+"-"+ctime
 			if config.plugins.dbackup.flashtool.value == "rescue":
 				suggested_backupname="backup"
-			print "suggested backupname %s" % suggested_backupname
-			suggested_backupname=suggested_backupname+"          "
-                	self.session.openWithCallback(self.askForBackupName,InputBox, title=backupimage_string, text=suggested_backupname, maxSize=60, type=Input.TEXT)
+			print "[dBACKUP] suggested backupname %s" % suggested_backupname
+			blanks=""
+			i = 0
+			blanks_len=int(config.plugins.dbackup.backupblanks.value)
+			while i < blanks_len:
+				blanks=blanks+" "
+				i+=1
+			length_blanks=len(blanks)
+			print "[dBACKUP] BLANKS %d" % length_blanks
+			suggested_backupname=suggested_backupname+blanks
+			blanks_len=blanks_len+60
+                	self.session.openWithCallback(self.askForBackupName,InputBox, title=backupimage_string, text=suggested_backupname, maxSize=blanks_len, type=Input.TEXT)
 
         def askForBackupName(self,name):
            if name is None:
@@ -1316,7 +1458,7 @@ class wBackup(resource.Resource):
 			b.close()
 			htmlnfi=""
 			htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("recovery",_("Recovery Image from Feed"))
-			htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("rescue",_("Rescue Bios from Feed"))
+			htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("rescue",_("Rescue Loader from Feed"))
 			entries=os.listdir("/tmp")
 	 		for name in sorted(entries):                          
 				if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
@@ -1385,7 +1527,17 @@ class wBackup(resource.Resource):
 				suggested_backupname=suggested_backupname+"-"+ctime
 			if config.plugins.dbackup.flashtool.value == "rescue":
 				suggested_backupname="backup"
-			print "suggested backupname %s" % suggested_backupname
+			print "[dBACKUP] suggested backupname %s" % suggested_backupname
+			blanks=""
+			i = 0
+			blanks_len=int(config.plugins.dbackup.backupblanks.value)
+			while i < blanks_len:
+				blanks=blanks+" "
+				i+=1
+			length_blanks=len(blanks)
+			print "[dBACKUP] BLANKS %d" % length_blanks
+			suggested_backupname=suggested_backupname+blanks
+			blanks_len=blanks_len+60
 		 	return """
 				<html>
 				%s<br>
@@ -1404,14 +1556,14 @@ class wBackup(resource.Resource):
 				%s & %s @ Dreambox<br>
 				<form method="GET">
                 	       	<select name="directory">%s
- 				<input name="file" type="text" size="60" maxlength="60" value="%s">
+ 				<input name="file" type="text" size="60" maxlength="%d" value="%s">
                                 <input type="reset" size="100px"> 
                 		<input name="command" type="submit" size=="100px" title=\"%s\" value="%s"> 
 				</select>
                                	</form>                             
 				<img src="/web-data/img/ring.png" alt="%s ..."/><br><br>
                                	<hr>
-    			""" % (header_string,plugin_string,info_header,disclaimer_wstring,fileupload_string, htmlnfi,flashing_string, "Flashing",flashing_string,backupdirectory_string,backupimage_string,htmlbackup,suggested_backupname,backup_string,"Backup",backup_string)
+    			""" % (header_string,plugin_string,info_header,disclaimer_wstring,fileupload_string, htmlnfi,flashing_string, "Flashing",flashing_string,backupdirectory_string,backupimage_string,htmlbackup,blanks_len,suggested_backupname,backup_string,"Backup",backup_string)
 		else:
 		   if command[0]=="Flashing":
 			k=open("/proc/cmdline","r")       
@@ -1492,7 +1644,7 @@ class wBackup(resource.Resource):
 				self.backupname=file[0].replace(" ","").replace("[","").replace("]","").replace(">","").replace("<","").replace("|","").rstrip().lstrip()
 				path=directory[0]
 			if config.plugins.dbackup.flashtool.value != "rescue":
-				if not os.path.exists("path"):
+				if not os.path.exists(path):
 					os.system("ls %s" % path)
 				sp=[]
 				sp=path.split("/")
@@ -1655,7 +1807,7 @@ class FlashingImage(Screen):
 #				if boxtype == "dm520":
 #					url="http://www.dreamboxupdate.com/opendreambox/2.2/unstable/images/%s" % boxtype
 #					img="vmlinuz-rescue--3.4-r0.3-%s-20160820.bin" % boxtype
-#				if boxtype == "dm900":
+#				if boxtype == "dm900" or boxtype == "dm920":
 #					url="http://www.dreamboxupdate.com/opendreambox/2.5/unstable/images/%s" % boxtype
 #					img="zImage-rescue-3.14-r0-%s-20161208.bin" % boxtype
 #				rescue_image="%s/%s" % (url,img)
@@ -1670,10 +1822,7 @@ class FlashingImage(Screen):
 				img="dreambox-image-%s.tar.xz" % boxtype
 				if not os.path.exists("/data"):
 					os.mkdir("/data")
-				if boxtype != "dm520":
-			        	os.system("umount /dev/mmcblk0p2; mount -t ext4 /dev/mmcblk0p2 /data")
-				else:
-					os.system("umount %s; mount %s /data" % (dreambox_data,dreambox_data))
+				os.system("umount %s; mount %s /data" % (dreambox_data,dreambox_data))
 				if os.path.exists("/data/.recovery/recovery"):
 					r=open("/data/.recovery/recovery")
 			                line = r.readline()                                                                                                                  
@@ -1720,7 +1869,7 @@ class FlashingImage(Screen):
 					command += "tar -x -f %s ./boot -C %s\n" % (tarimage, tmp_extract)
 					if boxtype == "dm520":
 						command += "flash-kernel -v %s/boot/vmlinux.gz*%s\n" % (tmp_extract,boxtype)
-					elif boxtype == "dm900":
+					elif boxtype == "dm900" or boxtype == "dm920":
 						command += "flash-kernel %s/boot/zImage*%s\n" % (tmp_extract,boxtype)
 					else:
 						command += "flash-kernel -a /usr/share/fastboot/lcd_anim.bin -m 0x10000000 -o A %s/boot/vmlinux.bin*%s\n" % (tmp_extract,boxtype)
@@ -1870,15 +2019,28 @@ class BackupImage(Screen):
 ###############################################################################
 
 class dBackupChecking(Screen):
-    skin = """
-        <screen position="center,80" size="680,440" title="choose NAND Flash Check" >
-        <widget name="menu" position="10,60" size="660,370" scrollbarMode="showOnDemand" />
-	<widget name="logo" position="10,10" size="100,40" transparent="1" alphatest="on" />
-	<widget name="buttonred" position="120,10" size="130,40" backgroundColor="red" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-	<widget name="buttongreen" position="260,10" size="130,40" backgroundColor="green" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-	<widget name="buttonyellow" position="400,10" size="130,40" backgroundColor="yellow" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-	<widget name="buttonblue" position="540,10" size="130,40" backgroundColor="blue" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-        </screen>"""
+    if sz_w == 1920:
+	skin = """
+	<screen position="center,170" size="1200,820" title="choose NAND Flash Check" >
+	<widget name="logo" position="20,10" size="150,60" />
+	<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="buttonred" position="190,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="240,60" valign="center" />
+	<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="buttongreen" position="440,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="240,60" valign="center" />
+	<widget backgroundColor="#a08500" font="Regular;30" halign="center" name="buttonyellow" position="690,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="240,60" valign="center" />
+	<widget backgroundColor="#18188b" font="Regular;30" halign="center" name="buttonblue" position="940,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="240,60" valign="center" />
+	<eLabel backgroundColor="grey" position="20,80" size="1160,1" />
+	<widget enableWrapAround="1" name="menu" position="10,90" scrollbarMode="showOnDemand" size="1160,720" />
+    	</screen>"""
+    else:
+    	skin = """
+        <screen position="center,120" size="800,520" title="choose NAND Flash Check" >
+	<widget name="logo" position="10,5" size="100,40" />
+	<widget backgroundColor="#9f1313" font="Regular;19" halign="center" name="buttonred" position="120,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="160,40" valign="center" />
+	<widget backgroundColor="#1f771f" font="Regular;19" halign="center" name="buttongreen" position="290,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="160,40" valign="center" />
+	<widget backgroundColor="#a08500" font="Regular;19" halign="center" name="buttonyellow" position="460,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="160,40" valign="center" />
+	<widget backgroundColor="#18188b" font="Regular;19" halign="center" name="buttonblue" position="630,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="160,40" valign="center" />
+	<eLabel backgroundColor="grey" position="10,60" size="780,1" />
+        <widget name="menu" position="10,60" size="780,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
+    	</screen>"""
         
     def __init__(self, session, args = 0):
         global dreambox_data
@@ -1951,6 +2113,34 @@ class dBackupChecking(Screen):
         if self.command is not None and self.command != "none":
        		self.session.open(Console, self.checking,[ (self.command) ])
 
+    def getPiconPath(self,name):
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.svg in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.png in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.png in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.svg in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/skin_default/%s.svg" % (name)):
+#		print "[DBACKUP] found %s.svg in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/%s.svg" % (name)
+#	if os.path.exists("/usr/share/enigma2/skin_default/%s.png" % (name)):
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+#		return "/usr/share/enigma2/skin_default/%s.png" % (name)
+	if os.path.exists("/usr/share/enigma2/skin_default/icons/%s.png" % (name)):
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/icons/%s.png" % (name)
+	if os.path.exists("/usr/share/enigma2/skin_default/buttons/key_%s.png" % (name)):
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/buttons/key_%s.png" % (name)
+#	print "[DBACKUP] found %s.png in default skin ..." % name
+	return "/usr/share/enigma2/skin_default/%s.png" % (name)
+
     def setWindowTitle(self):
 	self["logo"].instance.setPixmapFromFile("%s/dbackup.png" % dbackup_plugindir)
 	self.setTitle(backup_string+" & "+flashing_string+" V%s " % dbackup_version + checking_string)
@@ -2008,15 +2198,28 @@ class dBackupChecking(Screen):
 	       		self.session.open(Console, self.checking,[cmd])
 
 class dBackupConfiguration(Screen, ConfigListScreen):
-    skin = """
-        <screen position="center,80" size="680,540" title="dBackup Configuration" >
-	<widget name="logo" position="10,10" size="100,40" transparent="1" alphatest="on" />
-        <widget name="config" position="10,60" size="660,450" scrollbarMode="showOnDemand" />
-        <widget name="buttonred" position="120,10" size="130,40" backgroundColor="red" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-        <widget name="buttongreen" position="260,10" size="130,40" backgroundColor="green" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-        <widget name="buttonyellow" position="400,10" size="130,40" backgroundColor="yellow" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-        <widget name="buttonblue" position="540,10" size="130,40" backgroundColor="blue" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-        </screen>"""
+    if sz_w == 1920:
+        skin = """
+        <screen position="center,170" size="1200,820" title="dBackup Configuration" >
+    	<widget name="logo" position="20,10" size="150,60" />
+	<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="buttonred" position="190,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="240,60" valign="center" />
+	<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="buttongreen" position="440,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="240,60" valign="center" />
+	<widget backgroundColor="#a08500" font="Regular;30" halign="center" name="buttonyellow" position="690,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="240,60" valign="center" />
+	<widget backgroundColor="#18188b" font="Regular;30" halign="center" name="buttonblue" position="940,10" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="240,60" valign="center" />
+	<eLabel backgroundColor="grey" position="20,80" size="1160,1" />
+        <widget enableWrapAround="1" name="config" position="10,90" scrollbarMode="showOnDemand" size="1180,720" />
+    	</screen>"""
+    else:
+        skin = """
+        <screen position="center,120" size="800,520" title="dBackup Configuration" >
+	<widget name="logo" position="10,5" size="100,40" />
+	<widget backgroundColor="#9f1313" font="Regular;19" halign="center" name="buttonred" position="120,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="160,40" valign="center" />
+	<widget backgroundColor="#1f771f" font="Regular;19" halign="center" name="buttongreen" position="290,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="160,40" valign="center" />
+	<widget backgroundColor="#a08500" font="Regular;19" halign="center" name="buttonyellow" position="460,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="160,40" valign="center" />
+	<widget backgroundColor="#18188b" font="Regular;19" halign="center" name="buttonblue" position="630,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="160,40" valign="center" />
+	<eLabel backgroundColor="grey" position="10,50" size="780,1" />
+        <widget name="config" position="10,60" size="780,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
+    	</screen>"""
 
     def __init__(self, session, args = 0):
 	Screen.__init__(self, session)
@@ -2060,11 +2263,12 @@ class dBackupConfiguration(Screen, ConfigListScreen):
 	self.list.append(getConfigListEntry(_("deb in backupname"), config.plugins.dbackup.backupdeb))
 	self.list.append(getConfigListEntry(_("Date in backupname"), config.plugins.dbackup.backupdate))
 	self.list.append(getConfigListEntry(_("Time in backupname"), config.plugins.dbackup.backuptime))
-	if not os.path.exists("/var/lib/opkg/status"):
+	self.list.append(getConfigListEntry(_("Blanks in backupname"), config.plugins.dbackup.backupblanks))
+#	if not os.path.exists("/var/lib/opkg/status"):
 #	        self.list.append(getConfigListEntry(_("Clean apt cache before backup"), config.plugins.dbackup.aptclean))
 #	        self.list.append(getConfigListEntry(_("Exclude epg.db"), config.plugins.dbackup.epgdb))
-		self.list.append(getConfigListEntry(_("Exclude timers"), config.plugins.dbackup.timers))
-		self.list.append(getConfigListEntry(_("Exclude settings"), config.plugins.dbackup.settings))
+        self.list.append(getConfigListEntry(_("Exclude timers"), config.plugins.dbackup.timers))
+        self.list.append(getConfigListEntry(_("Exclude settings"), config.plugins.dbackup.settings))
 	if os.path.exists("/usr/share/enigma2/picon"):
         	self.list.append(getConfigListEntry(_("Exclude picons"), config.plugins.dbackup.picons))
         self.list.append(getConfigListEntry(_("Minimal Fading Transparency"), config.plugins.dbackup.transparency))
@@ -2080,6 +2284,34 @@ class dBackupConfiguration(Screen, ConfigListScreen):
        	
     def changedEntry(self):                                                 
        	self.createSetup()       
+
+    def getPiconPath(self,name):
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.svg in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.png in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.png in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.svg in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/skin_default/%s.svg" % (name)):
+#		print "[DBACKUP] found %s.svg in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/%s.svg" % (name)
+#	if os.path.exists("/usr/share/enigma2/skin_default/%s.png" % (name)):
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+#		return "/usr/share/enigma2/skin_default/%s.png" % (name)
+	if os.path.exists("/usr/share/enigma2/skin_default/icons/%s.png" % (name)):
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/icons/%s.png" % (name)
+	if os.path.exists("/usr/share/enigma2/skin_default/buttons/key_%s.png" % (name)):
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/buttons/key_%s.png" % (name)
+#	print "[DBACKUP] found %s.png in default skin ..." % name
+	return "/usr/share/enigma2/skin_default/%s.png" % (name)
 		
     def setWindowTitle(self):
 	self["logo"].instance.setPixmapFromFile("%s/dbackup.png" % dbackup_plugindir)
@@ -2119,15 +2351,28 @@ class dBackupConfiguration(Screen, ConfigListScreen):
        	self.session.open(dBackupAbout)
 
 class dBackupAbout(Screen):
-    skin = """
-        <screen position="center,80" size="680,460" title="About dBackup" >
-        <ePixmap position="290,10" size="100,100" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/dBackup/g3icon_dbackup.png" transparent="1" alphatest="on" />
-        <widget name="buttonred" position="10,10" size="130,40" backgroundColor="red" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-        <widget name="buttongreen" position="540,10" size="130,40" backgroundColor="green" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;18"/>
-        <widget name="aboutdbackup" position="10,120" size="660,100" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;24"/>
-        <widget name="freefilesystem" position="100,240" size="220,220" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;24"/>
-        <widget name="freememory" position="370,240" size="200,220" valign="center" halign="center" zPosition="2"  foregroundColor="white" font="Regular;24"/>
-        </screen>"""
+    if sz_w == 1920:
+        skin = """
+        <screen position="center,center" size="800,500" title="About dBackup" >
+        <widget name="aboutdbackup" foregroundColor="yellow" position="10,5" size="820,80" halign="center" font="Regular;32"/>
+        <ePixmap position="340,150" size="120,120" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/dBackup/g3icon_dbackup.png"/>
+        <widget name="freefilesystem" position="20,90" size="280,260" valign="center" halign="center" font="Regular;30"/>
+        <widget name="freememory" position="500,90" size="280,260" valign="center" halign="center" font="Regular;30"/>
+        <eLabel backgroundColor="grey" position="20,410" size="760,1" />
+	<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="buttonred" position="20,420" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="280,60" valign="center" />
+	<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="buttongreen" position="500,420" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="280,60" valign="center" />
+    	</screen>"""
+    else:
+        skin = """
+        <screen position="center,center" size="720,350" title="About dBackup" >
+        <widget name="aboutdbackup" position="10,10" size="700,30" halign="center" foregroundColor="yellow" font="Regular;24"/>
+    	<ePixmap position="320,100" size="100,100" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/dBackup/g3icon_dbackup.png"/>
+        <widget name="freefilesystem" position="50,50" size="220,220" valign="center" halign="center" font="Regular;24"/>
+        <widget name="freememory" position="450,50" size="220,220" valign="center" halign="center" font="Regular;24"/>
+        <eLabel backgroundColor="grey" position="10,290" size="700,1" />
+	<widget backgroundColor="#9f1313" font="Regular;19" halign="center" name="buttonred" position="10,300" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="200,40" valign="center" />
+	<widget backgroundColor="#1f771f" font="Regular;19" halign="center" name="buttongreen" position="510,300" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="200,40" valign="center" />
+    	</screen>"""
 
     def __init__(self, session, args = 0):
 	Screen.__init__(self, session)
@@ -2167,6 +2412,34 @@ class dBackupAbout(Screen):
             	"cancel": self.cancel,
             	"ok": self.cancel,
        	})
+
+    def getPiconPath(self,name):
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.svg in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.png in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.png in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)):
+#		print "[DBACKUP] found %s.svg in skin ..." % name
+		return "/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)
+	if os.path.exists("/usr/share/enigma2/skin_default/%s.svg" % (name)):
+#		print "[DBACKUP] found %s.svg in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/%s.svg" % (name)
+#	if os.path.exists("/usr/share/enigma2/skin_default/%s.png" % (name)):
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+#		return "/usr/share/enigma2/skin_default/%s.png" % (name)
+	if os.path.exists("/usr/share/enigma2/skin_default/icons/%s.png" % (name)):
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/icons/%s.png" % (name)
+	if os.path.exists("/usr/share/enigma2/skin_default/buttons/key_%s.png" % (name)):
+#		print "[DBACKUP] found %s.png in default skin ..." % name
+		return "/usr/share/enigma2/skin_default/buttons/key_%s.png" % (name)
+#	print "[DBACKUP] found %s.png in default skin ..." % name
+	return "/usr/share/enigma2/skin_default/%s.png" % (name)
 
     def setWindowTitle(self):
         self.setTitle( _("About")+" dBackup")
