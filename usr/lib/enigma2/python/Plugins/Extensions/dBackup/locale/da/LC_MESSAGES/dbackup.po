@@ -1,0 +1,477 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dBackup\n"
+"POT-Creation-Date: 2016-05-05 21:42+0200\n"
+"PO-Revision-Date: 2020-06-07 16:07+0200\n"
+"Last-Translator: JC 2020 <dk-translation@protonmail.com>\n"
+"Language-Team: Danskholdet <dk-translation@pm.me>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"Last-Translator: \n"
+"Language: da\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../plugin.py:51
+msgid "no"
+msgstr "Nej"
+
+#: ../plugin.py:51
+msgid "yes"
+msgstr "Ja"
+
+#: ../plugin.py:87
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: ../plugin.py:88
+msgid "Pluginlist"
+msgstr "Plugin-liste"
+
+#: ../plugin.py:89
+msgid "Extension"
+msgstr "Udvidelse"
+
+#: ../plugin.py:90
+msgid "both"
+msgstr "Begge"
+
+#: ../plugin.py:91
+msgid "all"
+msgstr "Alt"
+
+#: ../plugin.py:95
+msgid "Rescue Bios"
+msgstr "Redde Bios"
+
+#: ../plugin.py:97
+msgid "direct"
+msgstr "Direkte"
+
+#: ../plugin.py:105
+msgid "tar.gz"
+msgstr "tar.gz"
+
+#: ../plugin.py:106
+msgid "tar.xz"
+msgstr "tar.xz"
+
+#: ../plugin.py:107
+msgid "tar.bz2"
+msgstr "tar.bz2"
+
+#: ../plugin.py:108
+msgid "tar"
+msgstr "tar"
+
+#: ../plugin.py:113
+msgid "daemon"
+msgstr "daemon"
+
+#: ../plugin.py:114
+msgid "system"
+msgstr "system"
+
+#: ../plugin.py:115
+msgid "container"
+msgstr "beholder"
+
+#: ../plugin.py:118
+msgid "Select tar.*z image for flashing"
+msgstr "Vælg tar.*z Image til falshing"
+
+#: ../plugin.py:119
+msgid "Disclaimer"
+msgstr "Ansvarsfraskrivelse"
+
+#: ../plugin.py:120
+msgid "Info"
+msgstr "Info"
+
+#: ../plugin.py:121
+msgid ""
+"This way of flashing your Dreambox is not supported by DMM.\n"
+"\n"
+"You are using it completely at you own risk!\n"
+"If you want to flash your Dreambox safely use the Recovery Webinterface!\n"
+"\n"
+"May the Power button be with you!"
+msgstr ""
+"Denne måde at flashe din Dreambox på er ikke understøttet af DMM.\n"
+"\n"
+"Du bruger den fuldstændig på eget ansvar!\n"
+"Brug Recovery webgrænsefladen, hvis du vil flashe din Dreambox på en "
+"sikker måde!\n"
+"\n"
+"Må afbryderknappen være med dig!"
+
+#: ../plugin.py:123
+#, python-format
+msgid "Dreambox Backup Plugin by gutemine Version %s"
+msgstr "Dreambox Backup Plugin af gutenmine Version %s"
+
+#: ../plugin.py:124 ../plugin.py:185
+msgid "Flashing"
+msgstr "Flasher"
+
+#: ../plugin.py:125 ../plugin.py:184
+msgid "Backup"
+msgstr "Sikkerhedskopier"
+
+#: ../plugin.py:126
+msgid "Configuring"
+msgstr "Konfigurerer"
+
+#: ../plugin.py:127
+msgid "Checking"
+msgstr "Kontrollere"
+
+#: ../plugin.py:128
+msgid "dBackup is busy ..."
+msgstr "dBackup har travlt ..."
+
+#: ../plugin.py:129
+msgid "Enter Backup Imagename"
+msgstr "Indtast sikkerhedskopi Image-navn"
+
+#: ../plugin.py:130
+msgid "Enter Backup Path"
+msgstr "Indtast sikkerhedskopi sti"
+
+#: ../plugin.py:131
+msgid "Sorry, currently not supported on this Dreambox type"
+msgstr "Beklager, ikke understøttet på denne Dreambox type for øjeblikket"
+
+#: ../plugin.py:132
+msgid "Sorry, no correct tar.*z file selected"
+msgstr "Beklager, korrekt tar.*z fil ikke valgt"
+
+#: ../plugin.py:133
+msgid "Sorry, no xz binary found"
+msgstr "Beklager, ingen xz binær fundet"
+
+#: ../plugin.py:134
+msgid "Refresh"
+msgstr "Genopfrisk"
+
+#: ../plugin.py:135
+#, python-format
+msgid "Nothing mounted at %s"
+msgstr "Intet mounted ved %s"
+
+#: ../plugin.py:136
+msgid "Sorry, use Barry Allen for Backup"
+msgstr "Beklager, brug Barry Allen til backup"
+
+#: ../plugin.py:137
+msgid "Sorry, use LowFAT for Backup"
+msgstr "Beklager brug LowFAT til backup"
+
+#: ../plugin.py:138
+msgid "Sorry, Flashing works only in Flash"
+msgstr "Beklager, Flashing fungere kun med Flash"
+
+#: ../plugin.py:139
+msgid "Sorry, dBackup webinterface is currently disabled"
+msgstr "Beklager, dBackup webgrænsefladen er lige nu deaktiveret"
+
+#: ../plugin.py:151
+msgid "use back button in browser and try again!"
+msgstr "brug tilbage-knappen i browser og prøv igen!"
+
+#: ../plugin.py:183 ../plugin.py:1591 ../plugin.py:1668 ../plugin.py:1788
+msgid "Exit"
+msgstr "Afslut"
+
+#: ../plugin.py:304 ../plugin.py:346
+#, python-format
+msgid ""
+"Press OK now for flashing\n"
+"\n"
+"%s\n"
+"\n"
+"Box will reboot automatically when finished!"
+msgstr ""
+"Tryk OK for at flashe nu\n"
+"\n"
+"%s\n"
+"\n"
+"Boksen vil automatisk genstarte når udført!"
+
+#: ../plugin.py:319 ../plugin.py:390
+#, python-format
+msgid "Are you sure that you want to flash now %s ?"
+msgstr "Er du sikker på at du nu vil flashe %s ?"
+
+#: ../plugin.py:324 ../plugin.py:1079
+msgid "Recovery Image from Feed"
+msgstr "Gendannelses Image fra Feed"
+
+#: ../plugin.py:348 ../plugin.py:394
+#, python-format
+msgid "Sorry, Flashing of %s was canceled!"
+msgstr "Beklager, Flashing af %s blev afbrudt!"
+
+#: ../plugin.py:382
+msgid "Sorry, no device choosen"
+msgstr "Beklager, ingen enhed valgt"
+
+#: ../plugin.py:384
+msgid "Sorry, no device found"
+msgstr "Beklager, ingen enhed fundet"
+
+#: ../plugin.py:388
+#, python-format
+msgid "Are you sure that you want to FORMAT recovery device %s now for %s ?"
+msgstr ""
+"Er du sikker på at du vil FORMATERE gendannelsesenheden %s til %s nu?"
+
+#: ../plugin.py:452
+msgid "umount failed, Sorry!"
+msgstr "umount mislykkedes, Beklager!"
+
+#: ../plugin.py:497
+#, python-format
+msgid "Sorry, %s device not mounted writeable"
+msgstr "Beklager, enheden %s ikke mounted skrivbar"
+
+#: ../plugin.py:719
+msgid "recovery stick creation failed, Sorry!"
+msgstr "oprettelse af gendannelsesnøgle mislykkedes, beklager!"
+
+#: ../plugin.py:726
+#, python-format
+msgid "Sorry, %s device not mounted"
+msgstr "Beklager, %s enhed ikke mounted"
+
+#: ../plugin.py:782 ../plugin.py:989
+#, python-format
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.%s\n"
+"\n"
+"BUT it has I/O Errors"
+msgstr ""
+"Flash backup til %s\n"
+"\n"
+"afsluttet med Image-navn:\n"
+"\n"
+"%s.%s\n"
+"\n"
+"MEN indeholder I/O fejl"
+
+#: ../plugin.py:784 ../plugin.py:991
+#, python-format
+msgid ""
+"Flash Backup to %s\n"
+"\n"
+"finished with imagename:\n"
+"\n"
+"%s.%s"
+msgstr ""
+"Flash backup til %s\n"
+"\n"
+"afsluttet med Image-navn:\n"
+"\n"
+"%s.%s"
+
+#: ../plugin.py:802 ../plugin.py:878 ../plugin.py:1274
+msgid "nothing entered"
+msgstr "intet indtastet"
+
+#: ../plugin.py:882 ../plugin.py:1252
+msgid "already exists,"
+msgstr "eksistere allerede,"
+
+#: ../plugin.py:882
+msgid "overwrite ?"
+msgstr "overskriv ?"
+
+#: ../plugin.py:892
+msgid "Press OK for starting backup to"
+msgstr "Tryk OK for at starte backup til"
+
+#: ../plugin.py:892
+msgid "Be patient, this takes 1-2 min ..."
+msgstr "Vær tålmodig, dette tager 1-2 min..."
+
+#: ../plugin.py:894
+msgid "not confirmed"
+msgstr "ikke bekræftet"
+
+#: ../plugin.py:995
+msgid "Flash Backup finished"
+msgstr "Flash backup afsluttet"
+
+#: ../plugin.py:1593 ../plugin.py:1669 ../plugin.py:1789
+msgid "OK"
+msgstr "OK"
+
+#: ../plugin.py:1594 ../plugin.py:1805
+msgid "About"
+msgstr "Om"
+
+#: ../plugin.py:1598
+msgid "check root"
+msgstr "Kontroller root"
+
+#: ../plugin.py:1599
+msgid "check & repair recovery"
+msgstr "Kontroller og reparer gendannelse"
+
+#: ../plugin.py:1601
+msgid "badblocks recovery > 1min"
+msgstr "Badblocks gendannelse > 1min"
+
+#: ../plugin.py:1603
+msgid "no badblocks binary - get e2fsprogs"
+msgstr "ingen badblock binær - hent e2fsprogs"
+
+#: ../plugin.py:1604
+msgid "clean apt cache"
+msgstr "ryd apt mellemlager"
+
+#: ../plugin.py:1605
+msgid "check defragmentation root"
+msgstr "Kontroller root defragmentering"
+
+#: ../plugin.py:1606
+msgid "defragment root"
+msgstr "Defragmenter root"
+
+#: ../plugin.py:1607
+msgid "check defragmentation recovery"
+msgstr "Kontroller recovery defragmentering"
+
+#: ../plugin.py:1608
+msgid "defragment recovery"
+msgstr "Defragmenter recovery"
+
+#: ../plugin.py:1613
+msgid "check defragmentation Harddisk"
+msgstr "Kontroller harddisk defragmentering"
+
+#: ../plugin.py:1614
+msgid "defragment Harddisk"
+msgstr "Defragmenter Harddisk"
+
+#: ../plugin.py:1639
+msgid ""
+"If you install e2fsprogs the badblocks binary will allow to check and mark "
+"also bad blocks"
+msgstr ""
+"Hvis du installere e2fsprogs vil badblocks binære tillade kontrol og "
+"mærkning af beskadiget sektorer"
+
+#: ../plugin.py:1685
+msgid "Flashtool"
+msgstr "Flashværktøj"
+
+#: ../plugin.py:1686
+msgid "Backuptool"
+msgstr "Backupværktøj"
+
+#: ../plugin.py:1690
+msgid "Flash kernel from image"
+msgstr "Flash kerne fra Image"
+
+#: ../plugin.py:1691
+msgid "Flashing reboot delay [0-60 sec]"
+msgstr "Flasher genstartsforsinkelse"
+
+#: ../plugin.py:1692
+msgid "Imagetype in backupname"
+msgstr "Image-type i backup-navn"
+
+#: ../plugin.py:1693
+msgid "Boxtype in backupname"
+msgstr "Bokstype i backup-navn"
+
+#: ../plugin.py:1694
+msgid "deb in backupname"
+msgstr "deb i backup-navn"
+
+#: ../plugin.py:1695
+msgid "Date in backupname"
+msgstr "Dato i backup-navn"
+
+#: ../plugin.py:1696
+msgid "Time in backupname"
+msgstr "Tid i backup-navn"
+
+#: ../plugin.py:1698
+msgid "Clean apt cache before backup"
+msgstr "Ryd apt mellemlager før backup"
+
+#: ../plugin.py:1699
+msgid "Exclude epg.db"
+msgstr "Udeluk epg.db"
+
+#: ../plugin.py:1700
+msgid "Exclude timers"
+msgstr "Udeluk Timere"
+
+#: ../plugin.py:1701
+msgid "Exclude settings"
+msgstr "Udeluk indstillinger"
+
+#: ../plugin.py:1703
+msgid "Exclude picons"
+msgstr "Udeluk Picons"
+
+#: ../plugin.py:1704
+msgid "Minimal Fading Transparency"
+msgstr "Minimal udtoningsgennemsigtighed"
+
+#: ../plugin.py:1705
+msgid "Verbose"
+msgstr "Uddybende"
+
+#: ../plugin.py:1706
+msgid "Sort Imagelist alphabetic"
+msgstr "Sorter Image-liste alfabetisk"
+
+#: ../plugin.py:1707
+msgid "Show plugin"
+msgstr "Vis Plugin"
+
+#: ../plugin.py:1709
+msgid "Webinterface"
+msgstr "Webgrænseflade"
+
+#: ../plugin.py:1772
+#, python-format
+msgid ""
+"Root Filesystem\n"
+"\n"
+"total: %s MB\n"
+"used:  %s MB\n"
+"free:  %s MB"
+msgstr ""
+"Rod filsystem\n"
+"\n"
+"total: %s MB\n"
+"brugt: %s MB\n"
+"fri: %s MB"
+
+#: ../plugin.py:1786
+#, python-format
+msgid ""
+"Memory\n"
+"\n"
+"total: %i MB\n"
+"used: %i MB\n"
+"free: %i MB"
+msgstr ""
+"Hukommelse\n"
+"\n"
+"total: %i MB\n"
+"brugt: %i MB\n"
+"fri: %i MB"
