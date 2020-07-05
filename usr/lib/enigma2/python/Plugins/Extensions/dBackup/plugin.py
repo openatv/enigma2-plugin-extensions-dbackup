@@ -85,7 +85,7 @@ config.plugins.dbackup = ConfigSubsection()
 f=open("/proc/mounts", "r")
 m = f.read()
 f.close()
-if m.find("/media/hdd") is not -1:
+if m.find("/media/hdd") != -1:
     config.plugins.dbackup.backuplocation = ConfigText(default = "/media/hdd/backup", fixed_size=True, visible_width=20)
 else:
     config.plugins.dbackup.backuplocation = ConfigText(default = "/autofs/sda1", fixed_size=True, visible_width=20)
@@ -421,7 +421,7 @@ class dBackup(Screen):
         cmd=k.read()
         k.close()
         if boxtype == "dm520":
-            if cmd.find("root=/dev/sda1") is not -1: # Thanks Mr. Big
+            if cmd.find("root=/dev/sda1") != -1: # Thanks Mr. Big
                 rootfs="root=/dev/sda1"
             else:
                 rootfs="root=ubi0:dreambox-rootfs"
@@ -433,7 +433,7 @@ class dBackup(Screen):
             self.session.open(MessageBox, noflashing_string, MessageBox.TYPE_ERROR)
         elif os.path.exists("/.lfinfo"):
             self.session.open(MessageBox, noflashing_string, MessageBox.TYPE_ERROR)
-        elif cmd.find(rootfs) is -1:
+        elif cmd.find(rootfs) == -1:
             self.session.open(MessageBox, noflashing_string, MessageBox.TYPE_ERROR)
         else:
             if config.plugins.dbackup.flashtool.value != "rescue":
@@ -451,7 +451,7 @@ class dBackup(Screen):
             self.nfiname=image[0]
             self.nfifile=image[1]
             self.nfidirectory=self.nfifile.replace(self.nfiname, "")
-            if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfiname.find(boxtype) is -1:
+            if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfiname.find(boxtype) == -1:
                 self.session.open(MessageBox, noboxtype_string, MessageBox.TYPE_ERROR)
             else:
                 if os.path.exists(dbackup_busy):
@@ -477,7 +477,7 @@ class dBackup(Screen):
         for name in os.listdir("/tmp"):
             if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                 name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                     list.append(( name2, "/tmp/%s" % name ))
                 else:
                     print("[dBackup] skips %s" % name2)
@@ -485,19 +485,19 @@ class dBackup(Screen):
             for name in os.listdir(config.plugins.dbackup.backuplocation.value):
                 if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                     name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                    if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                    if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                         list.append(( name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value, name) ))
                     else:
                         print("[dBackup] skips %s" % name2)
         f=open("/proc/mounts", "r")
         m = f.read()
         f.close()
-        if m.find("/data") is not -1:
+        if m.find("/data") != -1:
             if os.path.exists("/data/.recovery") and "/data/.recovery" != config.plugins.dbackup.backuplocation.value:
                 for name in os.listdir("/data/.recovery"):
                     if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz") and not name.startswith("settings"):
                         name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                        if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                        if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                             list.append(( name2, "/data/.recovery/%s" % (name) ))
                         else:
                             print("[dBackup] skips %s" % name2)
@@ -505,7 +505,7 @@ class dBackup(Screen):
                 for name in os.listdir("/data/backup"):
                     if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                         name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                        if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                        if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                             list.append(( name2, "/data/backup/%s" % (name) ))
                         else:
                             print("[dBackup] skips %s" % name2)
@@ -515,7 +515,7 @@ class dBackup(Screen):
                     for name in os.listdir("/media/%s/backup" % directory):
                         if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                             name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                            if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                            if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                                 list.append(( name2, "/media/%s/backup/%s" % (directory, name) ))
                             else:
                                 print("[dBackup] skips %s" % name2)
@@ -527,7 +527,7 @@ class dBackup(Screen):
                     for name in os.listdir("/media/%s/backup" % directory):
                         if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                             name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                            if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                            if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                                 list.append(( name2, "/autofs/%s/backup/%s" % (directory, name) ))
                             else:
                                 print("[dBackup] skips %s" % name2)
@@ -557,7 +557,7 @@ class dBackup(Screen):
         sp=[]
         while (line):
             line = f.readline()
-            if line.find("sd") is not -1:
+            if line.find("sd") != -1:
                 sp=line.split()
                 print(sp)
                 devsize=int(sp[2])
@@ -611,7 +611,7 @@ class dBackup(Screen):
                 f=open("/proc/mounts", "r")
                 m = f.read()
                 f.close()
-                if m.find("/tmp/strange") is not -1 or config.plugins.dbackup.flashtool.value == "usb":
+                if m.find("/tmp/strange") != -1 or config.plugins.dbackup.flashtool.value == "usb":
                     self["logo"].instance.setPixmapFromFile("%s/ring.png" % dbackup_plugindir)
                     if config.plugins.dbackup.flashtool.value == "rambo":
                         for name in os.listdir("/tmp/strange"):
@@ -640,7 +640,7 @@ class dBackup(Screen):
                             if os.path.islink(mp[0]):
                                 path=os.readlink(mp[0])
                                 path=path.replace("../../", "/dev/")
-                                if path.find(self.device) is not -1:
+                                if path.find(self.device) != -1:
                                     print("[dBackup] umounts also path: %s link: %s mount: %s" % (path, mp[0], mp[1]))
                                     os.system("umount -f %s" % mp[1])
                             lll=f.readline()
@@ -649,7 +649,7 @@ class dBackup(Screen):
                         f=open("/proc/mounts", "r")
                         mm=f.read()
                         f.close()
-                        if mm.find(self.device) is not -1:
+                        if mm.find(self.device) != -1:
                             self.session.open(MessageBox, _("umount failed, Sorry!"), MessageBox.TYPE_ERROR)
                             if os.path.exists(dbackup_busy):
                                 os.remove(dbackup_busy)
@@ -726,7 +726,7 @@ class dBackup(Screen):
                             sp2=[]
                             while (line):
                                 line = f.readline()
-                                if line.find("kernel-image") is not -1:
+                                if line.find("kernel-image") != -1:
 #                                                                       print line
                                     sp = line.split("kernel-image")
                                     if len(sp) > 0:
@@ -754,7 +754,7 @@ class dBackup(Screen):
                                                 os.remove("/tmp/data.tar.gz")
                                             if os.path.exists("/tmp/control.tar.gz"):
                                                 os.remove("/tmp/control.tar.gz")
-                                if line.find(modules_ipk) is not -1:
+                                if line.find(modules_ipk) != -1:
 #                                                                       print line
                                     sp = line.split(modules_ipk)
                                     if len(sp) > 0:
@@ -797,7 +797,7 @@ class dBackup(Screen):
                                                 os.remove("/tmp/data.tar.gz")
                                             if os.path.exists("/tmp/control.tar.gz"):
                                                 os.remove("/tmp/control.tar.gz")
-                                if line.find("kernel-module-snd-pcm") is not -1:
+                                if line.find("kernel-module-snd-pcm") != -1:
 #                                                                       print line
                                     sp = line.split("kernel-module-snd-pcm")
                                     if len(sp) > 0:
@@ -825,7 +825,7 @@ class dBackup(Screen):
                                                 os.remove("/tmp/control.tar.gz")
                                             if os.path.exists("/tmp/debian-binary"):
                                                 os.remove("/tmp/debian-binary")
-                                if line.find("kernel-module-snd-timer") is not -1:
+                                if line.find("kernel-module-snd-timer") != -1:
 #                                                                       print line
                                     sp = line.split("kernel-module-snd-timer")
                                     if len(sp) > 0:
@@ -853,7 +853,7 @@ class dBackup(Screen):
                                                 os.remove("/tmp/control.tar.gz")
                                             if os.path.exists("/tmp/debian-binary"):
                                                 os.remove("/tmp/debian-binary")
-                                if line.find("kernel-module-snd-page-alloc") is not -1:
+                                if line.find("kernel-module-snd-page-alloc") != -1:
 #                                                                       print line
                                     sp = line.split("kernel-module-snd-page-alloc")
                                     if len(sp) > 0:
@@ -881,7 +881,7 @@ class dBackup(Screen):
                                                 os.remove("/tmp/control.tar.gz")
                                             if os.path.exists("/tmp/debian-binary"):
                                                 os.remove("/tmp/debian-binary")
-                                if line.find("kernel-module-stv0299") is not -1:
+                                if line.find("kernel-module-stv0299") != -1:
 #                                                                       print line
                                     sp = line.split("kernel-module-stv0299")
                                     if len(sp) > 0:
@@ -962,7 +962,7 @@ class dBackup(Screen):
         f=open("/proc/mounts", "r")
         m = f.read()
         f.close()
-        if m.find("/data") is not -1:
+        if m.find("/data") != -1:
             try:
                 backupdir="/data/backup"
                 if os.path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:
@@ -1014,7 +1014,7 @@ class dBackup(Screen):
                 b=open(dbackup_log)
                 l=b.read()
                 b.close()
-            if l.find("Input/output err") is not -1:
+            if l.find("Input/output err") != -1:
                 self.session.open(MessageBox, size+"B "+_("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s\n\nBUT it has I/O Errors") %(path, image, config.plugins.dbackup.backuptool.value),  MessageBox.TYPE_ERROR)
             else:
                 self.session.open(MessageBox, size+"B "+_("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s") %(path, image, config.plugins.dbackup.backuptool.value),  MessageBox.TYPE_INFO)
@@ -1064,7 +1064,7 @@ class dBackup(Screen):
             f=open("/proc/mounts", "r")
             mounts=f.read()
             f.close()
-            if mounts.find("/data") is -1:
+            if mounts.find("/data") == -1:
                 self.session.open(MessageBox, mounted_string % path,  MessageBox.TYPE_ERROR)
                 return
             if not os.path.exists("/data/.recovery"):
@@ -1087,7 +1087,7 @@ class dBackup(Screen):
                 m = f.read()
                 f.close()
                 print(m)
-                if m.find("/media/%s" % sp[2]) is -1 and m.find("/autofs/%s" % sp[2]) is -1:
+                if m.find("/media/%s" % sp[2]) == -1 and m.find("/autofs/%s" % sp[2]) == -1:
                     print("[dBACKUP] NOT #2 ", sp[2])
                     self.session.open(MessageBox, mounted_string % path,  MessageBox.TYPE_ERROR)
                     return
@@ -1160,7 +1160,7 @@ class dBackup(Screen):
             self.session.open(MessageBox, _("nothing entered"),  MessageBox.TYPE_ERROR)
         else:
             self.backupname=name.replace(" ", "").replace("[", "").replace("]", "").replace(">", "").replace("<", "").replace("|", "").rstrip().lstrip()
-            if self.backupname.find(self.boxtype) is -1 and config.plugins.dbackup.flashtool.value != "rescue":
+            if self.backupname.find(self.boxtype) == -1 and config.plugins.dbackup.flashtool.value != "rescue":
                 self.backupname=self.backupname+"-"+self.boxtype
             if os.path.exists("%s/%s.%s" % (config.plugins.dbackup.backuplocation.value, self.backupname, config.plugins.dbackup.backuptool.value)):
                 self.session.openWithCallback(self.confirmedBackup, MessageBox, "%s.%s" % (self.backupname, config.plugins.dbackup.backuptool.value) +"\n"+_("already exists,")+" "+_("overwrite ?"), MessageBox.TYPE_YESNO)
@@ -1272,7 +1272,7 @@ class dBackup(Screen):
             if config.plugins.dbackup.flashtool.value == "rescue":
                 os.system("umount /data")
             try:
-                if l.find("Input/output err") is not -1:
+                if l.find("Input/output err") != -1:
                     self.session.open(MessageBox, "%sB " %(size) +_("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s\n\nBUT it has I/O Errors") %(path, image, config.plugins.dbackup.backuptool.value),  MessageBox.TYPE_ERROR)
                 else:
                     self.session.open(MessageBox, "%sB " %(size) +_("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s") %(path, image, config.plugins.dbackup.backuptool.value),  MessageBox.TYPE_INFO)
@@ -1313,14 +1313,14 @@ def recovery2Webif(enable):
         ps=p.read()
         p.close()
         if enable:
-            if ps.find("type == 99:") is -1:
+            if ps.find("type == 99:") == -1:
                 print("[dBACKUP] recovery webinterface inserting #1")
                 ps2=ps.replace("type = int(self.cmd)", "type = int(self.cmd)\n\n                 if type == 99:\n                                b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n                              b.write(\"rescue\")\n                           b.close()\n                             type=2\n")
                 p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py", "w")
                 p.write(ps2)
                 p.close()
         else:
-            if ps.find("type == 99:") is not -1:
+            if ps.find("type == 99:") != -1:
                 print("[dBACKUP] recovery webinterface removing #1")
                 ps2=ps.replace("type = int(self.cmd)\n\n                        if type == 99:\n                                b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n                              b.write(\"rescue\")\n                           b.close()\n                             type=2\n", "type = int(self.cmd)")
                 p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py", "w")
@@ -1331,14 +1331,14 @@ def recovery2Webif(enable):
         cs=p.read()
         p.close()
         if enable:
-            if cs.find("rebootsetup") is -1:
+            if cs.find("rebootsetup") == -1:
                 print("[dBACKUP] recovery webinterface inserting #2")
                 cs2=cs.replace("\'gui\' : 3", "\'gui\' : 3, \'rebootsetup\' : 99")
                 p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js", "w")
                 p.write(cs2)
                 p.close()
         else:
-            if cs.find("rebootsetup") is not -1:
+            if cs.find("rebootsetup") != -1:
                 print("[dBACKUP] recovery webinterface removing #2")
                 cs2=cs.replace("\'gui\' : 3, \'rebootsetup\' : 99", "\'gui\' : 3")
                 p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js", "w")
@@ -1349,14 +1349,14 @@ def recovery2Webif(enable):
         ix=p.read()
         p.close()
         if enable:
-            if ix.find("rebootsetup") is -1:
+            if ix.find("rebootsetup") == -1:
                 print("[dBACKUP] recovery webinterface inserting #3")
                 ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>", "data-state=\"gui\">Restart GUI</a></li>\n                                                             <li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Mode</a></li>")
                 p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html", "w")
                 p.write(ix2)
                 p.close()
         else:
-            if ix.find("rebootsetup") is not -1:
+            if ix.find("rebootsetup") != -1:
                 print("[dBACKUP] recovery webinterface removing #3")
                 ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>\n                                                               <li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Mode</a></li>", "data-state=\"gui\">Restart GUI</a></li>")
                 ix2=ix.replace("data-state=\"gui\">Restart GUI</a></li>\n                                                               <li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery</a></li>", "data-state=\"gui\">Restart GUI</a></li>")
@@ -1368,14 +1368,14 @@ def recovery2Webif(enable):
         df=p.read()
         p.close()
         if enable:
-            if df.find("rebootsetup") is -1:
+            if df.find("rebootsetup") == -1:
                 print("[dBACKUP] recovery webinterface inserting #4")
                 df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>", "data-state=\"gui\">${strings.restart_enigma2}</button></td>\n                                                                             </tr>\n                                                                         <tr>\n                                                                                  <td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Mode</button></td>")
                 p=open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm", "w")
                 p.write(df2)
                 p.close()
         else:
-            if df.find("rebootsetup") is not -1:
+            if df.find("rebootsetup") != -1:
                 print("[dBACKUP] recovery webinterface removing #4")
                 df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>\n                                                                   </tr>\n                                                                 <tr>\n                                                                          <td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Mode</button></td>", "data-state=\"gui\">${strings.restart_enigma2}</button></td>")
                 df2=df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>\n                                                                   </tr>\n                                                                 <tr>\n                                                                          <td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery</button></td>", "data-state=\"gui\">${strings.restart_enigma2}</button></td>")
@@ -1486,7 +1486,7 @@ class wBackup(resource.Resource):
                 f=open("/proc/mounts", "r")
                 m = f.read()
                 f.close()
-                if m.find("/data") is not -1:
+                if m.find("/data") != -1:
                     try:
                         backupdir="/data/backup"
                         if os.path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:
@@ -1509,7 +1509,7 @@ class wBackup(resource.Resource):
             for name in sorted(entries):
                 if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                     name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                    if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                    if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                         list.append(( name2, "/tmp/%s" % name ))
                         htmlnfi += "<option value=\"/tmp/%s\" class=\"black\">%s</option>\n" % (name, name2)
                     else:
@@ -1519,7 +1519,7 @@ class wBackup(resource.Resource):
                 for name in sorted(entries):
                     if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                         name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                        if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                        if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                             list.append(( name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value, name) ))
                             htmlnfi += "<option value=\"%s/%s\" class=\"black\">%s</option>\n" % (config.plugins.dbackup.backuplocation.value, name, name2)
                         else:
@@ -1527,12 +1527,12 @@ class wBackup(resource.Resource):
             f=open("/proc/mounts", "r")
             m = f.read()
             f.close()
-            if m.find("/data") is not -1:
+            if m.find("/data") != -1:
                 if os.path.exists("/data/backup") and "/data/backup" != config.plugins.dbackup.backuplocation.value:
                     for name in os.listdir("/data/backup"):
                         if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                             name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                            if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                            if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                                 list.append(( name2, "/data/backup/%s" % (name) ))
                                 htmlnfi += "<option value=\"/data/backup/%s\" class=\"black\">%s</option>\n" % (name, name2)
                             else:
@@ -1544,7 +1544,7 @@ class wBackup(resource.Resource):
                         for name in os.listdir("/media/%s/backup" % directory):
                             if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                                 name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                                if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                                if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                                     list.append(( name2, "/media/%s/backup/%s" % (drectory, name) ))
                                     htmlnfi += "<option value=\"/media/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory, name, name2)
                                 else:
@@ -1558,7 +1558,7 @@ class wBackup(resource.Resource):
                         for name in os.listdir("/autofs/%s/backup" % directory):
                             if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                                 name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                                if  list.count(name2) < 1 and name2.find(self.boxtype) is not -1:
+                                if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                                     list.append(( name2, "/autofs/%s/backup/%s" % (drectory, name) ))
                                     htmlnfi += "<option value=\"/autofs/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory, name, name2)
                                 else:
@@ -1656,11 +1656,11 @@ class wBackup(resource.Resource):
                     return header_string+noflashing_string
                 elif os.path.exists("/.lfinfo"):
                     return header_string+noflashing_string
-                elif cmd.find(rootfs) is -1:
+                elif cmd.find(rootfs) == -1:
                     return header_string+noflashing_string
                 # file command is received and we are in Flash - let the fun begin ...
                 self.nfifile=file[0]
-                if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfifile.find(boxtype) is -1:
+                if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfifile.find(boxtype) == -1:
                     return header_string+noboxtype_string
                 if os.path.exists(self.nfifile):
                     if self.nfifile.endswith(".tar.gz"):
@@ -1712,7 +1712,7 @@ class wBackup(resource.Resource):
                     f=open("/proc/mounts", "r")
                     mounts=f.read()
                     f.close()
-                    if mounts.find("/data") is -1:
+                    if mounts.find("/data") == -1:
                         return header_string+" "+mounted_string % path +", "+dbackup_backbutton
                     if not os.path.exists("/data/.recovery"):
                         os.mkdir("/data/.recovery")
@@ -1721,7 +1721,7 @@ class wBackup(resource.Resource):
                     self.backupname="backup"
                 else:
                     self.backupname=file[0].replace(" ", "").replace("[", "").replace("]", "").replace(">", "").replace("<", "").replace("|", "").rstrip().lstrip()
-                    if self.backupname.find(boxtype) is -1:
+                    if self.backupname.find(boxtype) == -1:
                         self.backupname=self.backupname+"-"+boxtype
                     path=directory[0]
                 if config.plugins.dbackup.flashtool.value != "rescue":
@@ -1738,7 +1738,7 @@ class wBackup(resource.Resource):
                         f=open("/proc/mounts", "r")
                         m = f.read()
                         f.close()
-                        if m.find("/media/%s" % sp[2]) is -1 and m.find("/autofs/%s" % sp[2]) is -1:
+                        if m.find("/media/%s" % sp[2]) == -1 and m.find("/autofs/%s" % sp[2]) == -1:
                             print("[dBACKUP] NOT #2 ", sp[2])
                             return header_string+" "+mounted_string % path +", "+dbackup_backbutton
                 path=path.lstrip().rstrip("/").rstrip().replace(" ", "")
@@ -1753,7 +1753,7 @@ class wBackup(resource.Resource):
                     if self.backupname.endswith(".tar") or self.backupname.endswith(".tar.gz") or self.backupname.endswith(".tar.bz2") or self.backupname.endswith(".tar.xz") or len(self.backupname) < 1:
                         print("[dBackup] filename with .tar.*")
                         return header_string+notar_string+", "+dbackup_backbutton
-                    elif self.backupname.find(" ") is not -1:
+                    elif self.backupname.find(" ") != -1:
                         print("[dBackup] filename with blank")
                         return header_string+notar_string+", "+dbackup_backbutton
                     else:
@@ -2185,7 +2185,7 @@ class dBackupChecking(Screen):
         m=open("/proc/mounts")
         mounts=m.read()
         m.close()
-        if mounts.find("/media/hdd ext4") is not -1:
+        if mounts.find("/media/hdd ext4") != -1:
             flashchecklist.append((_("check defragmentation Harddisk"), "%s/bin/e4defrag -c /media/hdd" % dbackup_plugindir))
             flashchecklist.append((_("defragment Harddisk"), "%s/bin/e4defrag -v /media/hdd" % dbackup_plugindir))
 
@@ -2260,7 +2260,7 @@ class dBackupChecking(Screen):
         sp=[]
         while (line):
             line = f.readline()
-            if line.find("sd") is not -1:
+            if line.find("sd") != -1:
                 sp=line.split()
                 print(sp)
                 devsize=int(sp[2])
