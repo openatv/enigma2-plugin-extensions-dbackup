@@ -364,7 +364,7 @@ class dBackup(Screen):
             os.remove(self.delimage)
 
     def forcedexit(self, status):
-        if status > 0:
+        if len(status) > 0:
             self.doUnhide(0, 0)
             self.close()
 
