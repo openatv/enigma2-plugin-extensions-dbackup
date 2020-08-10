@@ -1,100 +1,106 @@
-#, fuzzy
+# Turkish translations for enigma package.
+# Copyright (C) 2020 THE enigma'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the enigma package.
+# audi06_19 <info@dreamosat-forum.com>, 2020.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: dBackup\n"
+"Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-10 12:29+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2020-08-10 12:45+0300\n"
+"Last-Translator: audi06_19 <info@dreamosat-forum.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: plugin.py:82
 msgid "no"
-msgstr ""
+msgstr "hayır"
 
 #: plugin.py:82
 msgid "yes"
-msgstr ""
+msgstr "evet"
 
 #: plugin.py:124 plugin.py:125 plugin.py:126 plugin.py:128 plugin.py:2373
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: plugin.py:125 plugin.py:127 plugin.py:128
 msgid "Pluginlist"
-msgstr ""
+msgstr "Eklenti listesi"
 
 #: plugin.py:126 plugin.py:127 plugin.py:128
 msgid "Extension"
-msgstr ""
+msgstr "Uzantılar"
 
 #: plugin.py:132 plugin.py:2383
 msgid "Webinterface"
-msgstr ""
+msgstr "Web arayüzü"
 
 #: plugin.py:133
 msgid "Factory reset"
-msgstr ""
+msgstr "Fabrika ayarları"
 
 #: plugin.py:134
 msgid "both"
-msgstr ""
+msgstr "her ikisi de"
 
 #: plugin.py:135 plugin.py:345
 msgid "none"
-msgstr ""
+msgstr "yok"
 
 #: plugin.py:139
 msgid "direct"
-msgstr ""
+msgstr "direkt"
 
 #: plugin.py:140
 msgid "Rescue Bios"
-msgstr ""
+msgstr "Bios Kurtarma"
 
 #: plugin.py:150
 msgid "tar.gz"
-msgstr ""
+msgstr "tar.gz"
 
 #: plugin.py:151
 msgid "tar.xz"
-msgstr ""
+msgstr "tar.xz"
 
 #: plugin.py:152
 msgid "tar.bz2"
-msgstr ""
+msgstr "tar.bz2"
 
 #: plugin.py:153
 msgid "tar"
-msgstr ""
+msgstr "tar"
 
 #: plugin.py:162
 msgid "daemon"
-msgstr ""
+msgstr "daemon"
 
 #: plugin.py:163
 msgid "system"
-msgstr ""
+msgstr "sistem"
 
 #: plugin.py:164
 msgid "container"
-msgstr ""
+msgstr "container"
 
 #: plugin.py:167
 msgid "Select tar.*z image for flashing"
-msgstr ""
+msgstr "Yedekleme için tar.*z dosyasını seçin"
 
 #: plugin.py:168
 msgid "Disclaimer"
-msgstr ""
+msgstr "Uyarı"
 
 #: plugin.py:169
 msgid "Info"
-msgstr ""
+msgstr "Hakkında"
 
 #: plugin.py:170
 msgid ""
@@ -105,102 +111,108 @@ msgid ""
 "\n"
 "May the Power button be with you!"
 msgstr ""
+"Dreambox'ınızın yedeklenmesinin bu yolu DMM tarafından desteklenmez.\n"
+"\n"
+"Tamamen kendi sorumluluğunuzda kullanıyorsunuz!\n"
+"Dreambox'ınızı güvenle yedeklemek istiyorsanız, Kurtarma Web Arayüzünü kullanın!\n"
+"\n"
+"Güç düğmesi yanınızda olsun!"
 
 #: plugin.py:172
 #, python-format
 msgid "Dreambox Backup Plugin by gutemine Version %s"
-msgstr ""
+msgstr "Gutemine sürüm %s Dreambox Yedekleme Eklentisi"
 
 #: plugin.py:173 plugin.py:257
 msgid "Flashing"
-msgstr ""
+msgstr "Yedekleme yapılıyor"
 
 #: plugin.py:174 plugin.py:256 plugin.py:2373
 msgid "Backup"
-msgstr ""
+msgstr "Yedekleme"
 
 #: plugin.py:175
 msgid "Configuring"
-msgstr ""
+msgstr "Yapılandırma"
 
 #: plugin.py:176
 msgid "Checking"
-msgstr ""
+msgstr "Kontrol et"
 
 #: plugin.py:177
 msgid "dBackup is busy ..."
-msgstr ""
+msgstr "dBackup meşgul ..."
 
 #: plugin.py:178
 msgid "Enter Backup Imagename"
-msgstr ""
+msgstr "Yedeklemenin adını girin"
 
 #: plugin.py:179
 msgid "Enter Backup Path"
-msgstr ""
+msgstr "Yedekleme Yolunu Girin"
 
 #: plugin.py:180
 msgid "Sorry, currently not supported on this Dreambox type"
-msgstr ""
+msgstr "Üzgünüz, şu anda bu Dreambox türünde desteklenmiyor"
 
 #: plugin.py:181
 msgid "Sorry, no correct tar.*z file selected"
-msgstr ""
+msgstr "Üzgünüm, doğru tar.*z yok. dosyası seçildi"
 
 #: plugin.py:182
 msgid "Sorry, no xz binary found"
-msgstr ""
+msgstr "Üzgünüm, xz ikili bulunamadı"
 
 #: plugin.py:183
 #, python-format
 msgid "Sorry, no %s image"
-msgstr ""
+msgstr "Maalesef %s image yok"
 
 #: plugin.py:184
 msgid "Refresh"
-msgstr ""
+msgstr "Yenile"
 
 #: plugin.py:185
 #, python-format
 msgid "Nothing mounted at %s"
-msgstr ""
+msgstr "%s'de hiçbir şey monte edilmedi"
 
 #: plugin.py:186
 msgid "Sorry, use Barry Allen for Backup"
-msgstr ""
+msgstr "Üzgünüm, Yedekleme için Barry Allen kullan"
 
 #: plugin.py:187
 msgid "Sorry, use LowFAT for Backup"
-msgstr ""
+msgstr "Üzgünüm, Yedekleme için LowFAT kullan"
 
 #: plugin.py:188
 msgid "Sorry, Flashing works only in Flash"
-msgstr ""
+msgstr "Üzgünüm, yanıp sönen sadece flaş çalışır"
 
 #: plugin.py:189
 msgid "Sorry, dBackup webinterface is currently disabled"
-msgstr ""
+msgstr "Maalesef, Yedek web arayüzü şu anda devre dışı"
 
 #: plugin.py:203
 msgid "use back button in browser and try again!"
-msgstr ""
+msgstr "tarayıcıda geri düğmesini kullanın ve tekrar deneyin!"
 
 #: plugin.py:255 plugin.py:2152 plugin.py:2335 plugin.py:2503
 msgid "Exit"
-msgstr ""
+msgstr "Çıkış"
 
 #: plugin.py:258
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 #: plugin.py:348
 msgid "select Image for deleting"
-msgstr ""
+msgstr "silmek için image seçin"
 
 #: plugin.py:355
 #, python-format
 msgid "deleting %s ?"
-msgstr ""
+msgstr "siliniyor %s ?"
 
 #: plugin.py:444 plugin.py:547
 #, python-format
@@ -211,55 +223,60 @@ msgid ""
 "\n"
 "Box will reboot automatically when finished!"
 msgstr ""
+"Yanıp sönen için şimdi OK tuşuna basın\n"
+"\n"
+"%s\n"
+"\n"
+"Kutu bittiğinde otomatik olarak yeniden başlayacaktır!"
 
 #: plugin.py:462 plugin.py:591
 #, python-format
 msgid "Are you sure that you want to flash now %s ?"
-msgstr ""
+msgstr "Şimdi flaş yapmak istediğinden emin misin %s ?"
 
 #: plugin.py:473 plugin.py:1506
 msgid "Recovery Image from Feed"
-msgstr ""
+msgstr "Feed'den kurtarma görüntüsü"
 
 #: plugin.py:475 plugin.py:1507
 msgid "Rescue Bios from Feed"
-msgstr ""
+msgstr "Feed'den Bios Kurtarma"
 
 #: plugin.py:549 plugin.py:595
 #, python-format
 msgid "Sorry, Flashing of %s was canceled!"
-msgstr ""
+msgstr "Üzgünüm, %s'nin yanıp sönmesi iptal edildi!"
 
 #: plugin.py:583 plugin.py:2281
 msgid "Sorry, no device choosen"
-msgstr ""
+msgstr "Üzgünüz, hiçbir cihaz seçilmedi"
 
 #: plugin.py:585 plugin.py:2283
 msgid "Sorry, no device found"
-msgstr ""
+msgstr "Üzgünüz, cihaz bulunamadı"
 
 #: plugin.py:589
 #, python-format
 msgid "Are you sure that you want to FORMAT recovery device %s now for %s ?"
-msgstr ""
+msgstr "%s kurtarma cihazını şimdi %s için FORMAT yapmak istediğinizden emin misiniz?"
 
 #: plugin.py:653
 msgid "umount failed, Sorry!"
-msgstr ""
+msgstr "umount başarısız oldu, Üzgünüm!"
 
 #: plugin.py:698
 #, python-format
 msgid "Sorry, %s device not mounted writeable"
-msgstr ""
+msgstr "Maalesef, %s cihaz yazılabilir değil"
 
 #: plugin.py:920
 msgid "recovery stick creation failed, Sorry!"
-msgstr ""
+msgstr "kurtarma çubuğu oluşturma başarısız, Üzgünüm!"
 
 #: plugin.py:927
 #, python-format
 msgid "Sorry, %s device not mounted"
-msgstr ""
+msgstr "Üzgünüz, %s cihaz takılı değil"
 
 #: plugin.py:1018 plugin.py:1276
 #, python-format
@@ -272,6 +289,13 @@ msgid ""
 "\n"
 "BUT it has I/O Errors"
 msgstr ""
+"Flash Yedekleme için %s\n"
+"\n"
+"imagename ile bitti:\n"
+"\n"
+"%s.%s\n"
+"\n"
+"ANCAK I/O Hataları var"
 
 #: plugin.py:1020 plugin.py:1278
 #, python-format
@@ -282,185 +306,190 @@ msgid ""
 "\n"
 "%s.%s"
 msgstr ""
+"Flash Backup to %s\n"
+"\n"
+"imagename ile bitirdi:\n"
+"\n"
+"%s.%s"
 
 #: plugin.py:1041
 msgid "select backup path"
-msgstr ""
+msgstr "yedekleme yolunu seçin"
 
 #: plugin.py:1051 plugin.py:1160 plugin.py:1773
 msgid "nothing entered"
-msgstr ""
+msgstr "giriş yok"
 
 #: plugin.py:1166 plugin.py:1751
 msgid "already exists,"
-msgstr ""
+msgstr "zaten var,"
 
 #: plugin.py:1166
 msgid "overwrite ?"
-msgstr ""
+msgstr "üzerine yazılsın mı?"
 
 #: plugin.py:1176
 msgid "Be patient, this takes 1-2 min ..."
-msgstr ""
+msgstr "Bekleyin, bu 1-2 dakika sürer ..."
 
 #: plugin.py:1176
 msgid "Press OK for starting backup to"
-msgstr ""
+msgstr "Yedeklemeyi başlatmak için Tamam'a basın"
 
 #: plugin.py:1178
 msgid "not confirmed"
-msgstr ""
+msgstr "onaylanmadı"
 
 #: plugin.py:1282
 msgid "Flash Backup finished"
-msgstr ""
+msgstr "Flash yedekleme tamamlandı"
 
 #: plugin.py:1294
 msgid "Really shutdown now?"
-msgstr ""
+msgstr "Şimdi gerçekten kapatılsın mı?"
 
 #: plugin.py:1294 plugin.py:2381
 msgid "Recovery Mode"
-msgstr ""
+msgstr "Kurtarma Modu"
 
 #: plugin.py:2154 plugin.py:2336 plugin.py:2504
 msgid "OK"
-msgstr ""
+msgstr "TAMAM"
 
 #: plugin.py:2155 plugin.py:2548
 msgid "About"
-msgstr ""
+msgstr "Hakkında"
 
 #: plugin.py:2160
 msgid "check root"
-msgstr ""
+msgstr "root kontrol et"
 
 #: plugin.py:2161 plugin.py:2168
 msgid "check & repair recovery"
-msgstr ""
+msgstr "kurtarmayı kontrol et ve onar"
 
 #: plugin.py:2163 plugin.py:2170
 msgid "badblocks recovery > 1min"
-msgstr ""
+msgstr "badblocks kurtarma> 1dk"
 
 #: plugin.py:2165 plugin.py:2172
 msgid "no badblocks binary - get e2fsprogs"
-msgstr ""
+msgstr "ikili badblocks yok - e2fsprog yükleyin"
 
 #: plugin.py:2174
 msgid "create recovery USB stick"
-msgstr ""
+msgstr "kurtarma USB çubuğu oluştur"
 
 #: plugin.py:2177
 msgid "check defragmentation root"
-msgstr ""
+msgstr "birleştirme root kontrol et"
 
 #: plugin.py:2178
 msgid "defragment root"
-msgstr ""
+msgstr "birleştirme root"
 
 #: plugin.py:2179 plugin.py:2183
 msgid "check defragmentation recovery"
-msgstr ""
+msgstr "birleştirme kurtarmayı kontrol et"
 
 #: plugin.py:2180 plugin.py:2184
 msgid "defragment recovery"
-msgstr ""
+msgstr "birleştirme kurtarma"
 
 #: plugin.py:2189
 msgid "check defragmentation Harddisk"
-msgstr ""
+msgstr "birleştirme harddisk kontrol edin"
 
 #: plugin.py:2190
 msgid "defragment Harddisk"
-msgstr ""
+msgstr "sabit diski birleştir"
 
 #: plugin.py:2209
 msgid "Select device for recovery USB stick"
-msgstr ""
+msgstr "Kurtarma USB çubuğu için cihazı seçin"
 
 #: plugin.py:2248
 msgid "If you install e2fsprogs the badblocks binary will allow to check and mark also bad blocks"
-msgstr ""
+msgstr "Eğer e2fsprogs ikili badblock'ları kurarsanız, kötü blokları da kontrol edip işaretleyeceksiniz"
 
 #: plugin.py:2286
 #, python-format
 msgid "Are you sure that you want to erase now %s ?"
-msgstr ""
+msgstr "Şimdi silmek istediğinizden emin misiniz %s ?"
 
 #: plugin.py:2290
 #, python-format
 msgid "Sorry, Erasing of %s was canceled!"
-msgstr ""
+msgstr "Maalesef %s silme işlemi iptal edildi!"
 
 #: plugin.py:2293
 #, python-format
 msgid "Sorry, %s has no primary partition"
-msgstr ""
+msgstr "Maalesef, %s birincil bölüme sahip değil"
 
 #: plugin.py:2352
 msgid "Flashtool"
-msgstr ""
+msgstr "Flash aracı"
 
 #: plugin.py:2353
 msgid "Backuptool"
-msgstr ""
+msgstr "Yedekleme aracı"
 
 #: plugin.py:2355
 msgid "tar.xz Compression"
-msgstr ""
+msgstr "tar.xz Sıkıştırma"
 
 #: plugin.py:2359
 msgid "Flash kernel from image"
-msgstr ""
+msgstr "Görüntü flashden Flash çekirdek"
 
 #: plugin.py:2361
 msgid "Choose backup location"
-msgstr ""
+msgstr "Yedekleme konumunu seçin"
 
 #: plugin.py:2364
 msgid "deb in backupname"
-msgstr ""
+msgstr "yedek adında deb"
 
 #: plugin.py:2365
 msgid "Date in backupname"
-msgstr ""
+msgstr "Yedek addaki tarih"
 
 #: plugin.py:2366
 msgid "Time in backupname"
-msgstr ""
+msgstr "Yedek adında süre"
 
 #: plugin.py:2367
 msgid "Blanks in backupname"
-msgstr ""
+msgstr "Yedek adda boşluklar"
 
 #: plugin.py:2372
 msgid "Exclude timers"
-msgstr ""
+msgstr "Zamanlayıcıları hariç tut"
 
 #: plugin.py:2373
 msgid "extra"
-msgstr ""
+msgstr "ekstra"
 
 #: plugin.py:2374
 msgid "Exclude settings"
-msgstr ""
+msgstr "Ayarları hariç tut"
 
 #: plugin.py:2376
 msgid "Exclude picons"
-msgstr ""
+msgstr "Piconları hariç tut"
 
 #: plugin.py:2377
 msgid "Minimal Fading Transparency"
-msgstr ""
+msgstr "Minimal Solma Saydamlığı"
 
 #: plugin.py:2379
 msgid "Sort Imagelist alphabetic"
-msgstr ""
+msgstr "Imagelist alfabetik sıralama"
 
 #: plugin.py:2380
 msgid "Show plugin"
-msgstr ""
+msgstr "Eklentiyi göster"
 
 #: plugin.py:2487
 #, python-format
@@ -471,6 +500,11 @@ msgid ""
 "used:  %s MB\n"
 "free:  %s MB"
 msgstr ""
+"Root Dosya Sistemi\n"
+"\n"
+"toplam: %s MB\n"
+"kullanıldı:  %s MB\n"
+"free:  %s MB"
 
 #: plugin.py:2501
 #, python-format
@@ -481,3 +515,8 @@ msgid ""
 "used: %i MB\n"
 "free: %i MB"
 msgstr ""
+"Bellek\n"
+"\n"
+"toplam: %i MB\n"
+"kullanıldı: %i MB\n"
+"free: %i MB"
