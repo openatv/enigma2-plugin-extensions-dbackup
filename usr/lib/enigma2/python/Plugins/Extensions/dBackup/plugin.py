@@ -521,18 +521,19 @@ class dBackup(Screen):
                                 print("[dBackup] skips %s" % name2)
                 except:
                     pass
-        for directory in os.listdir("/autofs"):
-            if os.path.exists("/autofs/%s/backup" % directory) and os.path.isdir("/autofs/%s/backup" % directory) and "/autofs/%s/backup" % directory != config.plugins.dbackup.backuplocation.value:
-                try:
-                    for name in os.listdir("/media/%s/backup" % directory):
-                        if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                            name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                            if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                list.append(( name2, "/autofs/%s/backup/%s" % (directory, name) ))
-                            else:
-                                print("[dBackup] skips %s" % name2)
-                except:
-                    pass
+        if os.path.exists("/autofs"):
+            for directory in os.listdir("/autofs"):
+                if os.path.exists("/autofs/%s/backup" % directory) and os.path.isdir("/autofs/%s/backup" % directory) and "/autofs/%s/backup" % directory != config.plugins.dbackup.backuplocation.value:
+                    try:
+                        for name in os.listdir("/media/%s/backup" % directory):
+                            if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+                                name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
+                                if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                                    list.append(( name2, "/autofs/%s/backup/%s" % (directory, name) ))
+                                else:
+                                    print("[dBackup] skips %s" % name2)
+                    except:
+                        pass
         if config.plugins.dbackup.sort.value:
             list.sort()
         if flash:
@@ -1551,20 +1552,21 @@ class wBackup(resource.Resource):
                                     print("[dBackup] skips %s" % name2)
                     except:
                         pass
-            entries=os.listdir("/autofs")
-            for directory in sorted(entries):
-                if os.path.exists("/autofs/%s/backup" % directory) and os.path.isdir("/autofs/%s/backup" % directory) and "/autofs/%s/backup" % directory != config.plugins.dbackup.backuplocation.value:
-                    try:
-                        for name in os.listdir("/autofs/%s/backup" % directory):
-                            if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                                name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                                if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                    list.append(( name2, "/autofs/%s/backup/%s" % (drectory, name) ))
-                                    htmlnfi += "<option value=\"/autofs/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory, name, name2)
-                                else:
-                                    print("[dBackup] skips %s" % name2)
-                    except:
-                        pass
+            if os.path.exists("/autofs"):
+                entries=os.listdir("/autofs")
+                for directory in sorted(entries):
+                    if os.path.exists("/autofs/%s/backup" % directory) and os.path.isdir("/autofs/%s/backup" % directory) and "/autofs/%s/backup" % directory != config.plugins.dbackup.backuplocation.value:
+                        try:
+                            for name in os.listdir("/autofs/%s/backup" % directory):
+                                if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
+                                    name2=name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
+                                    if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                                        list.append(( name2, "/autofs/%s/backup/%s" % (drectory, name) ))
+                                        htmlnfi += "<option value=\"/autofs/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory, name, name2)
+                                    else:
+                                        print("[dBackup] skips %s" % name2)
+                        except:
+                            pass
             print("[dBACKUP] ", htmlnfi)
 
             name="dreambox-image"
