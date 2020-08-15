@@ -1975,7 +1975,7 @@ class FlashingImage(Screen):
             os.system("/sbin/start-stop-daemon -S -b -n dbackup.sh -x %s" % dbackup_script)
 
 class BackupImage(Screen):
-    def __init__(self, backupname, imagetype, creator):
+    def __init__(self, backupname):
         print("[dBackup] does backup")
         open(dbackup_busy, 'a').close()
         self.backupname=backupname
