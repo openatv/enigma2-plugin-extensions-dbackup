@@ -1955,7 +1955,7 @@ class FlashingImage(Screen):
 
             if flashimage.endswith(".bin") is False and flashimage.endswith("none") is False:
                 if config.plugins.dbackup.kernelflash.value:
-                    command += "tar -x -f %s ./boot -C %s\n" % (tarimage, tmp_extract)
+                    command += "tar -x -f %s -C %s ./boot\n" % (tarimage, tmp_extract)
                     if boxtype == "dm520":
                         command += "flash-kernel -v %s/boot/vmlinux.gz*%s\n" % (tmp_extract, boxtype)
                     elif boxtype == "dm900" or boxtype == "dm920":
