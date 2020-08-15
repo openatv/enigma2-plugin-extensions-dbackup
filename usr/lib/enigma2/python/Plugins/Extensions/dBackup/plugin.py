@@ -2306,9 +2306,12 @@ class FlashingImage(Screen):
                     stopping="kill"
                 else:
                     stopping=""
-                command += "cp %s/bin/swaproot /tmp/swaproot\n" % dbackup_plugindir
-                command += "chmod 755 /tmp/swaproot\n"
-                command += "/tmp/swaproot \"%s\" %s\n" % (tarimage, stopping)
+                if self.boxtype == "dm900" or self.boxtype == "dm920":
+                    command += "%s/armhf/swaproot \"%s\" %s\n" % (dbackup_plugindir, tarimage, stopping)
+                elif self.boxtype == "dreamone":
+                    command += "%s/arm64/swaproot \"%s\" %s\n" % (dbackup_plugindir, tarimage, stopping)
+                else:
+                    command += "%s/mipsel/swaproot \"%s\" %s\n" % (dbackup_plugindir, tarimage, stopping)
             command +="rm %s\n" % dbackup_busy
             command += "exit 0\n"
             b=open(dbackup_script,"w")
