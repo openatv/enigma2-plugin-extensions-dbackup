@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dBackup\n"
 "POT-Creation-Date: 2016-10-05 12:15+0200\n"
-"PO-Revision-Date: 2017-11-12 11:21+0100\n"
-"Last-Translator: James Blond <jb@unknown.com>\n"
+"PO-Revision-Date: 2019-07-15 21:48+0200\n"
+"Last-Translator: Ni Hao <ni_hao_1@hotmail.com>\n"
 "Language-Team: gutemine <gutemine@oozoon.de>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
@@ -20,6 +20,18 @@ msgstr "Nein"
 
 msgid "yes"
 msgstr "Ja"
+
+msgid "day"
+msgstr "Tag"
+
+msgid "days"
+msgstr "Tage"
+
+msgid "Check"
+msgstr "Prüfe"
+
+msgid "latest"
+msgstr "letztes"
 
 msgid "Settings"
 msgstr "Einstellungen"
@@ -102,6 +114,9 @@ msgstr "Dreambox Sicherungs Plugin von gutemine Version %s"
 
 msgid "Flashing"
 msgstr "Flashen"
+
+msgid "Flashing with stopped enigma2"
+msgstr "Flashen mit gestopptem enigma2"
 
 msgid "Backup"
 msgstr "Sichern"
@@ -248,11 +263,11 @@ msgstr "Existiert bereits,"
 msgid "overwrite ?"
 msgstr "Überschreiben ?"
 
-msgid "Press OK for starting backup to"
-msgstr "OK drücken um Sicherung zu starten auf"
+msgid "Press OK for starting backup"
+msgstr "OK drücken um Sicherung zu starten"
 
-msgid "Be patient, this takes 1-2 min ..."
-msgstr "Geduldig sein, es dauert 1-2 min ..."
+msgid "Be patient, this takes some time ..."
+msgstr "Geduldig sein, es dauert etwas ..."
 
 msgid "not confirmed"
 msgstr "Nicht bestätigt"
@@ -415,3 +430,12 @@ msgstr "Image zum Löschen auswählen"
 
 msgid "deleting %s ?"
 msgstr "Lösche %s ?"
+
+msgid "[dBackup] start: %d end: %d duration: %s"
+msgstr "[dBackup] start: %d ende: %d dauer: %s"
+
+msgid "Duration:"
+msgstr "Dauer:"
+
+msgid "seconds"
+msgstr "Sekunden"

@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dBackup\n"
 "POT-Creation-Date: 2015-09-04 23:18+0100\n"
-"PO-Revision-Date: 2015-11-15 12:23+0200\n"
+"PO-Revision-Date: 2019-07-15 21:49+0200\n"
 "Last-Translator: Ni Hao <ni_hao_1@hotmail.com>\n"
-"Language-Team: gutemine <gutemine@oozoon.de>\n"
+"Language-Team: Ni Hao <ni_hao_1@hotmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de_DE\n"
-"X-Generator: Poedit 1.8.6\n"
+"Language: nl_NL\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
@@ -19,6 +19,9 @@ msgstr "Nee"
 
 msgid "yes"
 msgstr "Ja"
+
+msgid "day"
+msgstr "Dag"
 
 msgid "Settings"
 msgstr "Instellingen"
@@ -35,11 +38,20 @@ msgstr "beide"
 msgid "all"
 msgstr "alle"
 
-msgid "Rescue Bios"
-msgstr "Bios herstellen"
+msgid "Webinterface"
+msgstr "Webinterface"
+
+msgid "Factory reset"
+msgstr "Standaars instellingen"
+
+msgid "none"
+msgstr "geen"
 
 msgid "direct"
 msgstr "direct"
+
+msgid "Rescue Bios"
+msgstr "Bios herstellen"
 
 msgid "tar.gz"
 msgstr "tar.gz"
@@ -54,7 +66,7 @@ msgid "tar"
 msgstr "tar"
 
 msgid "daemon"
-msgstr "daemon"
+msgstr "achtergrond"
 
 msgid "system"
 msgstr "systeem"
@@ -79,7 +91,7 @@ msgid ""
 "\n"
 "May the Power button be with you!"
 msgstr ""
-"Deze manier van flashen wordt NIET door DreamMultiMedia ondersteunt.\n"
+"Deze manier van flashen wordt NIET door DreamMultiMedia ondersteund.\n"
 "\n"
 "Je doet het op eigen risico!\n"
 "Indien je deze dreambox veilig wilt flashen, gebruik Recovery Webinterface!\n"
@@ -91,6 +103,9 @@ msgstr "Dreambox Backup Plugin van gutemine v%s"
 
 msgid "Flashing"
 msgstr "Flashen"
+
+msgid "Flashing with stopped enigma2"
+msgstr "Flashen terwijl enigma2 wordt gestopt"
 
 msgid "Backup"
 msgstr "Backup"
@@ -119,6 +134,9 @@ msgstr "Helaas, geen correct tar.*z bestand geselecteerd"
 msgid "Sorry, no xz binary found"
 msgstr "Helaas, geen xz bestand gevonden"
 
+msgid "Sorry, no %s image"
+msgstr "Helaas, geen %s Image beschikbaar"
+
 msgid "Refresh"
 msgstr "Actualiseren"
 
@@ -139,9 +157,6 @@ msgstr "Helaas, dBackup webinterface is momenteel uitgeschakeld"
 
 msgid "use back button in browser and try again!"
 msgstr "bebruik de TERUG knop in je browser en probeer het opnieuw"
-
-msgid "Cancel"
-msgstr "Annuleren"
 
 msgid "Exit"
 msgstr "Verlaten"
@@ -165,6 +180,9 @@ msgstr "Weet je zeker dat je nu %s wilt flashen?"
 
 msgid "Recovery Image from Feed"
 msgstr "Herstel image van de feed"
+
+msgid "Rescue Bios from Feed"
+msgstr "Herstel bios van de feed"
 
 msgid "Sorry, Flashing of %s was canceled!"
 msgstr "Heaas, %s flashen is geannuleerd!"
@@ -220,6 +238,9 @@ msgstr ""
 "\n"
 "%s.%s"
 
+msgid "select backup path"
+msgstr "Kies backup folder"
+
 msgid "nothing entered"
 msgstr "niets opgegeven"
 
@@ -229,10 +250,10 @@ msgstr "bestaat reeds,"
 msgid "overwrite ?"
 msgstr "overschrijven ?"
 
-msgid "Press OK for starting backup to"
-msgstr "Druk op OK om backup te maken in"
+msgid "Press OK for starting backup"
+msgstr "Druk op OK om backup te maken"
 
-msgid "Be patient, this takes 1-2 min ..."
+msgid "Be patient, this takes some time ..."
 msgstr "Heb geduld a.u.b., dit kan enkele minuten duren ..."
 
 msgid "not confirmed"
@@ -240,6 +261,12 @@ msgstr "niet bevestigd"
 
 msgid "Flash Backup finished"
 msgstr "Flash Backup is klaar"
+
+msgid "Recovery Mode"
+msgstr "Herstel mode"
+
+msgid "Really shutdown now?"
+msgstr "Echt uitzetten nu?"
 
 msgid "OK"
 msgstr "OK"
@@ -254,10 +281,13 @@ msgid "check & repair recovery"
 msgstr "controleer & herstel 'recovery'"
 
 msgid "badblocks recovery > 1min"
-msgstr "'Bad blocks' ontdekt > 1min"
+msgstr "'Bad blocks' ontdekt > 1 min"
 
 msgid "no badblocks binary - get e2fsprogs"
 msgstr "geen 'Bad Blocks software; installeer: e2fsprogs"
+
+msgid "create recovery USB stick"
+msgstr "USB herstel stick maken"
 
 msgid "clean apt cache"
 msgstr "'apt cache' opschonen"
@@ -280,8 +310,20 @@ msgstr "controleer defragmentatie op harddisk"
 msgid "defragment Harddisk"
 msgstr "defragmenteer harddisk"
 
+msgid "Select device for recovery USB stick"
+msgstr "Kies apparaat voor de herstel USB stick"
+
 msgid "If you install e2fsprogs the badblocks binary will allow to check and mark also bad blocks"
 msgstr "als je e2fsprogs installeerd, zullen de 'bad blocks' worden gecontrolleerd en gemarkeerd "
+
+msgid "Are you sure that you want to erase now %s ?"
+msgstr "Weet je zeker, dat je s wilt verwijderen ?"
+
+msgid "Sorry, Erasing of %s was canceled!"
+msgstr "Helaas, verwijderen van %s is afgebroken!"
+
+msgid "Sorry, %s has no primary partition"
+msgstr "Helaas, %s heeft geen primaire partitie"
 
 msgid "Flashtool"
 msgstr "Flash gereedschap"
@@ -289,14 +331,17 @@ msgstr "Flash gereedschap"
 msgid "Backuptool"
 msgstr "Backup gereedschap"
 
+msgid "Flash kernel from image"
+msgstr "Flashen van de kernel uit de image"
+
 msgid "Flashing reboot delay [0-60 sec]"
 msgstr "Flashen herstart vertraging [0-60 sec]"
 
+msgid "Choose backup location"
+msgstr "Kies backup lokatie"
+
 msgid "Imagetype in backupname"
 msgstr "Imagetype in backupnaam"
-
-msgid "Boxtype in backupname"
-msgstr "Boxtype in backupnaam"
 
 msgid "deb in backupname"
 msgstr "deb in backupnaam"
@@ -334,9 +379,6 @@ msgstr "Imagenamen in lijst alfabetisch sorteren"
 msgid "Show plugin"
 msgstr "Plugin tonen"
 
-msgid "Webinterface"
-msgstr "Webinterface"
-
 msgid ""
 "Root Filesystem\n"
 "\\\n"
@@ -364,10 +406,67 @@ msgstr ""
 "vrij:     %i MB"
 
 msgid "Delete"
-msgstr "Delete"
+msgstr "Verwijder"
 
 msgid "select Image for deleting"
-msgstr "select Image for deleting"
+msgstr "selecteer image om te verwijderen"
 
 msgid "deleting %s ?"
-msgstr "deleting %s ?"
+msgstr "verwijderen %s ?"
+
+msgid "[dBackup] start: %d end: %d duration: %s"
+msgstr "[dBackup] start: %d einde: %d duur: %s"
+
+msgid "Duration:"
+msgstr "Duur:"
+
+msgid "seconds"
+msgstr "seconden"
+
+msgid "Compression"
+msgstr "compressie"
+
+msgid "Check"
+msgstr "Controleer"
+
+msgid "latest"
+msgstr "laatste"
+
+msgid "days"
+msgstr "Dagen"
+
+msgid "automatic"
+msgstr "Automatisch"
+
+msgid "cleanup"
+msgstr "opruimen"
+
+msgid "(max. number of backups)"
+msgstr "(max. aantal backups)"
+
+msgid "Blanks in backupname"
+msgstr "Spaties in backupnaam"
+
+msgid "Minimal Fading Transparency"
+msgstr "Minimale vervagende transparantie"
+
+msgid "Display"
+msgstr "OLED scherm"
+
+msgid "Last Backup"
+msgstr "Laatste backup"
+
+msgid "Next Backup"
+msgstr "Volgende backup"
+
+msgid "Idle"
+msgstr "Inactieve mode (idle)"
+
+msgid "Startup"
+msgstr "Tijdens opstarten"
+
+msgid "Message"
+msgstr "Bericht"
+
+msgid "extra"
+msgstr "Extra"
