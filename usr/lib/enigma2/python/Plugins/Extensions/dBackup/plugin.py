@@ -3,7 +3,7 @@ from __future__ import division
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="2.8-r0"
+dbackup_version="2.8-r1"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -2568,7 +2568,7 @@ class dBackupChecking(Screen):
         else:
             if dreambox_data != "none":
                 flashchecklist.append((_("check & repair recovery"), "umount %s; /sbin/fsck.ext4 -f -v -y %s" % (dreambox_data, dreambox_data)))
-                if os.path.exists("/sbin/badblocks"):
+                if os_path.exists("/sbin/badblocks"):
                     flashchecklist.append((_("badblocks recovery > 1min"), "umount %s; /sbin/fsck.ext4 -f -c -v -y %s" % (dreambox_data, dreambox_data)))
                 else:
                     flashchecklist.append((_("no badblocks binary - get e2fsprogs"), "none"))
