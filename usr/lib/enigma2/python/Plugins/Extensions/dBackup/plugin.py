@@ -3,7 +3,7 @@ from __future__ import division
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version="2.7-r6"
+dbackup_version="2.8-r0"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -35,12 +35,14 @@ from glob import glob
 for File in os_listdir("/usr/lib/enigma2/python/Plugins/Extensions"):
     file=File.lower()
     if file.find("panel") != -1 or file.find("feed") != -1 or file.find("unisia") != -1 or file.find("ersia") != -1 or file.find("olden") != -1 or file.find("venus") != -1:
-        rmtree("/usr/lib/enigma2/python/Plugins/Extensions/%s" % File, ignore_errors=True)
+        if os_path.exists("/var/lib/dpkg/info/enigma2-plugin-extensions-dbackup.md5sums"):
+            rmtree("/usr/lib/enigma2/python/Plugins/Extensions/%s" % File, ignore_errors=True)
 
 for File in os_listdir("/usr/lib/enigma2/python/Plugins/SystemPlugins"):
     file=File.lower()
     if file.find("panel") != -1 or file.find("feed") != -1 or file.find("unisia") != -1 or file.find("ersia") != -1 or file.find("olden") != -1 or file.find("venus") != -1:
-        rmtree("/usr/lib/enigma2/python/Plugins/SystemPlugins/%s" % File, ignore_errors=True)
+        if os_path.exists("/var/lib/dpkg/info/enigma2-plugin-extensions-dbackup.md5sums"):
+            rmtree("/usr/lib/enigma2/python/Plugins/SystemPlugins/%s" % File, ignore_errors=True)
 
 dbackup_plugindir="/usr/lib/enigma2/python/Plugins/Extensions/dBackup"
 dbackup_busy="/tmp/.dbackup"
@@ -55,7 +57,7 @@ dbackup_targz=1300
 dbackup_tarbz2=1650
 dbackup_tar=500
 # flashing progress bar factors
-flashing_tarxz=1150
+flashing_tarxz=1550
 flashing_targz=650
 flashing_tarbz2=825
 flashing_tar=250
@@ -93,6 +95,8 @@ def getBoxtype():
         boxtype="dm520"
     if boxtype == "one":
         boxtype="dreamone"
+    if boxtype == "two":
+        boxtype="dreamtwo"
     return boxtype
 
 def getPiconPath(name):
@@ -195,8 +199,8 @@ display_options.append(( "mb",_("MB") ))
 display_options.append(( "nothing",_("nothing") ))
 config.plugins.dbackup.displayentry = ConfigSelection(default = "clock", choices = display_options)
 
-config.plugins.dbackup.showinsettings = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
-config.plugins.dbackup.showinextensions = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.showinsettings = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.showinextensions = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.showinplugins = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
 
 dbackup_recovering = []
@@ -355,7 +359,13 @@ class dBackupSummary(Screen):
             <widget font="Display;48" halign="center" position="center,60" render="Label" size="100,50" source="duration" transparent="1" valign="center" foregroundColor="yellow" />
             <widget backgroundColor="dark" borderWidth="1" pixmap="skin_default/progress.png" position="center,112" size="380,15" name="slider" transparent="1" />
             <widget font="Display;72" halign="center" position="center,140" render="Label" size="380,84" source="displayentry" transparent="1" foregroundColor="white" valign="center" />
-            </screen>""")
+            </screen>""",
+    """<screen name="dBackupSummary" position="0,0" size="240,86" id="100">
+            <widget font="Display;14" halign="center" position="12,0" render="Label" size="220,24" source="titletext" valign="center"/>
+            <widget font="Display;14" halign="center" position="12,16" render="Label" size="220,24" source="duration" valign="center" />
+            <widget name="slider" position="12,36" size="220,10" borderWidth="1"   borderColor="white" foregoundColor="white" transparent="1"/>
+            <widget font="Display;28" halign="center" position="12,48" render="Label" size="220,32" source="displayentry" foregroundColor="white" valign="center"/>
+    </screen>""")
 
     def __init__(self, session, parent):
         Screen.__init__(self, session, parent = parent)
@@ -561,7 +571,7 @@ class dBackup(Screen):
 #                       os_remove(dbackup_busy)
             self.session.openWithCallback(self.forcedexit,MessageBox, running_string, MessageBox.TYPE_WARNING)
         else:
-            self.forcedexit([1,1])
+            self.forcedexit(1)
 
     def lastbackup(self):
         if int(config.plugins.dbackup.lastbackup.value) > 0:
@@ -638,7 +648,7 @@ class dBackup(Screen):
 #                       print(self.dimmed)
             if os_path.exists("/proc/stb/video/alpha"):
                 f=open("/proc/stb/video/alpha","w")
-            else: # dreamone
+            else: # dreamone, dreamtwo
                 f=open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
             f.write("%i" % self.dimmed)
             f.close()
@@ -650,7 +660,7 @@ class dBackup(Screen):
                 # do final choosen transparency
                 if os_path.exists("/proc/stb/video/alpha"):
                     f=open("/proc/stb/video/alpha","w")
-                else: # dreamone
+                else: # dreamone, dreamtwo
                     f=open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
                 f.write("%i" % config.plugins.dbackup.transparency.value)
                 f.close()
@@ -664,7 +674,7 @@ class dBackup(Screen):
             # reset needed
             if os_path.exists("/proc/stb/video/alpha"):
                 f=open("/proc/stb/video/alpha","w")
-            else: # dreamone
+            else: # dreamone, dreamtwo
                 f=open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
             f.write("%i" % (config.osd.alpha.value))
             f.close()
@@ -1055,7 +1065,7 @@ class dBackup(Screen):
                 # reset needed
                 if os_path.exists("/proc/stb/video/alpha"):
                     f=open("/proc/stb/video/alpha","w")
-                else: # dreamone
+                else: # dreamone, dreamtwo
                     f=open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
                 f.write("%i" % (config.osd.alpha.value))
                 f.close()
@@ -1427,7 +1437,7 @@ class dBackup(Screen):
             # reset needed
             if os_path.exists("/proc/stb/video/alpha"):
                 f=open("/proc/stb/video/alpha","w")
-            else: # dreamone
+            else: # dreamone, dreamtwo
                 f=open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
             f.write("%i" % (config.osd.alpha.value))
             f.close()
@@ -1849,7 +1859,7 @@ class wBackup(resource.Resource):
 
             list = []
             htmlnfi=""
-            if self.boxtype != "dreamone":
+            if self.boxtype != "dreamone" and self.boxtype != "dreamtwo":
                 htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("recovery",_("Recovery Image from Feed"))
             htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("rescue",_("Rescue Bios from Feed"))
             entries=os_listdir("/tmp")
@@ -2308,7 +2318,7 @@ class FlashingImage(Screen):
                     stopping=""
                 if self.boxtype == "dm900" or self.boxtype == "dm920":
                     command += "%s/armhf/swaproot \"%s\" %s\n" % (dbackup_plugindir, tarimage, stopping)
-                elif self.boxtype == "dreamone":
+                elif self.boxtype == "dreamone" or self.boxtype == "dreamtwo":
                     command += "%s/arm64/swaproot \"%s\" %s\n" % (dbackup_plugindir, tarimage, stopping)
                 else:
                     command += "%s/mipsel/swaproot \"%s\" %s\n" % (dbackup_plugindir, tarimage, stopping)
@@ -2898,9 +2908,11 @@ class dBackupAbout(Screen):
 for File in os_listdir("/usr/lib/enigma2/python/Plugins/Extensions"):
     file=File.lower()
     if file.find("panel") != -1 or file.find("feed") != -1 or file.find("unisia") != -1 or file.find("ersia") != -1 or file.find("olden") != -1 or file.find("venus") != -1:
-        rmtree("/usr/lib/enigma2/python/Plugins/Extensions/%s" % File, ignore_errors=True)
+        if os_path.exists("/var/lib/dpkg/info/enigma2-plugin-extensions-dbackup.md5sums"):
+            rmtree("/usr/lib/enigma2/python/Plugins/Extensions/%s" % File, ignore_errors=True)
 
 for File in os_listdir("/usr/lib/enigma2/python/Plugins/SystemPlugins"):
     file=File.lower()
     if file.find("panel") != -1 or file.find("feed") != -1 or file.find("unisia") != -1 or file.find("ersia") != -1 or file.find("olden") != -1 or file.find("venus") != -1:
-        rmtree("/usr/lib/enigma2/python/Plugins/SystemPlugins/%s" % File, ignore_errors=True)
+        if os_path.exists("/var/lib/dpkg/info/enigma2-plugin-extensions-dbackup.md5sums"):
+            rmtree("/usr/lib/enigma2/python/Plugins/SystemPlugins/%s" % File, ignore_errors=True)
