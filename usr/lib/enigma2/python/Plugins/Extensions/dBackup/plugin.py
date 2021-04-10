@@ -45,6 +45,7 @@ dbackup_log = "/tmp/dbackup.log"
 global dreambox_data
 dreambox_data = "none"
 
+
 def getbylabel():
 	global dreambox_data
 	cmd = 'blkid -t LABEL=dreambox-data -o device'
@@ -55,6 +56,7 @@ def getbylabel():
 	else:
 		print "[dbackup} dreambox-data found on device:", device
 		dreambox_data = device
+
 
 getbylabel()
 
@@ -217,6 +219,7 @@ dbackup_progress = 0
 
 sz_w = getDesktop(0).size().width()
 
+
 class dBackup(Screen):
 	if sz_w == 1920:
 		skin = """
@@ -335,6 +338,7 @@ class dBackup(Screen):
 			self.session.openWithCallback(self.forcedexit, MessageBox, running_string, MessageBox.TYPE_WARNING)
 		else:
 			self.forcedexit([1, 1])
+
 	def logging(self):
 		if os.path.exists(dbackup_log):
 			cmd = "cat %s" % dbackup_log
@@ -906,6 +910,7 @@ class dBackup(Screen):
 						os.remove(dbackup_busy)
 					self.session.open(MessageBox, _("Sorry, %s device not mounted") % self.device, MessageBox.TYPE_ERROR)
 					return
+
 	def doFlash(self, option):
 		if option:
 			print "[dBackup] is flashing now %s" % self.nfifile
@@ -1254,11 +1259,14 @@ class dBackup(Screen):
 		else:
         	 	self.session.open(dBackupConfiguration)
 
+
 def startdBackup(session, **kwargs):
        	session.open(dBackup)   
 
+
 def startRecover(session, **kwargs):
 	session.openWithCallback(startRecovery, MessageBox, _("Recovery Mode") + " " + _("Really shutdown now?"), MessageBox.TYPE_YESNO)
+
 
 def startRecovery(option):
        	if option:
@@ -1269,6 +1277,7 @@ def startRecovery(option):
 		quitMainloop(2) 
 	else:
 		print "[dBACKUP] cancelled Recovery"
+
 
 def recovery2Webif(enable):
 	if enable:
@@ -1351,6 +1360,7 @@ def recovery2Webif(enable):
 				p.close()
 	return
 
+
 def autostart(reason, **kwargs):
         if kwargs.has_key("session") and reason == 0:           
 		session = kwargs["session"]                       
@@ -1371,6 +1381,7 @@ def autostart(reason, **kwargs):
 			recovery2Webif(False)
 		return
 
+
 def sessionstart(reason, **kwargs):                                               
         if reason == 0 and "session" in kwargs:                                                        
 		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebChilds/Toplevel.py"):
@@ -1379,15 +1390,15 @@ def sessionstart(reason, **kwargs):
                 else:                                                                                  
 			print "[dBackup] Webif not found"
 
+
 def main(session, **kwargs):                                                     
      session.open(dBackup)       
+
+
 def Plugins(**kwargs):
      return [PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart),
 				PluginDescriptor(name=backup_string + " & " + flashing_string, description=backup_string + " & " + flashing_string, where=PluginDescriptor.WHERE_PLUGINMENU, icon="dbackup.png", fnc=main),
 				PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart, needsRestart=False)]
-
-
-
 
 
 def mainconf(menuid):
@@ -1398,6 +1409,7 @@ def mainconf(menuid):
 ###############################################################################
 # dBackup Webinterface by gutemine
 ###############################################################################
+
 
 class wBackup(resource.Resource):
 
@@ -1754,6 +1766,7 @@ class wBackup(resource.Resource):
 			print "[dBackup] found backup %s" % line
 			print "[dBackup] finished webif backup"
 			
+
 class FlashingImage(Screen):                                                      
         def __init__(self, flashimage):
         	global dreambox_data
@@ -1893,6 +1906,7 @@ class FlashingImage(Screen):
 			print "[dBackup] %s created and is now flashing %s\n" % (dbackup_script, flashimage)
 			os.system("/sbin/start-stop-daemon -S -b -n dbackup.sh -x %s" % dbackup_script)
 
+
 class BackupImage(Screen):                                                      
         def __init__(self, backupname, imagetype, creator):            
         	print "[dBackup] does backup"
@@ -2023,6 +2037,7 @@ class BackupImage(Screen):
 ###############################################################################
 # dBackup Check by gutemine
 ###############################################################################
+
 
 class dBackupChecking(Screen):
     if sz_w == 1920:
@@ -2203,6 +2218,7 @@ class dBackupChecking(Screen):
  			cmd = "umount %s1; mkfs.ext4 -L dreambox-data %s1; mkdir /autofs/%s1/backup" % (self.device, self.device, self.device)
 	       		self.session.open(Console, self.checking, [cmd])
 
+
 class dBackupConfiguration(Screen, ConfigListScreen):
     if sz_w == 1920:
         skin = """
@@ -2355,6 +2371,7 @@ class dBackupConfiguration(Screen, ConfigListScreen):
 
     def about(self, answer):
        	self.session.open(dBackupAbout)
+
 
 class dBackupAbout(Screen):
     if sz_w == 1920:
