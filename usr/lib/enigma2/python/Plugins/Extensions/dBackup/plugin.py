@@ -23,9 +23,15 @@ from Components.Slider import Slider
 from enigma import  ePoint, eLCD, eDBoxLCD, getDesktop, quitMainloop, eConsoleAppContainer, eDVBVolumecontrol, eTimer, eActionMap
 from Tools.LoadPixmap import LoadPixmap
 import Screens.Standby  
-import sys, os, struct, stat, time
+import sys
+import os
+import struct
+import stat
+import time
 from twisted.web import resource, http
-import gettext, datetime, shutil
+import gettext
+import datetime
+import shutil
 import os
 
 dbackup_plugindir="/usr/lib/enigma2/python/Plugins/Extensions/dBackup" 
