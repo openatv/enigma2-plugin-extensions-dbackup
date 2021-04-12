@@ -1387,7 +1387,7 @@ class dBackup(Screen):
             if length > 0:
                 sp2 = []
                 sp2 = sp[length - 1].split("/")
-                size = sp2[0].rstrip().lstrip()  
+                size = sp2[0].rstrip().lstrip()
                 #print(sp2)
                 length = len(sp2)
                 if length > 0:
