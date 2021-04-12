@@ -87,8 +87,8 @@ getbylabel()
 # add local language file
 dbackup_sp = config.osd.language.value.split("_")
 dbackup_language = dbackup_sp[0]
-if os_path.exists("%s/locale/%s" % (dbackup_plugindir,dbackup_language)):
-    _ = gettext.Catalog('dbackup', '%s/locale' % dbackup_plugindir,dbackup_sp).gettext
+if os_path.exists("%s/locale/%s" % (dbackup_plugindir, dbackup_language)):
+    _ = gettext.Catalog('dbackup', '%s/locale' % dbackup_plugindir, dbackup_sp).gettext
 
 def getBoxtype():
     boxtype = "dm920"
@@ -96,7 +96,7 @@ def getBoxtype():
         f = open("/proc/stb/info/model")
         boxtype = f.read()
         f.close()
-        boxtype = boxtype.replace("\n","").replace("\l","")
+        boxtype = boxtype.replace("\n", "").replace("\l", "")
     if boxtype == "dm525":
         boxtype = "dm520"
     if boxtype == "one":
@@ -106,18 +106,18 @@ def getBoxtype():
     return boxtype
 
 def getPiconPath(name):
-    if os_path.exists("/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)):
+    if os_path.exists("/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin, name)):
 #               cprint("found %s.svg in skin ..." % name)
-        return "/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin,name)
-    if os_path.exists("/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)):
+        return "/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin, name)
+    if os_path.exists("/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin, name)):
 #               cprint("found %s.png in skin ..." % name)
-        return "/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin,name)
-    if os_path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)):
+        return "/usr/share/enigma2/%s/skin_default/%s.png" % (dbackup_skin, name)
+    if os_path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin, name)):
 #               cprint("found %s.png in skin ..." % name)
-        return "/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin,name)
-    if os_path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)):
+        return "/usr/share/enigma2/%s/skin_default/icons/%s.png" % (dbackup_skin, name)
+    if os_path.exists("/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin, name)):
 #               cprint("found %s.svg in skin ..." % name)
-        return "/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin,name)
+        return "/usr/share/enigma2/%s/skin_default/icons/%s.svg" % (dbackup_skin, name)
     if os_path.exists("/usr/share/enigma2/skin_default/%s.svg" % (name)):
 #               cprint("found %s.svg in default skin ..." % name)
         return "/usr/share/enigma2/skin_default/%s.svg" % (name)
@@ -150,8 +150,8 @@ config.plugins.dbackup.backupboxtype = ConfigBoolean(default=True, descriptions=
 config.plugins.dbackup.backupdate = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.backuptime = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 blanks_options = []
-for blank in range(0,41):
-    blanks_options.append((str(blank),str(blank)))
+for blank in range(0, 41):
+    blanks_options.append((str(blank), str(blank)))
 config.plugins.dbackup.backupblanks = ConfigSelection(default="10", choices=blanks_options)
 config.plugins.dbackup.backupsettings = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.sig = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
@@ -160,19 +160,19 @@ config.plugins.dbackup.loaderflash = ConfigBoolean(default=False, descriptions=y
 config.plugins.dbackup.kernelextract = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.sort = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.backupaskdir = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
-config.plugins.dbackup.delay = ConfigInteger(default=0, limits=(0,60))
+config.plugins.dbackup.delay = ConfigInteger(default=0, limits=(0, 60))
 automatic_options = []
-automatic_options.append(("idle",_("Idle")))
-automatic_options.append(("boot",_("Startup")))
-automatic_options.append(("message",_("Message")))
+automatic_options.append(("idle", _("Idle")))
+automatic_options.append(("boot", _("Startup")))
+automatic_options.append(("message", _("Message")))
 config.plugins.dbackup.automatic = ConfigSelection(default="idle", choices=automatic_options)
-config.plugins.dbackup.lastbackup = ConfigInteger(default=0, limits=(0,2000000000))
+config.plugins.dbackup.lastbackup = ConfigInteger(default=0, limits=(0, 2000000000))
 config.plugins.dbackup.cleanlastbackup = ConfigSelectionNumber(0, 100, 5, default=0)
 days_options = []
-days_options.append(("0",_("never")))
-days_options.append(("8888",_("always")))
-for days in range(1,31):
-    days_options.append((str(days),str(days)))
+days_options.append(("0", _("never")))
+days_options.append(("8888", _("always")))
+for days in range(1, 31):
+    days_options.append((str(days), str(days)))
 config.plugins.dbackup.latestbackup = ConfigSelection(default="0", choices=days_options)
 
 if os_path.exists("/var/lib/opkg/status"):
@@ -190,19 +190,19 @@ config.plugins.dbackup.settings = ConfigBoolean(default=False, descriptions=yes_
 config.plugins.dbackup.timers = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.picons = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 id_options = []
-id_options.append(("deb",_("deb")))
-id_options.append(("none",_("none")))
-id_options.append(("exp",_("exp")))
-id_options.append(("rel",_("rel")))
-id_options.append(("user",_("User defined")))
+id_options.append(("deb", _("deb")))
+id_options.append(("none", _("none")))
+id_options.append(("exp", _("exp")))
+id_options.append(("rel", _("rel")))
+id_options.append(("user", _("User defined")))
 config.plugins.dbackup.backupid = ConfigSelection(default="none", choices=id_options)
 config.plugins.dbackup.backupuserid = ConfigText(default="deb                   ", fixed_size=True, visible_width=20)
 display_options = []
-display_options.append(("clock",_("Clock")))
-display_options.append(("dbackup",_("dBackup")))
-display_options.append(("dreambox",_("Dreambox")))
-display_options.append(("mb",_("MB")))
-display_options.append(("nothing",_("nothing")))
+display_options.append(("clock", _("Clock")))
+display_options.append(("dbackup", _("dBackup")))
+display_options.append(("dreambox", _("Dreambox")))
+display_options.append(("mb", _("MB")))
+display_options.append(("nothing", _("nothing")))
 config.plugins.dbackup.displayentry = ConfigSelection(default="clock", choices=display_options)
 
 config.plugins.dbackup.showinsettings = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
@@ -210,10 +210,10 @@ config.plugins.dbackup.showinextensions = ConfigBoolean(default=False, descripti
 config.plugins.dbackup.showinplugins = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 
 dbackup_recovering = []
-dbackup_recovering.append(("webif",_("Webinterface")))
-dbackup_recovering.append(("factory",_("Factory reset")))
-dbackup_recovering.append(("both",_("both")))
-dbackup_recovering.append(("none",_("none")))
+dbackup_recovering.append(("webif", _("Webinterface")))
+dbackup_recovering.append(("factory", _("Factory reset")))
+dbackup_recovering.append(("both", _("both")))
+dbackup_recovering.append(("none", _("none")))
 config.plugins.dbackup.recovering = ConfigSelection(default="both", choices=dbackup_recovering)
 
 flashtools = []
@@ -223,7 +223,7 @@ flashtools.append(("rescue", _("Rescue Bios")))
 config.plugins.dbackup.flashtool = ConfigSelection(default="direct", choices=flashtools)
 config.plugins.dbackup.console = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 
-config.plugins.dbackup.transparency = ConfigSlider(default=0, increment=5, limits=(0,255))
+config.plugins.dbackup.transparency = ConfigSlider(default=0, increment=5, limits=(0, 255))
 config.plugins.dbackup.verbose = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 
 backuptools = []
@@ -233,24 +233,24 @@ backuptools.append(("tar.bz2", _("tar.bz2")))
 backuptools.append(("tar", _("tar")))
 config.plugins.dbackup.backuptool = ConfigSelection(default="tar.xz", choices=backuptools)
 gz_options = []
-gz_options.append(("0","0"))
-gz_options.append(("1","1"))
-gz_options.append(("2","2"))
-gz_options.append(("3","3"))
-gz_options.append(("4","4"))
-gz_options.append(("5","5"))
-gz_options.append(("6","6"))
-gz_options.append(("7","7"))
-gz_options.append(("8","8"))
-gz_options.append(("9","9"))
+gz_options.append(("0", "0"))
+gz_options.append(("1", "1"))
+gz_options.append(("2", "2"))
+gz_options.append(("3", "3"))
+gz_options.append(("4", "4"))
+gz_options.append(("5", "5"))
+gz_options.append(("6", "6"))
+gz_options.append(("7", "7"))
+gz_options.append(("8", "8"))
+gz_options.append(("9", "9"))
 xz_options = []
-xz_options.append(("0","0"))
-xz_options.append(("1","1"))
-xz_options.append(("2","2"))
-xz_options.append(("3","3"))
-xz_options.append(("4","4"))
-xz_options.append(("5","5"))
-xz_options.append(("6","6"))
+xz_options.append(("0", "0"))
+xz_options.append(("1", "1"))
+xz_options.append(("2", "2"))
+xz_options.append(("3", "3"))
+xz_options.append(("4", "4"))
+xz_options.append(("5", "5"))
+xz_options.append(("6", "6"))
 # needs too much memory
 #xz_options.append(( "7","7" ))
 #xz_options.append(( "8","8" ))
@@ -264,16 +264,16 @@ else:
     config.plugins.dbackup.xzcompression = ConfigSelection(default="6", choices=xz_options)
     config.plugins.dbackup.gzcompression = ConfigSelection(default="6", choices=gz_options)
 s_options = []
-s_options.append(("0",_("none")))
-s_options.append(("1","1"))
-s_options.append(("2","2"))
-s_options.append(("3","3"))
-s_options.append(("4","4"))
-s_options.append(("5","5"))
-s_options.append(("6","6"))
-s_options.append(("7","7"))
-s_options.append(("8","8"))
-s_options.append(("10","10"))
+s_options.append(("0", _("none")))
+s_options.append(("1", "1"))
+s_options.append(("2", "2"))
+s_options.append(("3", "3"))
+s_options.append(("4", "4"))
+s_options.append(("5", "5"))
+s_options.append(("6", "6"))
+s_options.append(("7", "7"))
+s_options.append(("8", "8"))
+s_options.append(("10", "10"))
 config.plugins.dbackup.fadetime = ConfigSelection(default="5", choices=s_options)
 config.plugins.dbackup.overwrite = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 
@@ -287,7 +287,7 @@ fileupload_string = _("Select tar.*z image for flashing")
 disclaimer_header = _("Disclaimer")
 info_header = _("Info")
 disclaimer_string = _("This way of flashing your Dreambox is not supported by DMM.\n\nYou are using it completely at you own risk!\nIf you want to flash your Dreambox safely use the Recovery Webinterface!\n\nMay the Power button be with you!")
-disclaimer_wstring = disclaimer_string.replace("\n","<br>")
+disclaimer_wstring = disclaimer_string.replace("\n", "<br>")
 plugin_string = _("Dreambox Backup Plugin by gutemine Version %s") % dbackup_version
 flashing_string = _("Flashing")
 backup_string = _("Backup")
@@ -310,7 +310,7 @@ noflashing_string = _("Sorry, Flashing works only in Flash")
 nowebif_string = _("Sorry, dBackup webinterface is currently disabled")
 support_string = _("Kit & Support of this Plugin at www.oozoon-board.de")
 
-dbackup_skin = config.skin.primary_skin.value.replace("/skin.xml","")
+dbackup_skin = config.skin.primary_skin.value.replace("/skin.xml", "")
 
 header_string = ""
 header_string += "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\""
@@ -333,7 +333,7 @@ dbackup_backuping += header_string
 dbackup_backuping += "<br>%s<br><br>" % running_string
 dbackup_backuping += "<br><img src=\"/web-data/img/ring.png\" alt=\"%s ...\"/><br><br>" % (backup_string)
 dbackup_backuping += "<br><form method=\"GET\">"
-dbackup_backuping += "<input name=\"command\" type=\"submit\" size=\"100px\" title=\"%s\" value=\"%s\">" % (refresh_string,"Refresh")
+dbackup_backuping += "<input name=\"command\" type=\"submit\" size=\"100px\" title=\"%s\" value=\"%s\">" % (refresh_string, "Refresh")
 dbackup_backuping += "</form>"
 
 global dbackup_progress
@@ -500,10 +500,10 @@ class dBackup(Screen):
         cprint("cmd: %s" % cmd)
         self.container.execute(cmd)
 
-    def installFinished(self,status):
-        cprint("%s %s" % (self.text,status))
+    def installFinished(self, status):
+        cprint("%s %s" % (self.text, status))
         if len(self.text):
-            message = _("Installation finished.").replace(".",": ")
+            message = _("Installation finished.").replace(".", ": ")
             message += self.text
             cprint("%s" % message)
             self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=5)
@@ -545,9 +545,9 @@ class dBackup(Screen):
         return
         # check for xz and pigz binary
         if os_path.exists("/var/lib/opkg/status"):
-            f = open("/var/lib/opkg/status","r")
+            f = open("/var/lib/opkg/status", "r")
         else:
-            f = open("/var/lib/opkg/status","r")
+            f = open("/var/lib/opkg/status", "r")
         sw = f.read()
         f.close()
         text = ""
@@ -566,7 +566,7 @@ class dBackup(Screen):
             text += " " + pigz + " "
         if tar == "tar" or xz == "xz" or pigz == "pigz":
             self.text = text
-            self.installBinaries(tar,xz,pigz)
+            self.installBinaries(tar, xz, pigz)
 
     def byLayoutEnd(self):
         self["logo"].instance.setPixmapFromFile("%s/dbackup.png" % dbackup_plugindir)
@@ -575,7 +575,7 @@ class dBackup(Screen):
     def leaving(self):
         if os_path.exists(dbackup_busy):
 #                       os_remove(dbackup_busy)
-            self.session.openWithCallback(self.forcedexit,MessageBox, running_string, MessageBox.TYPE_WARNING)
+            self.session.openWithCallback(self.forcedexit, MessageBox, running_string, MessageBox.TYPE_WARNING)
         else:
             self.forcedexit(1)
 
@@ -587,27 +587,27 @@ class dBackup(Screen):
                 timestr = time.strftime('%Y-%m-%d %H:%M', time.localtime(int(config.plugins.dbackup.lastbackup.value) + (int(config.plugins.dbackup.latestbackup.value) * 3600 * 24)))
                 autoBackupType = [x for x in automatic_options if config.plugins.dbackup.automatic.value == x[0]][0][1]
                 text += "\n\n" + _("Next Backup") + ": " + timestr + " (" + str(autoBackupType) + ")"
-            self.session.openWithCallback(self.logging,MessageBox, text, MessageBox.TYPE_INFO)
+            self.session.openWithCallback(self.logging, MessageBox, text, MessageBox.TYPE_INFO)
         else:
             text = _("Last Backup") + " " + _("not found")
-            self.session.openWithCallback(self.logging,MessageBox, text, MessageBox.TYPE_WARNING)
+            self.session.openWithCallback(self.logging, MessageBox, text, MessageBox.TYPE_WARNING)
 
     def logging(self, status):
         if os_path.exists(dbackup_log):
-            cmd = "cat %s; rm %s" % (dbackup_log,dbackup_log)
-            self.session.open(Console,dbackup_log,[cmd])
+            cmd = "cat %s; rm %s" % (dbackup_log, dbackup_log)
+            self.session.open(Console, dbackup_log, [cmd])
 
     def deleting(self):
-        self.session.openWithCallback(self.askForDelete,ChoiceBox,_("select Image for deleting"), self.getImageList())
+        self.session.openWithCallback(self.askForDelete, ChoiceBox, _("select Image for deleting"), self.getImageList())
 
-    def askForDelete(self,source):
+    def askForDelete(self, source):
         if source is None:
             return
         else:
             self.delimage = source[1].rstrip()
-            self.session.openWithCallback(self.ImageDelete,MessageBox,_("deleting %s ?") % (self.delimage),MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.ImageDelete, MessageBox, _("deleting %s ?") % (self.delimage), MessageBox.TYPE_YESNO)
 
-    def ImageDelete(self,answer):
+    def ImageDelete(self, answer):
         if answer is None:
             return
         if answer is False:
@@ -616,7 +616,7 @@ class dBackup(Screen):
             cprint("DELETING %s" % self.delimage)
             os_remove(self.delimage)
 
-    def forcedexit(self,status):
+    def forcedexit(self, status):
         if status > 0:
             self.doUnhide(0, 0)
             self.close()
@@ -653,9 +653,9 @@ class dBackup(Screen):
                 self.dimmed = 0
 #                       print(self.dimmed)
             if os_path.exists("/proc/stb/video/alpha"):
-                f = open("/proc/stb/video/alpha","w")
+                f = open("/proc/stb/video/alpha", "w")
             else: # dreamone, dreamtwo
-                f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
+                f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha", "w")
             f.write("%i" % self.dimmed)
             f.close()
 
@@ -665,9 +665,9 @@ class dBackup(Screen):
             else:
                 # do final choosen transparency
                 if os_path.exists("/proc/stb/video/alpha"):
-                    f = open("/proc/stb/video/alpha","w")
+                    f = open("/proc/stb/video/alpha", "w")
                 else: # dreamone, dreamtwo
-                    f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
+                    f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha", "w")
                 f.write("%i" % config.plugins.dbackup.transparency.value)
                 f.close()
 
@@ -679,9 +679,9 @@ class dBackup(Screen):
         if config.plugins.dbackup.transparency.value < config.osd.alpha.value:
             # reset needed
             if os_path.exists("/proc/stb/video/alpha"):
-                f = open("/proc/stb/video/alpha","w")
+                f = open("/proc/stb/video/alpha", "w")
             else: # dreamone, dreamtwo
-                f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
+                f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha", "w")
             f.write("%i" % (config.osd.alpha.value))
             f.close()
             if os_path.exists(dbackup_busy):
@@ -691,7 +691,7 @@ class dBackup(Screen):
         return 0
 
     def flash(self):
-        k = open("/proc/cmdline","r")
+        k = open("/proc/cmdline", "r")
         cmd = k.read()
         k.close()
         if self.boxtype == "dm520":
@@ -711,20 +711,20 @@ class dBackup(Screen):
             self.session.open(MessageBox, noflashing_string, MessageBox.TYPE_ERROR)
         else:
             if config.plugins.dbackup.flashtool.value != "rescue":
-                self.session.openWithCallback(self.askForImage,ChoiceBox,fileupload_string,self.getImageList(True))
+                self.session.openWithCallback(self.askForImage, ChoiceBox, fileupload_string, self.getImageList(True))
             else:
                 cprint("boots rescue mode ...")
                 self.nfifile = "recovery"
                 self.session.openWithCallback(self.doFlash, MessageBox, _("Press OK now for flashing\n\n%s\n\nBox will reboot automatically when finished!") % self.nfifile, MessageBox.TYPE_INFO)
 
-    def askForImage(self,image):
+    def askForImage(self, image):
         if image is None:
             self.session.open(MessageBox, notar_string, MessageBox.TYPE_ERROR)
         else:
             cprint("flashing ...")
             self.nfiname = image[0]
             self.nfifile = image[1]
-            self.nfidirectory = self.nfifile.replace(self.nfiname,"")
+            self.nfidirectory = self.nfifile.replace(self.nfiname, "")
             if self.nfifile != "rescue" and self.nfifile != "recovery" and self.nfiname.find(self.boxtype) == -1:
                 self.session.open(MessageBox, noboxtype_string, MessageBox.TYPE_ERROR)
             else:
@@ -733,7 +733,7 @@ class dBackup(Screen):
                 if self.nfifile.endswith("tar.xz") and not os_path.exists("/usr/bin/xz"):
                     self.session.open(MessageBox, noxz_string, MessageBox.TYPE_ERROR)
                 else:
-                    self.session.openWithCallback(self.startFlash,MessageBox,_("Are you sure that you want to flash now %s ?") % (self.nfifile), MessageBox.TYPE_YESNO)
+                    self.session.openWithCallback(self.startFlash, MessageBox, _("Are you sure that you want to flash now %s ?") % (self.nfifile), MessageBox.TYPE_YESNO)
 
     def getImageList(self, flash=False):
         liststart = []
@@ -743,7 +743,7 @@ class dBackup(Screen):
             liststart.append((_("Rescue Bios from Feed"), "rescue"))
         for name in os_listdir("/tmp"):
             if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                 if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                     list.append((name2, "/tmp/%s" % name))
                 else:
@@ -751,9 +751,9 @@ class dBackup(Screen):
         if os_path.exists(config.plugins.dbackup.backuplocation.value):
             for name in os_listdir(config.plugins.dbackup.backuplocation.value):
                 if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                    name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                    name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                     if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                        list.append((name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value,name)))
+                        list.append((name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value, name)))
                     else:
                         cprint("skips %s" % name2)
         f = open("/proc/mounts", "r")
@@ -763,7 +763,7 @@ class dBackup(Screen):
             if os_path.exists("/data/.recovery") and "/data/.recovery" != config.plugins.dbackup.backuplocation.value:
                 for name in os_listdir("/data/.recovery"):
                     if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz") and not name.startswith("settings"):
-                        name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                        name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                         if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                             list.append((name2, "/data/.recovery/%s" % (name)))
                         else:
@@ -771,7 +771,7 @@ class dBackup(Screen):
             if os_path.exists("/data/backup") and "/data/backup" != config.plugins.dbackup.backuplocation.value:
                 for name in os_listdir("/data/backup"):
                     if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                        name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                        name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                         if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                             list.append((name2, "/data/backup/%s" % (name)))
                         else:
@@ -781,9 +781,9 @@ class dBackup(Screen):
                 try:
                     for name in os_listdir("/media/%s/backup" % directory):
                         if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                            name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                            name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                             if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                list.append((name2, "/media/%s/backup/%s" % (directory,name)))
+                                list.append((name2, "/media/%s/backup/%s" % (directory, name)))
                             else:
                                 cprint("skips %s" % name2)
                 except:
@@ -794,9 +794,9 @@ class dBackup(Screen):
                     try:
                         for name in os_listdir("/media/%s/backup" % directory):
                             if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                                name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                                name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                                 if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                    list.append((name2, "/autofs/%s/backup/%s" % (directory,name)))
+                                    list.append((name2, "/autofs/%s/backup/%s" % (directory, name)))
                                 else:
                                     cprint("skips %s" % name2)
                     except:
@@ -810,7 +810,7 @@ class dBackup(Screen):
             liststart = list
         return liststart
 
-    def startFlash(self,option):
+    def startFlash(self, option):
         if option:
             if self.nfifile == "rescue":
                 message = _("Press OK now for flashing\n\n%s") % self.nfifile
@@ -822,7 +822,7 @@ class dBackup(Screen):
 
     def getDeviceList(self):
         found = False
-        f = open("/proc/partitions","r")
+        f = open("/proc/partitions", "r")
         devlist = []
         line = f.readline()
         line = f.readline()
@@ -839,22 +839,22 @@ class dBackup(Screen):
                 if len(devname) == 8 and mbsize > dbackup_minpartsize and mbsize < dbackup_maxpartsize:
                     # only sticks from 1GB up to 64GB are used as recovery sticks
                     found = True
-                    devlist.append(("%s %d %s" % (devname,mbsize,"MB"), devname,mbsize))
+                    devlist.append(("%s %d %s" % (devname, mbsize, "MB"), devname, mbsize))
         f.close()
         if not found:
             devlist.append(("no device found, shutdown, add device and reboot", "nodev", 0))
         return devlist
 
-    def askForDevice(self,device):
+    def askForDevice(self, device):
         if device is None:
             self.session.open(MessageBox, _("Sorry, no device choosen"), MessageBox.TYPE_ERROR)
         elif device[1] == "nodev":
             self.session.open(MessageBox, _("Sorry, no device found"), MessageBox.TYPE_ERROR)
         else:
             self.device = device[1]
-            self.session.openWithCallback(self.formatDevice, MessageBox,_("Are you sure that you want to format USB device %s now?") % (self.device), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.formatDevice, MessageBox, _("Are you sure that you want to format USB device %s now?") % (self.device), MessageBox.TYPE_YESNO)
 
-    def formatDevice(self,option):
+    def formatDevice(self, option):
         if option is False:
             self.session.open(MessageBox, _("Sorry, formatting of USB Decvice %s was canceled!") % self.device, MessageBox.TYPE_ERROR)
         else:
@@ -907,7 +907,7 @@ class dBackup(Screen):
             command += "mount %s1 -o async,rw /media/DREAMFLASH\n" % self.device
             command += "exit 0\n"
         #       cprint(command)
-            b = open(dbackup_script,"w")
+            b = open(dbackup_script, "w")
             b.write(command)
             b.close()
             os_chmod(dbackup_script, 0o755)
@@ -923,17 +923,17 @@ class dBackup(Screen):
 #               if os_path.exists("/usr/lib/enigma2/python/Plugins/Bp/geminimain/lib/libgeminimain.so"):
 #                       libgeminimain.setHWLock(0)
         # check if mounted
-        f = open("/proc/mounts","r")
+        f = open("/proc/mounts", "r")
         mm = f.read()
         f.close()
         if mm.find("/media/DREAMFLASH") == -1:
             if os_path.exists(dbackup_busy):
                 os_remove(dbackup_busy)
-            self.session.open(MessageBox,mounted_string % path, MessageBox.TYPE_ERROR)
+            self.session.open(MessageBox, mounted_string % path, MessageBox.TYPE_ERROR)
         else:
             self.askForBackupName("dreambox-image-%s" % self.boxtype)
 
-    def doFlash(self,option):
+    def doFlash(self, option):
         if option:
             cprint("is flashing now %s" % self.nfifile)
             self.flashingtime = 0
@@ -954,7 +954,7 @@ class dBackup(Screen):
                 self.TimerFlashing_conn = self.TimerFlashing.timeout.connect(self.flashingFinishedCheck)
             else:
                 self.TimerFlashing.callback.append(self.flashingFinishedCheck)
-            self.TimerFlashing.start(1000,True)
+            self.TimerFlashing.start(1000, True)
             FlashingImage(self.nfifile)
         else:
             cprint("cancelled flashing %s" % self.nfifile)
@@ -980,7 +980,7 @@ class dBackup(Screen):
                     used = rused
                 if used < 0:
                     used = 0
-                cprint("total size %d used %d" % (total_size,used))
+                cprint("total size %d used %d" % (total_size, used))
                 if config.plugins.dbackup.backuptool.value == "tar.xz":
                     dbackup_progress = flashing_tarxz * total_size // used
                 elif config.plugins.dbackup.backuptool.value == "tar.gz":
@@ -998,8 +998,8 @@ class dBackup(Screen):
             self["duration"].setText("%s" % self.flashingtime)
             if 'displayentry' in self.session.summary:
                 if config.plugins.dbackup.displayentry.value == "mb":
-                    self.session.summary["displayentry"].setText("%.1f MB" % round(rsize / 1024.0 / 1024.0,1))
-            self.TimerFlashing.start(1000,True)
+                    self.session.summary["displayentry"].setText("%.1f MB" % round(rsize / 1024.0 / 1024.0, 1))
+            self.TimerFlashing.start(1000, True)
         else:
             cprint("FLASHING UNHIDE")
             self.doUnhide(0, 0)
@@ -1026,14 +1026,14 @@ class dBackup(Screen):
 
     def getBackupPath(self):
         backup = []
-        backup.append((config.plugins.dbackup.backuplocation.value,config.plugins.dbackup.backuplocation.value))
+        backup.append((config.plugins.dbackup.backuplocation.value, config.plugins.dbackup.backuplocation.value))
         for mount in os_listdir("/media"):
             backupdir = "/media/%s/backup" % mount
             # added to trigger automount
             os_system("ls %s" % backupdir)
             try:
                 if os_path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:
-                    backup.append((backupdir,backupdir))
+                    backup.append((backupdir, backupdir))
             except:
                 pass
         if os_path.exists("/autofs"):
@@ -1043,7 +1043,7 @@ class dBackup(Screen):
                 os_system("ls %s" % backupdir)
                 try:
                     if os_path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:
-                        backup.append((backupdir,backupdir))
+                        backup.append((backupdir, backupdir))
                 except:
                     pass
         f = open("/proc/mounts", "r")
@@ -1053,7 +1053,7 @@ class dBackup(Screen):
             try:
                 backupdir = "/data/backup"
                 if os_path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:
-                    backup.append((backupdir,backupdir))
+                    backup.append((backupdir, backupdir))
             except:
                 pass
         return backup
@@ -1070,9 +1070,9 @@ class dBackup(Screen):
             if config.plugins.dbackup.transparency.value < config.osd.alpha.value:
                 # reset needed
                 if os_path.exists("/proc/stb/video/alpha"):
-                    f = open("/proc/stb/video/alpha","w")
+                    f = open("/proc/stb/video/alpha", "w")
                 else: # dreamone, dreamtwo
-                    f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
+                    f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha", "w")
                 f.write("%i" % (config.osd.alpha.value))
                 f.close()
             f = open(dbackup_backup)
@@ -1094,8 +1094,8 @@ class dBackup(Screen):
                 length = len(sp2)
                 if length > 0:
                     image = sp2[length - 1]
-                    path = line.replace(size,"").replace(image,"").rstrip().lstrip().replace("\t"," ")
-                    image = image.replace(".nfi\n","")
+                    path = line.replace(size, "").replace(image, "").rstrip().lstrip().replace("\t", " ")
+                    image = image.replace(".nfi\n", "")
                     image = image.rstrip().lstrip()
             cprint("found backup %s" % line)
             # checking for IO Errors
@@ -1103,7 +1103,7 @@ class dBackup(Screen):
             endtime = 0
             io_error = False
             if os_path.exists(dbackup_log):
-                b = open(dbackup_log,"r")
+                b = open(dbackup_log, "r")
                 line = b.readline()
                 line = b.readline()
                 starttime = int(line)
@@ -1119,11 +1119,11 @@ class dBackup(Screen):
                 b.close()
                 os_remove(dbackup_log)
             duration = str(endtime - starttime)
-            cprint("start: %d end: %d duration: %s" % (starttime,endtime,duration))
+            cprint("start: %d end: %d duration: %s" % (starttime, endtime, duration))
             if io_error:
-                self.session.open(MessageBox,size + "B " + _("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s\n\nBUT it has I/O Errors") % (path,image,config.plugins.dbackup.backuptool.value) + "\n\n" + _("Duration:") + " " + duration + " " + _("seconds"), MessageBox.TYPE_ERROR)
+                self.session.open(MessageBox, size + "B " + _("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s\n\nBUT it has I/O Errors") % (path, image, config.plugins.dbackup.backuptool.value) + "\n\n" + _("Duration:") + " " + duration + " " + _("seconds"), MessageBox.TYPE_ERROR)
             else:
-                self.session.open(MessageBox,size + "B " + _("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s") % (path,image,config.plugins.dbackup.backuptool.value) + "\n\n" + _("Duration:") + " " + duration + " " + _("seconds"), MessageBox.TYPE_INFO)
+                self.session.open(MessageBox, size + "B " + _("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s") % (path, image, config.plugins.dbackup.backuptool.value) + "\n\n" + _("Duration:") + " " + duration + " " + _("seconds"), MessageBox.TYPE_INFO)
         else:
             if os_path.exists(dbackup_busy):
                 self.session.open(MessageBox, running_string, MessageBox.TYPE_ERROR)
@@ -1142,17 +1142,17 @@ class dBackup(Screen):
                     self.askForBackupPath(backup)
                 else:
                     if config.plugins.dbackup.backupaskdir.value:
-                        self.session.openWithCallback(self.askForBackupPath,ChoiceBox,_("select backup path"),self.getBackupPath())
+                        self.session.openWithCallback(self.askForBackupPath, ChoiceBox, _("select backup path"), self.getBackupPath())
                     else:
                         backup = []
                         backup.append((config.plugins.dbackup.backuplocation.value))
                         self.askForBackupPath(backup)
 
-    def askForBackupPath(self,backup_path):
+    def askForBackupPath(self, backup_path):
 #               self.imagetype=""
         self.creator = ""
         if backup_path is None:
-            self.session.open(MessageBox,_("nothing entered"), MessageBox.TYPE_ERROR)
+            self.session.open(MessageBox, _("nothing entered"), MessageBox.TYPE_ERROR)
             return
         path = backup_path[0]
         cprint("PATH: %s" % path)
@@ -1161,11 +1161,11 @@ class dBackup(Screen):
                 os_mkdir("/data")
             os.system("umount %s; mount %s /data" % (dreambox_data, dreambox_data))
             os_system("mount -o remount,async /data")
-            f = open("/proc/mounts","r")
+            f = open("/proc/mounts", "r")
             mounts = f.read()
             f.close()
             if mounts.find("/data") == -1:
-                self.session.open(MessageBox,mounted_string % path, MessageBox.TYPE_ERROR)
+                self.session.open(MessageBox, mounted_string % path, MessageBox.TYPE_ERROR)
                 return
             if not os_path.exists("/data/.recovery"):
                 os_mkdir("/data/.recovery")
@@ -1177,21 +1177,21 @@ class dBackup(Screen):
                     os_mkdir("/media/DREAMFLASH")
                 if os_path.exists("/dev/disk/by-label/DREAMFLASH"):
                     device = os_readlink("/dev/disk/by-label/DREAMFLASH")
-                    self.device = device.replace("../..","/dev").replace("1","")
+                    self.device = device.replace("../..", "/dev").replace("1", "")
                     cprint("%s %s" % (device, self.device))
-                    os_system("ummount %s1; umount %s; mount -o rw,async /dev/disk/by-label/DREAMFLASH /media/DREAMFLASH" % (self.device,self.device))
+                    os_system("ummount %s1; umount %s; mount -o rw,async /dev/disk/by-label/DREAMFLASH /media/DREAMFLASH" % (self.device, self.device))
                 f = open("/proc/mounts", "r")
                 m = f.read()
                 f.close()
             #       print(m)
                 if m.find("/media/DREAMFLASH") == -1:
-                    self.session.open(MessageBox,mounted_string % path, MessageBox.TYPE_ERROR)
+                    self.session.open(MessageBox, mounted_string % path, MessageBox.TYPE_ERROR)
                 else:
                     self.askForBackupName("dreambox-image-%s" % self.boxtype)
             else:
                 cprint("create recovery USB stick")
                 device_string = _("Select device for recovery USB stick")
-                self.session.openWithCallback(self.askForDevice,ChoiceBox,device_string,self.getDeviceList())
+                self.session.openWithCallback(self.askForDevice, ChoiceBox, device_string, self.getDeviceList())
         else:
             if not os_path.exists(path):
                 os_system("ls %s" % path)
@@ -1201,7 +1201,7 @@ class dBackup(Screen):
             if len(sp) > 1:
                 if sp[1] != "media" and sp[1] != "autofs" and sp[1] != "data":
                     cprint("NOT #1 %s" % sp[1])
-                    self.session.open(MessageBox,mounted_string % path, MessageBox.TYPE_ERROR)
+                    self.session.open(MessageBox, mounted_string % path, MessageBox.TYPE_ERROR)
                     return
             if sp[1] != "data":
                 f = open("/proc/mounts", "r")
@@ -1210,14 +1210,14 @@ class dBackup(Screen):
             #       print(m)
                 if m.find("/media/%s" % sp[2]) == -1 and m.find("/autofs/%s" % sp[2]) == -1:
                     cprint("NOT #2 %s" % sp[2])
-                    self.session.open(MessageBox,mounted_string % path, MessageBox.TYPE_ERROR)
+                    self.session.open(MessageBox, mounted_string % path, MessageBox.TYPE_ERROR)
                     return
-            path = path.lstrip().rstrip("/").rstrip().replace(" ","")
+            path = path.lstrip().rstrip("/").rstrip().replace(" ", "")
             # remember for next time
             config.plugins.dbackup.backuplocation.value = path
             config.plugins.dbackup.backuplocation.save()
             if not os_path.exists(config.plugins.dbackup.backuplocation.value):
-                os_mkdir(config.plugins.dbackup.backuplocation.value,0o777)
+                os_mkdir(config.plugins.dbackup.backuplocation.value, 0o777)
             name = "dreambox-image"
             if os_path.exists("/etc/image-version"):
                 f = open("/etc/image-version")
@@ -1227,13 +1227,13 @@ class dBackup(Screen):
                     if line.startswith("creator="):
                         name = line
                 f.close()
-                name = name.replace("creator=","")
+                name = name.replace("creator=", "")
                 sp = []
                 if len(name) > 0:
                     sp = name.split(" ")
                     if len(sp) > 0:
                         name = sp[0]
-                        name = name.replace("\n","")
+                        name = name.replace("\n", "")
             self.creator = name.rstrip().lstrip()
             cdate = str(datetime.date.today())
             ctime = str(time.strftime("%H-%M"))
@@ -1244,7 +1244,7 @@ class dBackup(Screen):
                 if config.plugins.dbackup.backupid.value != "user":
                     suggested_backupname = suggested_backupname + "-%s" % config.plugins.dbackup.backupid.value
                 else:
-                    suggested_backupname = suggested_backupname + "-%s" % (config.plugins.dbackup.backupuserid.value.rstrip().lstrip().replace(" ","_"))
+                    suggested_backupname = suggested_backupname + "-%s" % (config.plugins.dbackup.backupuserid.value.rstrip().lstrip().replace(" ", "_"))
             if config.plugins.dbackup.backupboxtype.value:
                 suggested_backupname = suggested_backupname + "-" + self.boxtype
 #                       if config.plugins.dbackup.backupimagetype.value:
@@ -1266,31 +1266,31 @@ class dBackup(Screen):
             cprint("BLANKS %d" % length_blanks)
             suggested_backupname = suggested_backupname + blanks
             blanks_len = blanks_len + 60
-            self.session.openWithCallback(self.askForBackupName,InputBox, title=backupimage_string, text=suggested_backupname, maxSize=blanks_len, type=Input.TEXT)
+            self.session.openWithCallback(self.askForBackupName, InputBox, title=backupimage_string, text=suggested_backupname, maxSize=blanks_len, type=Input.TEXT)
 
-    def askForBackupName(self,name):
+    def askForBackupName(self, name):
         if name is None:
-            self.session.open(MessageBox,_("nothing entered"), MessageBox.TYPE_ERROR)
+            self.session.open(MessageBox, _("nothing entered"), MessageBox.TYPE_ERROR)
         else:
-            self.backupname = name.replace(" ","").replace("[","").replace("]","").replace(">","").replace("<","").replace("|","").rstrip().lstrip()
+            self.backupname = name.replace(" ", "").replace("[", "").replace("]", "").replace(">", "").replace("<", "").replace("|", "").rstrip().lstrip()
             if self.backupname.find(self.boxtype) == -1 and config.plugins.dbackup.flashtool.value != "rescue":
                 self.backupname = self.backupname + "-" + self.boxtype
-            if os_path.exists("%s/%s.%s" % (config.plugins.dbackup.backuplocation.value,self.backupname,config.plugins.dbackup.backuptool.value)):
-                self.session.openWithCallback(self.confirmedBackup,MessageBox,"%s.%s" % (self.backupname,config.plugins.dbackup.backuptool.value) + "\n" + _("already exists,") + " " + _("overwrite ?"), MessageBox.TYPE_YESNO)
+            if os_path.exists("%s/%s.%s" % (config.plugins.dbackup.backuplocation.value, self.backupname, config.plugins.dbackup.backuptool.value)):
+                self.session.openWithCallback(self.confirmedBackup, MessageBox, "%s.%s" % (self.backupname, config.plugins.dbackup.backuptool.value) + "\n" + _("already exists,") + " " + _("overwrite ?"), MessageBox.TYPE_YESNO)
             else:
                 self.confirmedBackup(True)
 
-    def confirmedBackup(self,answer):
+    def confirmedBackup(self, answer):
         if answer:
-            if os_path.exists("%s/%s.%s" % (config.plugins.dbackup.backuplocation.value,self.backupname,config.plugins.dbackup.backuptool.value)):
-                os_remove("%s/%s.%s" % (config.plugins.dbackup.backuplocation.value,self.backupname,config.plugins.dbackup.backuptool.value))
-            if os_path.exists("%s/%s.sig" % (config.plugins.dbackup.backuplocation.value,self.backupname)):
-                os_remove("%s/%s.sig" % (config.plugins.dbackup.backuplocation.value,self.backupname))
-            self.session.openWithCallback(self.startBackup,MessageBox, _("Press OK for starting backup") + "\n\n%s.%s" % (self.backupname,config.plugins.dbackup.backuptool.value) + "\n\n" + _("Be patient, this takes some time ..."), MessageBox.TYPE_INFO)
+            if os_path.exists("%s/%s.%s" % (config.plugins.dbackup.backuplocation.value, self.backupname, config.plugins.dbackup.backuptool.value)):
+                os_remove("%s/%s.%s" % (config.plugins.dbackup.backuplocation.value, self.backupname, config.plugins.dbackup.backuptool.value))
+            if os_path.exists("%s/%s.sig" % (config.plugins.dbackup.backuplocation.value, self.backupname)):
+                os_remove("%s/%s.sig" % (config.plugins.dbackup.backuplocation.value, self.backupname))
+            self.session.openWithCallback(self.startBackup, MessageBox, _("Press OK for starting backup") + "\n\n%s.%s" % (self.backupname, config.plugins.dbackup.backuptool.value) + "\n\n" + _("Be patient, this takes some time ..."), MessageBox.TYPE_INFO)
         else:
-            self.session.open(MessageBox,_("not confirmed"), MessageBox.TYPE_ERROR)
+            self.session.open(MessageBox, _("not confirmed"), MessageBox.TYPE_ERROR)
 
-    def startBackup(self,answer):
+    def startBackup(self, answer):
         if answer:
             cprint("is doing backup now ...")
             self.starttime = time.time()
@@ -1313,7 +1313,7 @@ class dBackup(Screen):
                 self.TimerBackup_conn = self.TimerBackup.timeout.connect(self.backupFinishedCheck)
             else:
                 self.TimerBackup.callback.append(self.backupFinishedCheck)
-            self.TimerBackup.start(1000,True)
+            self.TimerBackup.start(1000, True)
             BackupImage(self.backupname)
         else:
             cprint("was not confirmed")
@@ -1324,7 +1324,7 @@ class dBackup(Screen):
         if not os_path.exists(dbackup_backup):
             # not finished - continue checking ...
             rsize = 0
-            working = "%s/%s.%s" % (config.plugins.dbackup.backuplocation.value,self.backupname,config.plugins.dbackup.backuptool.value)
+            working = "%s/%s.%s" % (config.plugins.dbackup.backuplocation.value, self.backupname, config.plugins.dbackup.backuptool.value)
             cprint("%s" % working)
             if os_path.exists(working):
                 rsize = os_path.getsize(working)
@@ -1337,7 +1337,7 @@ class dBackup(Screen):
                 used = rused
             if used < 0:
                 used = 0
-            cprint("total size %d used %d" % (total_size,used))
+            cprint("total size %d used %d" % (total_size, used))
             if total_size > 0:
                 if config.plugins.dbackup.backuptool.value == "tar.xz":
                     dbackup_progress = dbackup_tarxz * total_size // used
@@ -1358,8 +1358,8 @@ class dBackup(Screen):
             self["duration"].setText("%s" % self.backuptime)
             if 'displayentry' in self.session.summary:
                 if config.plugins.dbackup.displayentry.value == "mb":
-                    self.session.summary["displayentry"].setText("%.1f MB" % round(rsize / 1024.0 / 1024.0,1))
-            self.TimerBackup.start(1000,True)
+                    self.session.summary["displayentry"].setText("%.1f MB" % round(rsize / 1024.0 / 1024.0, 1))
+            self.TimerBackup.start(1000, True)
         else:
             cprint("found finished backup ...")
             self.TimerBackup = eTimer()
@@ -1383,8 +1383,8 @@ class dBackup(Screen):
                 length = len(sp2)
                 if length > 0:
                     image = sp2[length - 1]
-                    path = line.replace(size,"").replace(image,"").lstrip().rstrip()
-                    image = image.replace(".tar.gz\n","").replace(".tar.xz\n","").replace(".tar.bz2\n","").replace(".tar\n","")
+                    path = line.replace(size, "").replace(image, "").lstrip().rstrip()
+                    image = image.replace(".tar.gz\n", "").replace(".tar.xz\n", "").replace(".tar.bz2\n", "").replace(".tar\n", "")
                 else:
                     image = ""
             cprint("found backup %s" % line)
@@ -1401,7 +1401,7 @@ class dBackup(Screen):
                     self.session.summary["slider"].setValue(500)
                 self.slider.setValue(500)
                 duration = str(int(round(time.time() - self.starttime)))
-                working = "%s/%s.%s" % (config.plugins.dbackup.backuplocation.value,self.backupname,config.plugins.dbackup.backuptool.value)
+                working = "%s/%s.%s" % (config.plugins.dbackup.backuplocation.value, self.backupname, config.plugins.dbackup.backuptool.value)
                 rsize = 0
                 if os_path.exists(working):
                     rsize = os_path.getsize(working)
@@ -1410,14 +1410,14 @@ class dBackup(Screen):
                 self["duration"].setText("%s" % duration)
                 if 'displayentry' in self.session.summary:
                     if config.plugins.dbackup.displayentry.value == "mb":
-                        self.session.summary["displayentry"].setText("%.1f MB" % round(rsize / 1024.0 / 1024.0,1))
+                        self.session.summary["displayentry"].setText("%.1f MB" % round(rsize / 1024.0 / 1024.0, 1))
                 #print("=== dbackup rsize", rsize/1024.0/1024.0, rsize, round(rsize/1024.0/1024.0,1), int(round(rsize/1024.0/1024.0,1)))
                 #print("=== dbackup size ", size)
                 if l.find("Input/output err") != -1:
-                    self.FinishMsgTxt = "%sB " % (size) + _("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s\n\nBUT it has I/O Errors") % (path,image,config.plugins.dbackup.backuptool.value) + "\n\n" + _("Duration:") + " " + duration + " " + _("seconds")
+                    self.FinishMsgTxt = "%sB " % (size) + _("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s\n\nBUT it has I/O Errors") % (path, image, config.plugins.dbackup.backuptool.value) + "\n\n" + _("Duration:") + " " + duration + " " + _("seconds")
                     self.FinishMsgBoxType = MessageBox.TYPE_ERROR
                 else:
-                    self.FinishMsgTxt = "%sB " % (size) + _("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s") % (path, image,config.plugins.dbackup.backuptool.value) + "\n\n" + _("Duration:") + " " + duration + " " + _("seconds")
+                    self.FinishMsgTxt = "%sB " % (size) + _("Flash Backup to %s\n\nfinished with imagename:\n\n%s.%s") % (path, image, config.plugins.dbackup.backuptool.value) + "\n\n" + _("Duration:") + " " + duration + " " + _("seconds")
                     self.FinishMsgBoxType = MessageBox.TYPE_INFO
             except:
                 # why crashes even this
@@ -1430,7 +1430,7 @@ class dBackup(Screen):
                 self.TimerBackupFinishMessage_conn = self.TimerBackupFinishMessage.timeout.connect(self.callbackFinishMessage)
             else:
                 self.TimerBackupFinishMessage.callback.append(self.callbackFinishMessage)
-            self.TimerBackupFinishMessage.start(1000,True)
+            self.TimerBackupFinishMessage.start(1000, True)
 
             #start automatic cleanup
             clean_dBackup()
@@ -1442,9 +1442,9 @@ class dBackup(Screen):
         if config.plugins.dbackup.transparency.value < config.osd.alpha.value:
             # reset needed
             if os_path.exists("/proc/stb/video/alpha"):
-                f = open("/proc/stb/video/alpha","w")
+                f = open("/proc/stb/video/alpha", "w")
             else: # dreamone, dreamtwo
-                f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha","w")
+                f = open("/sys/devices/platform/meson-fb/graphics/fb0/osd_plane_alpha", "w")
             f.write("%i" % (config.osd.alpha.value))
             f.close()
             self.DimmingTimer = eTimer()
@@ -1462,7 +1462,7 @@ class dBackup(Screen):
         if 'displayentry' in self.session.summary:
             if config.plugins.dbackup.displayentry.value == "mb":
                 self.session.summary["displayentry"].setText(" ")
-        self.session.open(MessageBox,self.FinishMsgTxt, self.FinishMsgBoxType)
+        self.session.open(MessageBox, self.FinishMsgTxt, self.FinishMsgBoxType)
 
     def config(self):
         if os_path.exists(dbackup_busy):
@@ -1479,7 +1479,7 @@ def startdBackup(session, **kwargs):
 def startRecover(session, **kwargs):
     global dsession
     dsession = session
-    session.openWithCallback(askForTask,ChoiceBox,_("Please choose what you want to do next."), getTaskList())
+    session.openWithCallback(askForTask, ChoiceBox, _("Please choose what you want to do next."), getTaskList())
 
 def getTaskList():
     task = []
@@ -1495,15 +1495,15 @@ def askForTask(task):
         do = task[1].rstrip()
     #       print(">>>>>>>>>>>", do)
         if do == "boot":
-            dsession.openWithCallback(startRecovery,MessageBox,_("Recovery Mode") + " " + _("Really shutdown now?"), MessageBox.TYPE_YESNO)
+            dsession.openWithCallback(startRecovery, MessageBox, _("Recovery Mode") + " " + _("Really shutdown now?"), MessageBox.TYPE_YESNO)
         else:
-            dsession.openWithCallback(startLoaderUpdate,MessageBox,_("Recovery Mode") + " " + _("Software update") + "?", MessageBox.TYPE_YESNO)
+            dsession.openWithCallback(startLoaderUpdate, MessageBox, _("Recovery Mode") + " " + _("Software update") + "?", MessageBox.TYPE_YESNO)
 
 def startRecovery(option):
     global dsession
     if option:
         cprint("starting Recovery")
-        b = open("/proc/stb/fp/boot_mode","w")
+        b = open("/proc/stb/fp/boot_mode", "w")
         b.write("rescue")
         b.close()
         quitMainloop(2)
@@ -1516,7 +1516,7 @@ def startLoaderUpdate(option):
         cprint("starting Rescue Loader update")
         update_cmd = "update-rescue -v"
         from API import session
-        dsession.open(Console,_("Recovery Mode") + " " + _("Software update") + " " + _("waiting") + "...",[update_cmd])
+        dsession.open(Console, _("Recovery Mode") + " " + _("Software update") + " " + _("waiting") + "...", [update_cmd])
     else:
         cprint("cancelled Rescue Loader update")
 
@@ -1532,15 +1532,15 @@ def recovery2Webif(enable):
         if enable:
             if ps.find("type == 99:") == -1:
                 cprint("recovery webinterface inserting #1")
-                ps2 = ps.replace("type = int(self.cmd)","type = int(self.cmd)\n\n                        if type == 99:\n                           b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n                           b.write(\"rescue\")\n                           b.close()\n                           type=2\n")
-                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py","w")
+                ps2 = ps.replace("type = int(self.cmd)", "type = int(self.cmd)\n\n                        if type == 99:\n                           b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n                           b.write(\"rescue\")\n                           b.close()\n                           type=2\n")
+                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py", "w")
                 p.write(ps2)
                 p.close()
         else:
             if ps.find("type == 99:") != -1:
                 cprint("recovery webinterface removing #1")
-                ps2 = ps.replace("type = int(self.cmd)\n\n                               if type == 99:\n                           b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n                           b.write(\"rescue\")\n                           b.close()\n                           type=2\n","type = int(self.cmd)")
-                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py","w")
+                ps2 = ps.replace("type = int(self.cmd)\n\n                               if type == 99:\n                           b=open(\"/proc/stb/fp/boot_mode\",\"w\")\n                           b.write(\"rescue\")\n                           b.close()\n                           type=2\n", "type = int(self.cmd)")
+                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebComponents/Sources/PowerState.py", "w")
                 p.write(ps2)
                 p.close()
     if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js"):
@@ -1550,15 +1550,15 @@ def recovery2Webif(enable):
         if enable:
             if cs.find("rebootsetup") == -1:
                 cprint("recovery webinterface inserting #2")
-                cs2 = cs.replace("\'gui\' : 3","\'gui\' : 3, \'rebootsetup\' : 99")
-                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js","w")
+                cs2 = cs.replace("\'gui\' : 3", "\'gui\' : 3, \'rebootsetup\' : 99")
+                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js", "w")
                 p.write(cs2)
                 p.close()
         else:
             if cs.find("rebootsetup") != -1:
                 cprint("recovery webinterface removing #2")
-                cs2 = cs.replace("\'gui\' : 3, \'rebootsetup\' : 99","\'gui\' : 3")
-                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js","w")
+                cs2 = cs.replace("\'gui\' : 3, \'rebootsetup\' : 99", "\'gui\' : 3")
+                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/core.js", "w")
                 p.write(cs2)
                 p.close()
     if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html"):
@@ -1568,16 +1568,16 @@ def recovery2Webif(enable):
         if enable:
             if ix.find("rebootsetup") == -1:
                 cprint("recovery webinterface inserting #3")
-                ix2 = ix.replace("data-state=\"gui\">Restart GUI</a></li>","data-state=\"gui\">Restart GUI</a></li>\n                                                             <li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Mode</a></li>")
-                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html","w")
+                ix2 = ix.replace("data-state=\"gui\">Restart GUI</a></li>", "data-state=\"gui\">Restart GUI</a></li>\n                                                             <li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Mode</a></li>")
+                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html", "w")
                 p.write(ix2)
                 p.close()
         else:
             if ix.find("rebootsetup") != -1:
                 cprint("recovery webinterface removing #3")
-                ix2 = ix.replace("data-state=\"gui\">Restart GUI</a></li>\n                                                               <li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Mode</a></li>","data-state=\"gui\">Restart GUI</a></li>")
-                ix2 = ix.replace("data-state=\"gui\">Restart GUI</a></li>\n                                                               <li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery</a></li>","data-state=\"gui\">Restart GUI</a></li>")
-                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html","w")
+                ix2 = ix.replace("data-state=\"gui\">Restart GUI</a></li>\n                                                               <li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery Mode</a></li>", "data-state=\"gui\">Restart GUI</a></li>")
+                ix2 = ix.replace("data-state=\"gui\">Restart GUI</a></li>\n                                                               <li><a href=\"#\" class=\"powerState\" data-state=\"rebootsetup\">Recovery</a></li>", "data-state=\"gui\">Restart GUI</a></li>")
+                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/index.html", "w")
                 p.write(ix2)
                 p.close()
     if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm"):
@@ -1587,16 +1587,16 @@ def recovery2Webif(enable):
         if enable:
             if df.find("rebootsetup") == -1:
                 cprint("recovery webinterface inserting #4")
-                df2 = df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>\n                                                                             </tr>\n                                                                         <tr>\n                                                                                  <td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Mode</button></td>")
-                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm","w")
+                df2 = df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>", "data-state=\"gui\">${strings.restart_enigma2}</button></td>\n                                                                             </tr>\n                                                                         <tr>\n                                                                                  <td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Mode</button></td>")
+                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm", "w")
                 p.write(df2)
                 p.close()
         else:
             if df.find("rebootsetup") != -1:
                 cprint("recovery webinterface removing #4")
-                df2 = df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>\n                                                                   </tr>\n                                                                 <tr>\n                                                                          <td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Mode</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>")
-                df2 = df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>\n                                                                   </tr>\n                                                                 <tr>\n                                                                          <td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery</button></td>","data-state=\"gui\">${strings.restart_enigma2}</button></td>")
-                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm","w")
+                df2 = df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>\n                                                                   </tr>\n                                                                 <tr>\n                                                                          <td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery Mode</button></td>", "data-state=\"gui\">${strings.restart_enigma2}</button></td>")
+                df2 = df.replace("data-state=\"gui\">${strings.restart_enigma2}</button></td>\n                                                                   </tr>\n                                                                 <tr>\n                                                                          <td><button class=\"w200h50 powerState\" data-state=\"rebootsetup\">Recovery</button></td>", "data-state=\"gui\">${strings.restart_enigma2}</button></td>")
+                p = open("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/tpl/default/tplPower.htm", "w")
                 p.write(df2)
                 p.close()
     return
@@ -1604,7 +1604,7 @@ def recovery2Webif(enable):
 TimerBackup = None
 TimerBackup_conn = None
 
-def autostart(reason,**kwargs):
+def autostart(reason, **kwargs):
     if 'session' in kwargs and reason == 0:
         session = kwargs["session"]
         cprint("autostart")
@@ -1619,7 +1619,7 @@ def autostart(reason,**kwargs):
             os_remove(dbackup_busy)
         tmp_extract = "%s/tmp" % config.plugins.dbackup.backuplocation.value
         if os_path.exists(tmp_extract):
-            shutil.rmtree(tmp_extract,True)
+            shutil.rmtree(tmp_extract, True)
         if config.plugins.dbackup.flashtool.value == "rescue":
             config.plugins.dbackup.backuplocation.value = "/data/.recovery"
             config.plugins.dbackup.backuptool.value = "tar.gz"
@@ -1674,13 +1674,13 @@ def startBackupFinishedCheckTimer():
         TimerBackup_conn = TimerBackup.timeout.connect(backupFinishedCheck)
     else:
         TimerBackup.callback.append(backupFinishedCheck)
-    TimerBackup.start(1000,True)
+    TimerBackup.start(1000, True)
 
 def backupFinishedCheck():
     global TimerBackup
     if os_path.exists(dbackup_busy): # not finished - continue checking ...
         #cprint("not finished - continue checking ...")
-        TimerBackup.start(1000,True)
+        TimerBackup.start(1000, True)
     else:
         cprint("finished backup ...")
         TimerBackup = eTimer()
@@ -1727,13 +1727,13 @@ def automaticBackupName(mask=False):
             if line.startswith("creator="):
                 name = line
         f.close()
-        name = name.replace("creator=","")
+        name = name.replace("creator=", "")
         sp = []
         if len(name) > 0:
             sp = name.split(" ")
             if len(sp) > 0:
                 name = sp[0]
-                name = name.replace("\n","")
+                name = name.replace("\n", "")
     creator = name.rstrip().lstrip()
     cdate = str(datetime.date.today())
     if mask:
@@ -1747,7 +1747,7 @@ def automaticBackupName(mask=False):
         if config.plugins.dbackup.backupid.value != "user":
             suggested_backupname = suggested_backupname + "-%s" % config.plugins.dbackup.backupid.value
         else:
-            suggested_backupname = suggested_backupname + "-%s" % (config.plugins.dbackup.backupuserid.value.rstrip().lstrip().replace(" ","_"))
+            suggested_backupname = suggested_backupname + "-%s" % (config.plugins.dbackup.backupuserid.value.rstrip().lstrip().replace(" ", "_"))
     if config.plugins.dbackup.backupboxtype.value:
         suggested_backupname = suggested_backupname + "-" + boxtype
     if config.plugins.dbackup.backupdate.value:
@@ -1759,7 +1759,7 @@ def automaticBackupName(mask=False):
     cprint("suggested backupname %s" % suggested_backupname)
     return suggested_backupname
 
-def main(session,**kwargs):
+def main(session, **kwargs):
     if os_path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/gutemine") or os_path.exists("/var/lib/opkg/status"):
         session.open(dBackup)
     else:
@@ -1802,10 +1802,10 @@ class wBackup(resource.Resource):
     def render_GET(self, req):
         self.boxtype = getBoxtype()
         global dbackup_progress, dreambox_data
-        file = req.args.get("file",None)
-        directory = req.args.get("directory",None)
-        command = req.args.get("command",None)
-        cprint("received %s %s %s" % (command,directory,file))
+        file = req.args.get("file", None)
+        directory = req.args.get("directory", None)
+        command = req.args.get("command", None)
+        cprint("received %s %s %s" % (command, directory, file))
         req.setResponseCode(http.OK)
         req.setHeader('Content-type', 'text/html')
         req.setHeader('charset', 'UTF-8')
@@ -1814,9 +1814,9 @@ class wBackup(resource.Resource):
         if not os_path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/gutemine"):
             return header_string + nowebif_string
         if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/img/dbackup.png") is False:
-            os_symlink("%s/dbackup.png" % dbackup_plugindir,"/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/img/dbackup.png")
+            os_symlink("%s/dbackup.png" % dbackup_plugindir, "/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/img/dbackup.png")
         if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/img/ring.png") is False:
-            os_symlink("%s/ring.png" % dbackup_plugindir,"/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/img/ring.png")
+            os_symlink("%s/ring.png" % dbackup_plugindir, "/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/web-data/img/ring.png")
         if os_path.exists(dbackup_busy):
             dbackup_backuping_progress = ""
             dbackup_backuping_progress += header_string
@@ -1825,12 +1825,12 @@ class wBackup(resource.Resource):
             if dbackup_progress > 0:
                 dbackup_backuping_progress += "<div style=\"background-color:yellow;width:%dpx;height:20px;border:1px solid #000\"></div> " % (dbackup_progress)
             dbackup_backuping_progress += "<br><form method=\"GET\">"
-            dbackup_backuping_progress += "<input name=\"command\" type=\"submit\" size=\"100px\" title=\"%s\" value=\"%s\">" % (refresh_string,"Refresh")
+            dbackup_backuping_progress += "<input name=\"command\" type=\"submit\" size=\"100px\" title=\"%s\" value=\"%s\">" % (refresh_string, "Refresh")
             dbackup_backuping_progress += "</form>"
             return header_string + dbackup_backuping_progress
         if command is None or command[0] == "Refresh":
             htmlbackup = ""
-            htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (config.plugins.dbackup.backuplocation.value,config.plugins.dbackup.backuplocation.value)
+            htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (config.plugins.dbackup.backuplocation.value, config.plugins.dbackup.backuplocation.value)
             if config.plugins.dbackup.backupaskdir.value:
                 for mount in os_listdir("/media"):
                     backupdir = "/media/%s/backup" % mount
@@ -1838,7 +1838,7 @@ class wBackup(resource.Resource):
                     os_system("ls %s" % backupdir)
                     try:
                         if os_path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:
-                            htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir,backupdir)
+                            htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir, backupdir)
                     except:
                         pass
                 if os_path.exists("/autofs"):
@@ -1848,7 +1848,7 @@ class wBackup(resource.Resource):
                         os_system("ls %s" % backupdir)
                         try:
                             if os_path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:
-                                htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir,backupdir)
+                                htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir, backupdir)
                         except:
                             pass
                 f = open("/proc/mounts", "r")
@@ -1858,7 +1858,7 @@ class wBackup(resource.Resource):
                     try:
                         backupdir = "/data/backup"
                         if os_path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:
-                            htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir,backupdir)
+                            htmlbackup += "<option value=\"%s\" class=\"black\">%s</option>\n" % (backupdir, backupdir)
                     except:
                         pass
             cprint("%s" % htmlbackup)
@@ -1866,25 +1866,25 @@ class wBackup(resource.Resource):
             list = []
             htmlnfi = ""
             if self.boxtype != "dreamone" and self.boxtype != "dreamtwo":
-                htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("recovery",_("Recovery Image from Feed"))
-            htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("rescue",_("Rescue Bios from Feed"))
+                htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("recovery", _("Recovery Image from Feed"))
+            htmlnfi += "<option value=\"%s\" class=\"black\">%s</option>\n" % ("rescue", _("Rescue Bios from Feed"))
             entries = os_listdir("/tmp")
             for name in sorted(entries):
                 if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                    name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                    name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                     if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                         list.append((name2, "/tmp/%s" % name))
-                        htmlnfi += "<option value=\"/tmp/%s\" class=\"black\">%s</option>\n" % (name,name2)
+                        htmlnfi += "<option value=\"/tmp/%s\" class=\"black\">%s</option>\n" % (name, name2)
                     else:
                         cprint("skips %s" % name2)
             if os_path.exists(config.plugins.dbackup.backuplocation.value):
                 entries = os_listdir(config.plugins.dbackup.backuplocation.value)
                 for name in sorted(entries):
                     if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                        name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                        name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                         if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                            list.append((name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value,name)))
-                            htmlnfi += "<option value=\"%s/%s\" class=\"black\">%s</option>\n" % (config.plugins.dbackup.backuplocation.value,name,name2)
+                            list.append((name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value, name)))
+                            htmlnfi += "<option value=\"%s/%s\" class=\"black\">%s</option>\n" % (config.plugins.dbackup.backuplocation.value, name, name2)
                         else:
                             cprint("skips %s" % name2)
             f = open("/proc/mounts", "r")
@@ -1894,10 +1894,10 @@ class wBackup(resource.Resource):
                 if os_path.exists("/data/backup") and "/data/backup" != config.plugins.dbackup.backuplocation.value:
                     for name in os_listdir("/data/backup"):
                         if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                            name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                            name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                             if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
                                 list.append((name2, "/data/backup/%s" % (name)))
-                                htmlnfi += "<option value=\"/data/backup/%s\" class=\"black\">%s</option>\n" % (name,name2)
+                                htmlnfi += "<option value=\"/data/backup/%s\" class=\"black\">%s</option>\n" % (name, name2)
                             else:
                                 cprint("skips %s" % name2)
             entries = os_listdir("/media")
@@ -1906,10 +1906,10 @@ class wBackup(resource.Resource):
                     try:
                         for name in os_listdir("/media/%s/backup" % directory):
                             if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                                name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                                name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                                 if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                    list.append((name2, "/media/%s/backup/%s" % (drectory,name)))
-                                    htmlnfi += "<option value=\"/media/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory,name,name2)
+                                    list.append((name2, "/media/%s/backup/%s" % (drectory, name)))
+                                    htmlnfi += "<option value=\"/media/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory, name, name2)
                                 else:
                                     cprint("skips %s" % name2)
                     except:
@@ -1923,10 +1923,10 @@ class wBackup(resource.Resource):
                     try:
                         for name in os_listdir("/autofs/%s/backup" % directory):
                             if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
-                                name2 = name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
+                                name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
                                 if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                    list.append((name2, "/autofs/%s/backup/%s" % (drectory,name)))
-                                    htmlnfi += "<option value=\"/autofs/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory,name,name2)
+                                    list.append((name2, "/autofs/%s/backup/%s" % (drectory, name)))
+                                    htmlnfi += "<option value=\"/autofs/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory, name, name2)
                                 else:
                                     cprint("skips %s" % name2)
                     except:
@@ -1942,13 +1942,13 @@ class wBackup(resource.Resource):
                     if line.startswith("creator="):
                         name = line
                 f.close()
-                name = name.replace("creator=","")
+                name = name.replace("creator=", "")
                 sp = []
                 if len(name) > 0:
                     sp = name.split(" ")
                     if len(sp) > 0:
                         name = sp[0]
-                        name = name.replace("\n","")
+                        name = name.replace("\n", "")
             self.creator = name.rstrip().lstrip()
 #                       self.imagetype="exp"
 #                       if name == "OoZooN" and os_path.exists("/etc/issue.net"):
@@ -1966,7 +1966,7 @@ class wBackup(resource.Resource):
                 if config.plugins.dbackup.backupid.value != "user":
                     suggested_backupname = suggested_backupname + "-%s" % config.plugins.dbackup.backupid.value
                 else:
-                    suggested_backupname = suggested_backupname + "-%s" % (config.plugins.dbackup.backupuserid.value.rstrip().lstrip().replace(" ","_"))
+                    suggested_backupname = suggested_backupname + "-%s" % (config.plugins.dbackup.backupuserid.value.rstrip().lstrip().replace(" ", "_"))
             if config.plugins.dbackup.backupboxtype.value:
                 suggested_backupname = suggested_backupname + "-" + self.boxtype
 #                       if config.plugins.dbackup.backupimagetype.value:
@@ -2013,10 +2013,10 @@ class wBackup(resource.Resource):
                     </form>
                     <img src="/web-data/img/ring.png" alt="%s ..."/><br><br>
                     <hr>
-            """ % (header_string,plugin_string,info_header,disclaimer_wstring,fileupload_string, htmlnfi,flashing_string, "Flashing",flashing_string,backupdirectory_string,backupimage_string,htmlbackup,blanks_len,suggested_backupname,backup_string,"Backup",backup_string)
+            """ % (header_string, plugin_string, info_header, disclaimer_wstring, fileupload_string, htmlnfi, flashing_string, "Flashing", flashing_string, backupdirectory_string, backupimage_string, htmlbackup, blanks_len, suggested_backupname, backup_string, "Backup", backup_string)
         else:
             if command[0] == "Flashing":
-                k = open("/proc/cmdline","r")
+                k = open("/proc/cmdline", "r")
                 cmd = k.read()
                 k.close()
                 if self.boxtype == "dm520":
@@ -2036,23 +2036,23 @@ class wBackup(resource.Resource):
                 if os_path.exists(self.nfifile):
                     if self.nfifile.endswith(".tar.gz"):
                         cprint("is flashing now %s" % self.nfifile)
-                        FlashingImage(self.nfifile,True)
+                        FlashingImage(self.nfifile, True)
                         return dbackup_flashing
                     elif self.nfifile.endswith(".tar.xz"):
                         if os_path.exists("/usr/bin/xz"):
                             cprint("is flashing now %s" % self.nfifile)
-                            FlashingImage(self.nfifile,True)
+                            FlashingImage(self.nfifile, True)
                             return dbackup_flashing
                         else:
                             cprint("xz binary missing")
                             return header_string + noxz_string
                     elif self.nfifile.endswith(".tar.bz2"):
                         cprint("is flashing now %s" % self.nfifile)
-                        FlashingImage(self.nfifile,True)
+                        FlashingImage(self.nfifile, True)
                         return dbackup_flashing
                     elif self.nfifile.endswith(".tar"):
                         cprint("is flashing now %s" % self.nfifile)
-                        FlashingImage(self.nfifile,True)
+                        FlashingImage(self.nfifile, True)
                         return dbackup_flashing
                     else:
                         cprint("wrong filename")
@@ -2060,7 +2060,7 @@ class wBackup(resource.Resource):
                 else:
                     if self.nfifile == "recovery":
                         cprint("is flashing now %s" % self.nfifile)
-                        FlashingImage(self.nfifile,True)
+                        FlashingImage(self.nfifile, True)
                         return dbackup_flashing
                     else:
                         cprint("filename not found")
@@ -2077,7 +2077,7 @@ class wBackup(resource.Resource):
                         os_mkdir("/data")
                     os.system("umount %s; mount %s /data" % (dreambox_data, dreambox_data))
                     os_system("mount -o remount,async /data")
-                    f = open("/proc/mounts","r")
+                    f = open("/proc/mounts", "r")
                     mounts = f.read()
                     f.close()
                     if mounts.find("/data") == -1:
@@ -2088,7 +2088,7 @@ class wBackup(resource.Resource):
                         os_remove("/data/.recovery/backup.tar.gz")
                     self.backupname = "backup"
                 else:
-                    self.backupname = file[0].replace(" ","").replace("[","").replace("]","").replace(">","").replace("<","").replace("|","").rstrip().lstrip()
+                    self.backupname = file[0].replace(" ", "").replace("[", "").replace("]", "").replace(">", "").replace("<", "").replace("|", "").rstrip().lstrip()
                     if self.backupname.find(self.boxtype) == -1:
                         self.backupname = self.backupname + "-" + self.boxtype
                     path = directory[0]
@@ -2109,12 +2109,12 @@ class wBackup(resource.Resource):
                         if m.find("/media/%s" % sp[2]) == -1 and m.find("/autofs/%s" % sp[2]) == -1:
                             cprint("NOT #2 %s" % sp[2])
                             return header_string + " " + mounted_string % path + ", " + dbackup_backbutton
-                path = path.lstrip().rstrip("/").rstrip().replace(" ","")
+                path = path.lstrip().rstrip("/").rstrip().replace(" ", "")
                 config.plugins.dbackup.backuplocation.value = path
                 config.plugins.dbackup.backuplocation.save()
                 if not os_path.exists(config.plugins.dbackup.backuplocation.value):
-                    os_mkdir(config.plugins.dbackup.backuplocation.value,0o777)
-                if os_path.exists("%s/%s.%s" % (config.plugins.dbackup.backuplocation.value,self.backupname,config.plugins.dbackup.backuptool.value)):
+                    os_mkdir(config.plugins.dbackup.backuplocation.value, 0o777)
+                if os_path.exists("%s/%s.%s" % (config.plugins.dbackup.backuplocation.value, self.backupname, config.plugins.dbackup.backuptool.value)):
                     cprint("filename already exists")
                     return header_string + self.backupname + "." + config.plugins.dbackup.backuptool.value + " " + _("already exists,") + " " + dbackup_backbutton
                 else:
@@ -2133,7 +2133,7 @@ class wBackup(resource.Resource):
                             self.TimerBackup_conn = self.TimerBackup.timeout.connect(self.backupFinishedCheck)
                         else:
                             self.TimerBackup.callback.append(self.backupFinishedCheck)
-                        self.TimerBackup.start(1000,True)
+                        self.TimerBackup.start(1000, True)
                         BackupImage(self.backupname)
                         return header_string + dbackup_backuping
             else:
@@ -2157,7 +2157,7 @@ class wBackup(resource.Resource):
                 used = rused
             if used < 0:
                 used = 0
-            cprint("total size %d used %d" % (total_size,used))
+            cprint("total size %d used %d" % (total_size, used))
             if total_size > 0:
                 if config.plugins.dbackup.backuptool.value == "tar.xz":
                     dbackup_progress = dbackup_tarxz * total_size / used
@@ -2171,7 +2171,7 @@ class wBackup(resource.Resource):
             else:
                 dbackup_progress = self.backuptime / 10
             cprint("checked if backup is finished ...")
-            self.TimerBackup.start(1000,True)
+            self.TimerBackup.start(1000, True)
         else:
             cprint("found finished backup ...")
             dbackup_progress = 0
@@ -2198,14 +2198,14 @@ class wBackup(resource.Resource):
                 length = len(sp2)
                 if length > 0:
                     image = sp2[length - 1]
-                    path = line.replace(size,"").replace(image,"")
-                    image = image.replace(".tar.gz\n","").replace(".tar.xz\n","").replace(".tar.bz2\n","").replace(".tar\n","")
+                    path = line.replace(size, "").replace(image, "")
+                    image = image.replace(".tar.gz\n", "").replace(".tar.xz\n", "").replace(".tar.bz2\n", "").replace(".tar\n", "")
                     image = image.rstrip().lstrip()
             cprint("found backup %s" % line)
             cprint("finished webif backup")
 
 class FlashingImage(Screen):
-    def __init__(self,flashimage, lock=False):
+    def __init__(self, flashimage, lock=False):
         global dreambox_data
         self.flashimage = flashimage
         cprint("does flashing %s" % self.flashimage)
@@ -2222,7 +2222,7 @@ class FlashingImage(Screen):
             command += "echo rescue > /proc/stb/fp/boot_mode\n"
             command += "shutdown -r now\n"
             command += "exit 0\n"
-            b = open(dbackup_script,"w")
+            b = open(dbackup_script, "w")
             b.write(command)
             b.close()
             os_chmod(dbackup_script, 0o755)
@@ -2240,18 +2240,18 @@ class FlashingImage(Screen):
             command += "sleep 5\n"
             command += "shutdown -h now\n"
             command += "exit 0\n"
-            b = open(dbackup_script,"w")
+            b = open(dbackup_script, "w")
             b.write(command)
             b.close()
             os_chmod(dbackup_script, 0o755)
-            cprint("%s created and is now flashing %s\n" % (dbackup_script,self.flashimage))
+            cprint("%s created and is now flashing %s\n" % (dbackup_script, self.flashimage))
             os_system("/sbin/start-stop-daemon -S -b -n dbackup.sh -x %s" % dbackup_script)
         elif config.plugins.dbackup.flashtool.value == "usb":
             cprint("recovery usb stick is not yet supported")
         else:
             tmp_extract = "%s/tmp" % config.plugins.dbackup.backuplocation.value
             if os_path.exists(tmp_extract):
-                shutil.rmtree(tmp_extract,True)
+                shutil.rmtree(tmp_extract, True)
             if not os_path.exists(tmp_extract):
                 os_mkdir(tmp_extract)
             tarimage = "%s/tmp/rootfs.tar" % config.plugins.dbackup.backuplocation.value
@@ -2266,8 +2266,8 @@ class FlashingImage(Screen):
                 command += "/usr/sbin/update-rescue -v\n"
             if self.flashimage == "recovery":
                 # default values from DMM recovery Image
-                url = "http://dreamboxupdate.com/download/recovery/%s/release" % self.boxtype.replace("dream","")
-                img = "dreambox-image-%s.tar.xz" % self.boxtype.replace("dream","")
+                url = "http://dreamboxupdate.com/download/recovery/%s/release" % self.boxtype.replace("dream", "")
+                img = "dreambox-image-%s.tar.xz" % self.boxtype.replace("dream", "")
                 if not os_path.exists("/data"):
                     os_mkdir("/data")
                 os.system("umount %s; mount %s /data" % (dreambox_data, dreambox_data))
@@ -2277,35 +2277,35 @@ class FlashingImage(Screen):
                     while (line):
                         line = r.readline()
                         if line.startswith("BASE_URI="):
-                            url = line.replace("BASE_URI=","").rstrip("\n")
+                            url = line.replace("BASE_URI=", "").rstrip("\n")
                         if line.startswith("FILENAME="):
-                            img = line.replace("FILENAME=","").rstrip("\n")
+                            img = line.replace("FILENAME=", "").rstrip("\n")
                     r.close()
-                recovery_image = "%s/%s" % (url,img)
-                self.flashimage = "%s/%s" % (config.plugins.dbackup.backuplocation.value,img)
-                cprint("downloads %s to %s" % (recovery_image,self.flashimage))
+                recovery_image = "%s/%s" % (url, img)
+                self.flashimage = "%s/%s" % (config.plugins.dbackup.backuplocation.value, img)
+                cprint("downloads %s to %s" % (recovery_image, self.flashimage))
                 os_system("umount /data")
-                command += "wget %s -O %s\n" % (recovery_image,self.flashimage)
+                command += "wget %s -O %s\n" % (recovery_image, self.flashimage)
             if self.flashimage.endswith(".tar.gz"):
-                command += "pigz -d -f -c \"%s\" > \"%s\"\n" % (self.flashimage,tarimage)
+                command += "pigz -d -f -c \"%s\" > \"%s\"\n" % (self.flashimage, tarimage)
             elif self.flashimage.endswith(".tar.xz"):
-                command += "xz -d -c \"%s\" > \"%s\"\n" % (self.flashimage,tarimage)
+                command += "xz -d -c \"%s\" > \"%s\"\n" % (self.flashimage, tarimage)
             elif self.flashimage.endswith(".tar.bz2"):
                 if os_path.exists("/usr/bin/pbzip2"):
-                    command += "/usr/bin/pbzip2 -d -k -c \"%s\" > \"%s\"\n" % (self.flashimage,tarimage)
+                    command += "/usr/bin/pbzip2 -d -k -c \"%s\" > \"%s\"\n" % (self.flashimage, tarimage)
                 else:
-                    command += "bunzip2 -c -f \"%s\" > \"%s\"\n" % (self.flashimage,tarimage)
+                    command += "bunzip2 -c -f \"%s\" > \"%s\"\n" % (self.flashimage, tarimage)
             elif self.flashimage.endswith(".zip"):
                 command += "unzip \"%s\" -d %s/tmp\n" % (self.flashimage, config.plugins.dbackup.backuplocation.value)
-                bz2image = "%s/tmp/%s/rootfs.tar.bz2" % (config.plugins.dbackup.backuplocation.value,self.boxtype)
-                command += "if [ -e %s/tmp/%s ]; then\n" % (config.plugins.dbackup.backuplocation.value,self.boxtype)
-                command += "bunzip2 -c -f \"%s\" > \"%s\"\n" % (bz2image,tarimage)
+                bz2image = "%s/tmp/%s/rootfs.tar.bz2" % (config.plugins.dbackup.backuplocation.value, self.boxtype)
+                command += "if [ -e %s/tmp/%s ]; then\n" % (config.plugins.dbackup.backuplocation.value, self.boxtype)
+                command += "bunzip2 -c -f \"%s\" > \"%s\"\n" % (bz2image, tarimage)
                 command += "else\n"
                 sp = []
                 sp = self.flashimage.split("/")
                 ll = len(sp)
                 flashimagename = sp[ll - 1]
-                command += "xz -d -c \"%s/tmp/%s\" > \"%s\"\n" % (config.plugins.dbackup.backuplocation.value, flashimagename.replace(".zip",".rootfs.tar.xz"),tarimage)
+                command += "xz -d -c \"%s/tmp/%s\" > \"%s\"\n" % (config.plugins.dbackup.backuplocation.value, flashimagename.replace(".zip", ".rootfs.tar.xz"), tarimage)
                 command += "fi\n"
             elif self.flashimage.endswith(".bin"):
                 if config.plugins.dbackup.verbose.value:
@@ -2330,11 +2330,11 @@ class FlashingImage(Screen):
                     command += "%s/mipsel/swaproot \"%s\" %s\n" % (dbackup_plugindir, tarimage, stopping)
             command += "rm %s\n" % dbackup_busy
             command += "exit 0\n"
-            b = open(dbackup_script,"w")
+            b = open(dbackup_script, "w")
             b.write(command)
             b.close()
             os_chmod(dbackup_script, 0o755)
-            cprint("%s created and is now flashing %s" % (dbackup_script,self.flashimage))
+            cprint("%s created and is now flashing %s" % (dbackup_script, self.flashimage))
 #                       os_system("/sbin/start-stop-daemon -S -b -n dbackup.sh -x %s" % dbackup_script)
             cmd = "/sbin/start-stop-daemon -S -b -n dbackup.sh -x %s" % dbackup_script
             self.container.execute(cmd)
@@ -2347,7 +2347,7 @@ class FlashingImage(Screen):
         fbClass.getInstance().lock()
 
 class BackupImage(Screen):
-    def __init__(self,backupname):
+    def __init__(self, backupname):
         cprint("does backup")
         self.boxtype = getBoxtype()
         open(dbackup_busy, 'a').close()
@@ -2365,12 +2365,12 @@ class BackupImage(Screen):
             exclude += " --exclude=settings"
         for name in os_listdir("/lib/modules"):
             self.kernel = name
-        self.kernel = self.kernel.replace("\n","").replace("\l","").replace("\0","")
-        cprint("boxtype %s kernel %s" % (self.boxtype,self.kernel))
+        self.kernel = self.kernel.replace("\n", "").replace("\l", "").replace("\0", "")
+        cprint("boxtype %s kernel %s" % (self.boxtype, self.kernel))
         # don't backup left overs from flashing ...
         tmp_extract = "%s/tmp" % config.plugins.dbackup.backuplocation.value
         if os_path.exists(tmp_extract):
-            shutil.rmtree(tmp_extract,True)
+            shutil.rmtree(tmp_extract, True)
 
         # here comes the fun ...
 
@@ -2426,12 +2426,12 @@ class BackupImage(Screen):
         elif config.plugins.dbackup.backuptool.value == "tar.bz2":
             if config.plugins.dbackup.verbose.value:
                 if os_path.exists("/usr/bin/pbzip2"):
-                    command += "tar %s -cvf - -C /tmp/root . | /usr/bin/pbzip2 -b100 -f -c > %s.bz2\n" % (exclude,target)
+                    command += "tar %s -cvf - -C /tmp/root . | /usr/bin/pbzip2 -b100 -f -c > %s.bz2\n" % (exclude, target)
                 else:
                     command += "tar %s -cvjf %s.bz2 -C /tmp/root .\n" % (exclude, target)
             else:
                 if os_path.exists("/usr/bin/pbzip2"):
-                    command += "tar %s -cf - -C /tmp/root . | /usr/bin/pbzip2 -b100 -f -c > %s.bz2\n" % (exclude,target)
+                    command += "tar %s -cf - -C /tmp/root . | /usr/bin/pbzip2 -b100 -f -c > %s.bz2\n" % (exclude, target)
                 else:
                     command += "tar %s -cjf %s.bz2 -C /tmp/root .\n" % (exclude, target)
         else:
@@ -2449,7 +2449,7 @@ class BackupImage(Screen):
 
         command += "chmod 777 %s.*\n" % (target)
         command += "ls -alh %s*\n" % (target)
-        command += "du -h %s* > %s\n" % (target,dbackup_backup)
+        command += "du -h %s* > %s\n" % (target, dbackup_backup)
         command += "df -h\n"
 #               if self.boxtype == "dm520":
 #                       command +="swapoff %s/swapfile\n" % config.plugins.dbackup.backuplocation.value
@@ -2458,7 +2458,7 @@ class BackupImage(Screen):
         command += "date +\%s\n"
         command += "exit 0\n"
     #       print(command)
-        b = open(dbackup_script,"w")
+        b = open(dbackup_script, "w")
         b.write(command)
         b.close()
         os_chmod(dbackup_script, 0o755)
@@ -2615,10 +2615,10 @@ class dBackupChecking(Screen):
         if not self.command is None and self.command == "recovery":
             cprint("create recovery")
             device_string = _("Select device for recovery USB stick")
-            self.session.openWithCallback(self.askForDevice,ChoiceBox,device_string,self.getDeviceList())
+            self.session.openWithCallback(self.askForDevice, ChoiceBox, device_string, self.getDeviceList())
             return
         if not self.command is None and self.command != "none":
-            self.session.open(Console, self.checking,[(self.command)])
+            self.session.open(Console, self.checking, [(self.command)])
 
     def setWindowTitle(self):
         self["logo"].instance.setPixmapFromFile("%s/dbackup.png" % dbackup_plugindir)
@@ -2633,7 +2633,7 @@ class dBackupChecking(Screen):
 
     def getDeviceList(self):
         found = False
-        f = open("/proc/partitions","r")
+        f = open("/proc/partitions", "r")
         devlist = []
         line = f.readline()
         line = f.readline()
@@ -2650,22 +2650,22 @@ class dBackupChecking(Screen):
                 if len(devname) == 8 and mbsize < 36000 and mbsize > 480:
                     # only sticks from 512 MB up to 32GB are used as recovery sticks
                     found = True
-                    devlist.append(("%s %d %s" % (devname,mbsize,"MB"), devname,mbsize))
+                    devlist.append(("%s %d %s" % (devname, mbsize, "MB"), devname, mbsize))
         f.close()
         if not found:
             devlist.append(("no device found, shutdown, add device and reboot", "nodev", 0))
         return devlist
 
-    def askForDevice(self,device):
+    def askForDevice(self, device):
         if device is None:
             self.session.open(MessageBox, _("Sorry, no device choosen"), MessageBox.TYPE_ERROR)
         elif device[1] == "nodev":
             self.session.open(MessageBox, _("Sorry, no device found"), MessageBox.TYPE_ERROR)
         else:
             self.device = device[1]
-            self.session.openWithCallback(self.doRecoveryStick,MessageBox,_("Are you sure that you want to erase now %s ?") % (self.device), MessageBox.TYPE_YESNO)
+            self.session.openWithCallback(self.doRecoveryStick, MessageBox, _("Are you sure that you want to erase now %s ?") % (self.device), MessageBox.TYPE_YESNO)
 
-    def doRecoveryStick(self,option):
+    def doRecoveryStick(self, option):
         if option is False:
             self.session.open(MessageBox, _("Sorry, Erasing of %s was canceled!") % self.device, MessageBox.TYPE_ERROR)
         else:
@@ -2673,8 +2673,8 @@ class dBackupChecking(Screen):
                 self.session.open(MessageBox, _("Sorry, %s has no primary partition") % self.device, MessageBox.TYPE_ERROR)
             else:
                 cprint("erases %s1" % self.device)
-                cmd = "umount %s1; mkfs.ext4 -L dreambox-data %s1; mkdir /autofs/%s1/backup" % (self.device,self.device,self.device)
-                self.session.open(Console, self.checking,[cmd])
+                cmd = "umount %s1; mkfs.ext4 -L dreambox-data %s1; mkdir /autofs/%s1/backup" % (self.device, self.device, self.device)
+                self.session.open(Console, self.checking, [cmd])
 
 class dBackupConfiguration(Screen, ConfigListScreen):
     if sz_w == 1920:
@@ -2751,7 +2751,7 @@ class dBackupConfiguration(Screen, ConfigListScreen):
         self.list.append(getConfigListEntry(_("automatic") + " " + _("cleanup") + " " + _("(max. number of backups)"), config.plugins.dbackup.cleanlastbackup))
 #       self.list.append(getConfigListEntry(_("Imagetype in backupname"), config.plugins.dbackup.backupimagetype))
 #       self.list.append(getConfigListEntry(_("Boxtype in backupname"), config.plugins.dbackup.backupboxtype))
-        self.list.append(getConfigListEntry(_("deb in backupname").replace("deb","..."), config.plugins.dbackup.backupid))
+        self.list.append(getConfigListEntry(_("deb in backupname").replace("deb", "..."), config.plugins.dbackup.backupid))
         if config.plugins.dbackup.backupid.value == "user":
             self.list.append(getConfigListEntry(_("User defined") + ":", config.plugins.dbackup.backupuserid))
         else:
@@ -2833,9 +2833,9 @@ class dBackupConfiguration(Screen, ConfigListScreen):
         self.session.open(dBackupChecking)
 
     def disclaimer(self):
-        self.session.openWithCallback(self.about,MessageBox, disclaimer_string + "\n\n" + support_string, MessageBox.TYPE_WARNING)
+        self.session.openWithCallback(self.about, MessageBox, disclaimer_string + "\n\n" + support_string, MessageBox.TYPE_WARNING)
 
-    def about(self,answer):
+    def about(self, answer):
         self.session.open(dBackupAbout)
 
 class dBackupAbout(Screen):
@@ -2873,7 +2873,7 @@ class dBackupAbout(Screen):
         free = st.f_bavail * st.f_frsize // 1024 // 1024
         total = st.f_blocks * st.f_frsize // 1024 // 1024
         used = (st.f_blocks - st.f_bfree) * st.f_frsize // 1024 // 1024
-        freefilesystem = _("Root Filesystem\n\ntotal: %s MB\nused:  %s MB\nfree:  %s MB") % (total,used,free)
+        freefilesystem = _("Root Filesystem\n\ntotal: %s MB\nused:  %s MB\nfree:  %s MB") % (total, used, free)
 
         memfree = 0
         memtotal = 0
@@ -2887,7 +2887,7 @@ class dBackupAbout(Screen):
         memfree = int(sp[1]) // 1024
         fm.close()
         memused = memtotal - memfree
-        freememory = _("Memory\n\ntotal: %i MB\nused: %i MB\nfree: %i MB") % (memtotal,memused,memfree)
+        freememory = _("Memory\n\ntotal: %i MB\nused: %i MB\nfree: %i MB") % (memtotal, memused, memfree)
 
         self["buttonred"] = Label(_("Exit"))
         self["buttongreen"] = Label(_("OK"))
