@@ -71,6 +71,7 @@ flashing_tar = 250
 global dreambox_data
 dreambox_data = "none"
 
+
 def getbylabel():
     global dreambox_data
     cmd = 'blkid -t LABEL=dreambox-data -o device'
@@ -82,6 +83,7 @@ def getbylabel():
         print("[dbackup} dreambox-data found on device:", device)
         dreambox_data = device
 
+
 getbylabel()
 
 # add local language file
@@ -89,6 +91,7 @@ dbackup_sp = config.osd.language.value.split("_")
 dbackup_language = dbackup_sp[0]
 if os_path.exists("%s/locale/%s" % (dbackup_plugindir, dbackup_language)):
     _ = gettext.Catalog('dbackup', '%s/locale' % dbackup_plugindir, dbackup_sp).gettext
+
 
 def getBoxtype():
     boxtype = "dm920"
@@ -104,6 +107,7 @@ def getBoxtype():
     if boxtype == "two":
         boxtype = "dreamtwo"
     return boxtype
+
 
 def getPiconPath(name):
     if os_path.exists("/usr/share/enigma2/%s/skin_default/%s.svg" % (dbackup_skin, name)):
@@ -132,6 +136,7 @@ def getPiconPath(name):
         return "/usr/share/enigma2/skin_default/buttons/key_%s.png" % (name)
 #       cprint("[dBACKUP] found %s.png in default skin ..." % name)
     return "/usr/share/enigma2/skin_default/%s.png" % (name)
+
 
 yes_no_descriptions = {False: _("no"), True: _("yes")}
 
@@ -341,10 +346,13 @@ dbackup_progress = 0
 YELLOWC = '\033[33m'
 ENDC = '\033[m'
 
+
 def cprint(text):
     print(YELLOWC + "[dBACKUP] " + text + ENDC)
 
+
 sz_w = getDesktop(0).size().width()
+
 
 class dBackupSummary(Screen):
     skin = (
@@ -410,6 +418,7 @@ class dBackupSummary(Screen):
             self.ClockTimer.start(1000, True)
         else:
             self.ClockTimer.stop()
+
 
 class dBackup(Screen):
     if sz_w == 1920:
@@ -1435,7 +1444,6 @@ class dBackup(Screen):
             #start automatic cleanup
             clean_dBackup()
 
-
     def callbackFinishMessage(self):
         if os_path.exists(dbackup_busy):
             os_remove(dbackup_busy)
@@ -1470,22 +1478,26 @@ class dBackup(Screen):
         else:
             self.session.open(dBackupConfiguration)
 
+
 def startdBackup(session, **kwargs):
     if os_path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/gutemine") or os_path.exists("/var/lib/opkg/status"):
         session.open(dBackup)
     else:
         session.open(MessageBox, running_string, MessageBox.TYPE_ERROR)
 
+
 def startRecover(session, **kwargs):
     global dsession
     dsession = session
     session.openWithCallback(askForTask, ChoiceBox, _("Please choose what you want to do next."), getTaskList())
+
 
 def getTaskList():
     task = []
     task.append((_("Reboot") + " " + _("Recovery Mode"), "boot"))
     task.append((_("Software update") + " " + _("Recovery Mode"), "upgrade"))
     return task
+
 
 def askForTask(task):
     global dsession
@@ -1499,6 +1511,7 @@ def askForTask(task):
         else:
             dsession.openWithCallback(startLoaderUpdate, MessageBox, _("Recovery Mode") + " " + _("Software update") + "?", MessageBox.TYPE_YESNO)
 
+
 def startRecovery(option):
     global dsession
     if option:
@@ -1510,6 +1523,7 @@ def startRecovery(option):
     else:
         cprint("cancelled Recovery")
 
+
 def startLoaderUpdate(option):
     global dsession
     if option:
@@ -1519,6 +1533,7 @@ def startLoaderUpdate(option):
         dsession.open(Console, _("Recovery Mode") + " " + _("Software update") + " " + _("waiting") + "...", [update_cmd])
     else:
         cprint("cancelled Rescue Loader update")
+
 
 def recovery2Webif(enable):
     if enable:
@@ -1601,8 +1616,10 @@ def recovery2Webif(enable):
                 p.close()
     return
 
+
 TimerBackup = None
 TimerBackup_conn = None
+
 
 def autostart(reason, **kwargs):
     if 'session' in kwargs and reason == 0:
@@ -1646,6 +1663,7 @@ def autostart(reason, **kwargs):
                 cprint("recent enough Backup ...")
         return
 
+
 def dBackupOnStandby(reason):
     cprint("entering Standby/Idle")
     from Screens.Standby import inStandby
@@ -1664,6 +1682,7 @@ def dBackupOnStandby(reason):
         else:
             cprint("recent enough Backup ...")
 
+
 def startBackupFinishedCheckTimer():
     cprint("start BackupFinishedCheckTimer ...")
     global TimerBackup
@@ -1676,6 +1695,7 @@ def startBackupFinishedCheckTimer():
         TimerBackup.callback.append(backupFinishedCheck)
     TimerBackup.start(1000, True)
 
+
 def backupFinishedCheck():
     global TimerBackup
     if os_path.exists(dbackup_busy): # not finished - continue checking ...
@@ -1687,6 +1707,7 @@ def backupFinishedCheck():
         TimerBackup.stop()
         #start automatic cleanup
         clean_dBackup()
+
 
 def dBackupPowerOn():
     cprint("booting or leaving Standby/Idle")
@@ -1706,6 +1727,7 @@ def dBackupPowerOn():
             # remind after 10 seconds ...
             BackupReminderTimer.start(10000, True)
 
+
 def showBackupReminder():
     cprint("now reminding too old backup ...")
     from API import session
@@ -1716,6 +1738,7 @@ def showBackupReminder():
     else:
         text = _("Last Backup") + " " + _("not found")
         session.open(MessageBox, text, MessageBox.TYPE_WARNING, timeout=10)
+
 
 def automaticBackupName(mask=False):
     name = "dreambox-image"
@@ -1759,11 +1782,13 @@ def automaticBackupName(mask=False):
     cprint("suggested backupname %s" % suggested_backupname)
     return suggested_backupname
 
+
 def main(session, **kwargs):
     if os_path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/gutemine") or os_path.exists("/var/lib/opkg/status"):
         session.open(dBackup)
     else:
         session.open(MessageBox, running_string, MessageBox.TYPE_ERROR)
+
 
 def Plugins(**kwargs):
     plugin_desc = []
@@ -1776,6 +1801,7 @@ def Plugins(**kwargs):
     plugin_desc.append(PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart))
     cprint("PluginDescriptor: %s" % plugin_desc)
     return plugin_desc
+
 
 def mainconf(menuid):
     cprint("menu: %s" % menuid)
@@ -1797,6 +1823,7 @@ def mainconf(menuid):
 ###############################################################################
 # dBackup Webinterface by gutemine
 ###############################################################################
+
 
 class wBackup(resource.Resource):
     def render_GET(self, req):
@@ -2204,6 +2231,7 @@ class wBackup(resource.Resource):
             cprint("found backup %s" % line)
             cprint("finished webif backup")
 
+
 class FlashingImage(Screen):
     def __init__(self, flashimage, lock=False):
         global dreambox_data
@@ -2346,6 +2374,7 @@ class FlashingImage(Screen):
         eRCInput.getInstance().lock()
         fbClass.getInstance().lock()
 
+
 class BackupImage(Screen):
     def __init__(self, backupname):
         cprint("does backup")
@@ -2476,6 +2505,7 @@ class BackupImage(Screen):
         config.plugins.dbackup.lastbackup.value = int(time.time())
         config.plugins.dbackup.lastbackup.save()
 
+
 def clean_dBackup():
     if int(config.plugins.dbackup.cleanlastbackup.value) == 0:
         cprint("automatic cleanup in setup deactivated - max. number of backups = 0")
@@ -2523,6 +2553,7 @@ def clean_dBackup():
 ###############################################################################
 # dBackup Check by gutemine
 ###############################################################################
+
 
 class dBackupChecking(Screen):
     if sz_w == 1920:
@@ -2675,6 +2706,7 @@ class dBackupChecking(Screen):
                 cprint("erases %s1" % self.device)
                 cmd = "umount %s1; mkfs.ext4 -L dreambox-data %s1; mkdir /autofs/%s1/backup" % (self.device, self.device, self.device)
                 self.session.open(Console, self.checking, [cmd])
+
 
 class dBackupConfiguration(Screen, ConfigListScreen):
     if sz_w == 1920:
@@ -2838,6 +2870,7 @@ class dBackupConfiguration(Screen, ConfigListScreen):
     def about(self, answer):
         self.session.open(dBackupAbout)
 
+
 class dBackupAbout(Screen):
     if sz_w == 1920:
         skin = """
@@ -2910,6 +2943,7 @@ class dBackupAbout(Screen):
 
     def cancel(self):
         self.close(False)
+
 
 for File in os_listdir("/usr/lib/enigma2/python/Plugins/Extensions"):
     file = File.lower()
