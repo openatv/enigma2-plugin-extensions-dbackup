@@ -140,98 +140,98 @@ f=open("/proc/mounts", "r")
 m = f.read()
 f.close()
 if m.find("/media/hdd") != -1:
-    config.plugins.dbackup.backuplocation = ConfigText(default = "/media/hdd/backup", fixed_size=True, visible_width=20)
+    config.plugins.dbackup.backuplocation = ConfigText(default="/media/hdd/backup", fixed_size=True, visible_width=20)
 else:
-    config.plugins.dbackup.backuplocation = ConfigText(default = "/autofs/sda1", fixed_size=True, visible_width=20)
-config.plugins.dbackup.backupdeb = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
+    config.plugins.dbackup.backuplocation = ConfigText(default="/autofs/sda1", fixed_size=True, visible_width=20)
+config.plugins.dbackup.backupdeb = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 #config.plugins.dbackup.backupimagetype = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
-config.plugins.dbackup.stopped = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.backupboxtype = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
-config.plugins.dbackup.backupdate = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
-config.plugins.dbackup.backuptime = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.stopped = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.backupboxtype = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.backupdate = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.backuptime = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 blanks_options=[]
 for blank in range(0,41):
     blanks_options.append(( str(blank),str(blank) ))
-config.plugins.dbackup.backupblanks = ConfigSelection(default = "10", choices=blanks_options)
-config.plugins.dbackup.backupsettings = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.sig = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.loaderextract = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.loaderflash = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.kernelextract = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.sort = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
-config.plugins.dbackup.backupaskdir = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
-config.plugins.dbackup.delay = ConfigInteger(default = 0, limits=(0,60))
+config.plugins.dbackup.backupblanks = ConfigSelection(default="10", choices=blanks_options)
+config.plugins.dbackup.backupsettings = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.sig = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.loaderextract = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.loaderflash = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.kernelextract = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.sort = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.backupaskdir = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.delay = ConfigInteger(default=0, limits=(0,60))
 automatic_options=[]
 automatic_options.append(( "idle",_("Idle") ))
 automatic_options.append(( "boot",_("Startup") ))
 automatic_options.append(( "message",_("Message") ))
-config.plugins.dbackup.automatic = ConfigSelection(default = "idle", choices=automatic_options)
-config.plugins.dbackup.lastbackup = ConfigInteger(default = 0, limits=(0,2000000000))
-config.plugins.dbackup.cleanlastbackup = ConfigSelectionNumber(0, 100, 5, default = 0)
+config.plugins.dbackup.automatic = ConfigSelection(default="idle", choices=automatic_options)
+config.plugins.dbackup.lastbackup = ConfigInteger(default=0, limits=(0,2000000000))
+config.plugins.dbackup.cleanlastbackup = ConfigSelectionNumber(0, 100, 5, default=0)
 days_options=[]
 days_options.append(( "0",_("never")))
 days_options.append(( "8888",_("always")))
 for days in range(1,31):
     days_options.append(( str(days),str(days) ))
-config.plugins.dbackup.latestbackup = ConfigSelection(default = "0", choices=days_options)
+config.plugins.dbackup.latestbackup = ConfigSelection(default="0", choices=days_options)
 
 if os_path.exists("/var/lib/opkg/status"):
-    config.plugins.dbackup.aptclean = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-    config.plugins.dbackup.epgdb = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-    config.plugins.dbackup.mediadb = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-    config.plugins.dbackup.webinterface = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
+    config.plugins.dbackup.aptclean = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+    config.plugins.dbackup.epgdb = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+    config.plugins.dbackup.mediadb = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+    config.plugins.dbackup.webinterface = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 else:
-    config.plugins.dbackup.aptclean = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-    config.plugins.dbackup.epgdb = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-    config.plugins.dbackup.mediadb = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-    config.plugins.dbackup.webinterface = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
+    config.plugins.dbackup.aptclean = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+    config.plugins.dbackup.epgdb = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+    config.plugins.dbackup.mediadb = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+    config.plugins.dbackup.webinterface = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 
-config.plugins.dbackup.settings = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.timers = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.picons = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.settings = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.timers = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.picons = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 id_options = []
 id_options.append(( "deb",_("deb") ))
 id_options.append(( "none",_("none") ))
 id_options.append(( "exp",_("exp") ))
 id_options.append(( "rel",_("rel") ))
 id_options.append(( "user",_("User defined") ))
-config.plugins.dbackup.backupid = ConfigSelection(default = "none", choices = id_options)
-config.plugins.dbackup.backupuserid = ConfigText(default = "deb                   ", fixed_size=True, visible_width=20)
+config.plugins.dbackup.backupid = ConfigSelection(default="none", choices=id_options)
+config.plugins.dbackup.backupuserid = ConfigText(default="deb                   ", fixed_size=True, visible_width=20)
 display_options = []
 display_options.append(( "clock",_("Clock") ))
 display_options.append(( "dbackup",_("dBackup") ))
 display_options.append(( "dreambox",_("Dreambox") ))
 display_options.append(( "mb",_("MB") ))
 display_options.append(( "nothing",_("nothing") ))
-config.plugins.dbackup.displayentry = ConfigSelection(default = "clock", choices = display_options)
+config.plugins.dbackup.displayentry = ConfigSelection(default="clock", choices=display_options)
 
-config.plugins.dbackup.showinsettings = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.showinextensions = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
-config.plugins.dbackup.showinplugins = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.showinsettings = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.showinextensions = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.showinplugins = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 
 dbackup_recovering = []
 dbackup_recovering.append(( "webif",_("Webinterface") ))
 dbackup_recovering.append(( "factory",_("Factory reset") ))
 dbackup_recovering.append(( "both",_("both") ))
 dbackup_recovering.append(( "none",_("none") ))
-config.plugins.dbackup.recovering = ConfigSelection(default = "both", choices = dbackup_recovering)
+config.plugins.dbackup.recovering = ConfigSelection(default="both", choices=dbackup_recovering)
 
 flashtools=[]
 flashtools.append(( "direct", _("direct") ))
 flashtools.append(( "rescue", _("Rescue Bios") ))
 #flashtools.append(( "recovery", _("USB Stick") ))
-config.plugins.dbackup.flashtool = ConfigSelection(default = "direct", choices = flashtools)
-config.plugins.dbackup.console = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
+config.plugins.dbackup.flashtool = ConfigSelection(default="direct", choices=flashtools)
+config.plugins.dbackup.console = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 
-config.plugins.dbackup.transparency = ConfigSlider(default = 0, increment = 5, limits=(0,255))
-config.plugins.dbackup.verbose = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.transparency = ConfigSlider(default=0, increment=5, limits=(0,255))
+config.plugins.dbackup.verbose = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 
 backuptools=[]
 backuptools.append(( "tar.xz", _("tar.xz") ))
 backuptools.append(( "tar.gz", _("tar.gz") ))
 backuptools.append(( "tar.bz2", _("tar.bz2") ))
 backuptools.append(( "tar", _("tar") ))
-config.plugins.dbackup.backuptool = ConfigSelection(default = "tar.xz", choices = backuptools)
+config.plugins.dbackup.backuptool = ConfigSelection(default="tar.xz", choices=backuptools)
 gz_options = []
 gz_options.append(( "0","0" ))
 gz_options.append(( "1","1" ))
@@ -258,11 +258,11 @@ xz_options.append(( "6","6" ))
 
 boxtype=getBoxtype()
 if boxtype == "dm520" or boxtype == "dm820" or boxtype == "dm7080":
-    config.plugins.dbackup.xzcompression = ConfigSelection(default = "0", choices = xz_options)
-    config.plugins.dbackup.gzcompression = ConfigSelection(default = "2", choices = gz_options)
+    config.plugins.dbackup.xzcompression = ConfigSelection(default="0", choices=xz_options)
+    config.plugins.dbackup.gzcompression = ConfigSelection(default="2", choices=gz_options)
 else:
-    config.plugins.dbackup.xzcompression = ConfigSelection(default = "6", choices = xz_options)
-    config.plugins.dbackup.gzcompression = ConfigSelection(default = "6", choices = gz_options)
+    config.plugins.dbackup.xzcompression = ConfigSelection(default="6", choices=xz_options)
+    config.plugins.dbackup.gzcompression = ConfigSelection(default="6", choices=gz_options)
 s_options = []
 s_options.append(( "0",_("none") ))
 s_options.append(( "1","1" ))
@@ -274,14 +274,14 @@ s_options.append(( "6","6" ))
 s_options.append(( "7","7" ))
 s_options.append(( "8","8" ))
 s_options.append(( "10","10" ))
-config.plugins.dbackup.fadetime = ConfigSelection(default = "5", choices = s_options)
-config.plugins.dbackup.overwrite = ConfigBoolean(default = False, descriptions=yes_no_descriptions)
+config.plugins.dbackup.fadetime = ConfigSelection(default="5", choices=s_options)
+config.plugins.dbackup.overwrite = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 
 exectools=[]
 exectools.append(( "daemon", _("daemon") ))
 exectools.append(( "system", _("system") ))
 exectools.append(( "container", _("container") ))
-config.plugins.dbackup.exectool = ConfigSelection(default = "system", choices = exectools)
+config.plugins.dbackup.exectool = ConfigSelection(default="system", choices=exectools)
 
 fileupload_string=_("Select tar.*z image for flashing")
 disclaimer_header=_("Disclaimer")
@@ -374,7 +374,7 @@ class dBackupSummary(Screen):
     </screen>""")
 
     def __init__(self, session, parent):
-        Screen.__init__(self, session, parent = parent)
+        Screen.__init__(self, session, parent=parent)
         self.slider = Slider(0, 500)
         self["slider"] = self.slider
         self["slider"].hide()
@@ -441,7 +441,7 @@ class dBackup(Screen):
         <widget source="duration" render="Label" size="45,30" position="753,50" font="Regular;18" halign="center" valign="center" />
         </screen>"""
 
-    def __init__(self, session, args = 0):
+    def __init__(self, session, args=0):
         Screen.__init__(self, session)
         self.boxtype=getBoxtype()
         self.onShown.append(self.setWindowTitle)
@@ -1608,7 +1608,7 @@ def autostart(reason,**kwargs):
     if 'session' in kwargs and reason == 0:
         session = kwargs["session"]
         cprint("autostart")
-        config.misc.standbyCounter.addNotifier(dBackupOnStandby, initial_call = False)
+        config.misc.standbyCounter.addNotifier(dBackupOnStandby, initial_call=False)
         dBackupPowerOn()
         if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebChilds/Toplevel.py"):
             from Plugins.Extensions.WebInterface.WebChilds.Toplevel import addExternalChild
@@ -1717,7 +1717,7 @@ def showBackupReminder():
         text=_("Last Backup")+" "+_("not found")
         session.open(MessageBox, text, MessageBox.TYPE_WARNING, timeout=10)
 
-def automaticBackupName(mask = False):
+def automaticBackupName(mask=False):
     name="dreambox-image"
     if os_path.exists("/etc/image-version"):
         f=open("/etc/image-version")
@@ -1768,12 +1768,12 @@ def main(session,**kwargs):
 def Plugins(**kwargs):
     plugin_desc=[]
     if config.plugins.dbackup.showinsettings.value:
-        plugin_desc.append(PluginDescriptor(name=_("Recovery Mode")+" "+_("Update"), description="dBackup", where = PluginDescriptor.WHERE_MENU, fnc=mainconf))
+        plugin_desc.append(PluginDescriptor(name=_("Recovery Mode")+" "+_("Update"), description="dBackup", where=PluginDescriptor.WHERE_MENU, fnc=mainconf))
     if config.plugins.dbackup.showinplugins.value:
-        plugin_desc.append(PluginDescriptor(name=backup_string+" & "+flashing_string, description="dBackup", where = PluginDescriptor.WHERE_PLUGINMENU, icon="dbackup.png", fnc=main))
+        plugin_desc.append(PluginDescriptor(name=backup_string+" & "+flashing_string, description="dBackup", where=PluginDescriptor.WHERE_PLUGINMENU, icon="dbackup.png", fnc=main))
     if config.plugins.dbackup.showinextensions.value:
-        plugin_desc.append(PluginDescriptor(name=backup_string+" & "+flashing_string, description="dBackup", where = PluginDescriptor.WHERE_EXTENSIONSMENU, icon="dbackup.png", fnc=main))
-    plugin_desc.append(PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart))
+        plugin_desc.append(PluginDescriptor(name=backup_string+" & "+flashing_string, description="dBackup", where=PluginDescriptor.WHERE_EXTENSIONSMENU, icon="dbackup.png", fnc=main))
+    plugin_desc.append(PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=autostart))
     cprint("PluginDescriptor: %s" % plugin_desc)
     return plugin_desc
 
@@ -2548,7 +2548,7 @@ class dBackupChecking(Screen):
         <widget name="menu" position="10,60" size="780,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
         </screen>"""
 
-    def __init__(self, session, args = 0):
+    def __init__(self, session, args=0):
         global dreambox_data
         self.skin = dBackupChecking.skin
         self.session = session
@@ -2700,7 +2700,7 @@ class dBackupConfiguration(Screen, ConfigListScreen):
         <widget name="config" position="10,60" size="780,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
         </screen>"""
 
-    def __init__(self, session, args = 0):
+    def __init__(self, session, args=0):
         Screen.__init__(self, session)
 
         self.boxtype=getBoxtype()
@@ -2709,7 +2709,7 @@ class dBackupConfiguration(Screen, ConfigListScreen):
         self.onChangedEntry = []
 
         self.list = []
-        ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+        ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
         self.createSetup()
 
         self["logo"] = Pixmap()
@@ -2866,7 +2866,7 @@ class dBackupAbout(Screen):
         <widget backgroundColor="#1f771f" font="Regular;19" halign="center" name="buttongreen" position="510,300" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="200,40" valign="center" />
         </screen>"""
 
-    def __init__(self, session, args = 0):
+    def __init__(self, session, args=0):
         Screen.__init__(self, session)
         self.onShown.append(self.setWindowTitle)
         st = os_statvfs("/")
