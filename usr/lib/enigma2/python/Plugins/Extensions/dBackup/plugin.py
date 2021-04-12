@@ -27,10 +27,16 @@ from enigma import  ePoint, eLCD, fbClass, eRCInput, eDBoxLCD, getDesktop, quitM
 from Tools.LoadPixmap import LoadPixmap
 from shutil import rmtree as rmtree
 import Screens.Standby
-import sys, struct, stat, time
+import sys
+import struct
+import stat
+import time
 from os import path as os_path, remove as os_remove, rename as os_rename, chmod as os_chmod, readlink as os_readlink, symlink as os_symlink, listdir as os_listdir, mkdir as os_mkdir, system as os_system, statvfs as os_statvfs
 from twisted.web import resource, http
-import gettext, datetime, shutil, os
+import gettext
+import datetime
+import shutil
+import os
 from glob import glob
 for File in os_listdir("/usr/lib/enigma2/python/Plugins/Extensions"):
     file=File.lower()
