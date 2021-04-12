@@ -151,7 +151,7 @@ config.plugins.dbackup.backupdate = ConfigBoolean(default=True, descriptions=yes
 config.plugins.dbackup.backuptime = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 blanks_options=[]
 for blank in range(0,41):
-    blanks_options.append(( str(blank),str(blank) ))
+    blanks_options.append((str(blank),str(blank)))
 config.plugins.dbackup.backupblanks = ConfigSelection(default="10", choices=blanks_options)
 config.plugins.dbackup.backupsettings = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.sig = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
@@ -162,17 +162,17 @@ config.plugins.dbackup.sort = ConfigBoolean(default=True, descriptions=yes_no_de
 config.plugins.dbackup.backupaskdir = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.delay = ConfigInteger(default=0, limits=(0,60))
 automatic_options=[]
-automatic_options.append(( "idle",_("Idle") ))
-automatic_options.append(( "boot",_("Startup") ))
-automatic_options.append(( "message",_("Message") ))
+automatic_options.append(("idle",_("Idle")))
+automatic_options.append(("boot",_("Startup")))
+automatic_options.append(("message",_("Message")))
 config.plugins.dbackup.automatic = ConfigSelection(default="idle", choices=automatic_options)
 config.plugins.dbackup.lastbackup = ConfigInteger(default=0, limits=(0,2000000000))
 config.plugins.dbackup.cleanlastbackup = ConfigSelectionNumber(0, 100, 5, default=0)
 days_options=[]
-days_options.append(( "0",_("never")))
-days_options.append(( "8888",_("always")))
+days_options.append(("0",_("never")))
+days_options.append(("8888",_("always")))
 for days in range(1,31):
-    days_options.append(( str(days),str(days) ))
+    days_options.append((str(days),str(days)))
 config.plugins.dbackup.latestbackup = ConfigSelection(default="0", choices=days_options)
 
 if os_path.exists("/var/lib/opkg/status"):
@@ -190,19 +190,19 @@ config.plugins.dbackup.settings = ConfigBoolean(default=False, descriptions=yes_
 config.plugins.dbackup.timers = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 config.plugins.dbackup.picons = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 id_options = []
-id_options.append(( "deb",_("deb") ))
-id_options.append(( "none",_("none") ))
-id_options.append(( "exp",_("exp") ))
-id_options.append(( "rel",_("rel") ))
-id_options.append(( "user",_("User defined") ))
+id_options.append(("deb",_("deb")))
+id_options.append(("none",_("none")))
+id_options.append(("exp",_("exp")))
+id_options.append(("rel",_("rel")))
+id_options.append(("user",_("User defined")))
 config.plugins.dbackup.backupid = ConfigSelection(default="none", choices=id_options)
 config.plugins.dbackup.backupuserid = ConfigText(default="deb                   ", fixed_size=True, visible_width=20)
 display_options = []
-display_options.append(( "clock",_("Clock") ))
-display_options.append(( "dbackup",_("dBackup") ))
-display_options.append(( "dreambox",_("Dreambox") ))
-display_options.append(( "mb",_("MB") ))
-display_options.append(( "nothing",_("nothing") ))
+display_options.append(("clock",_("Clock")))
+display_options.append(("dbackup",_("dBackup")))
+display_options.append(("dreambox",_("Dreambox")))
+display_options.append(("mb",_("MB")))
+display_options.append(("nothing",_("nothing")))
 config.plugins.dbackup.displayentry = ConfigSelection(default="clock", choices=display_options)
 
 config.plugins.dbackup.showinsettings = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
@@ -210,15 +210,15 @@ config.plugins.dbackup.showinextensions = ConfigBoolean(default=False, descripti
 config.plugins.dbackup.showinplugins = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
 
 dbackup_recovering = []
-dbackup_recovering.append(( "webif",_("Webinterface") ))
-dbackup_recovering.append(( "factory",_("Factory reset") ))
-dbackup_recovering.append(( "both",_("both") ))
-dbackup_recovering.append(( "none",_("none") ))
+dbackup_recovering.append(("webif",_("Webinterface")))
+dbackup_recovering.append(("factory",_("Factory reset")))
+dbackup_recovering.append(("both",_("both")))
+dbackup_recovering.append(("none",_("none")))
 config.plugins.dbackup.recovering = ConfigSelection(default="both", choices=dbackup_recovering)
 
 flashtools=[]
-flashtools.append(( "direct", _("direct") ))
-flashtools.append(( "rescue", _("Rescue Bios") ))
+flashtools.append(("direct", _("direct")))
+flashtools.append(("rescue", _("Rescue Bios")))
 #flashtools.append(( "recovery", _("USB Stick") ))
 config.plugins.dbackup.flashtool = ConfigSelection(default="direct", choices=flashtools)
 config.plugins.dbackup.console = ConfigBoolean(default=True, descriptions=yes_no_descriptions)
@@ -227,30 +227,30 @@ config.plugins.dbackup.transparency = ConfigSlider(default=0, increment=5, limit
 config.plugins.dbackup.verbose = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 
 backuptools=[]
-backuptools.append(( "tar.xz", _("tar.xz") ))
-backuptools.append(( "tar.gz", _("tar.gz") ))
-backuptools.append(( "tar.bz2", _("tar.bz2") ))
-backuptools.append(( "tar", _("tar") ))
+backuptools.append(("tar.xz", _("tar.xz")))
+backuptools.append(("tar.gz", _("tar.gz")))
+backuptools.append(("tar.bz2", _("tar.bz2")))
+backuptools.append(("tar", _("tar")))
 config.plugins.dbackup.backuptool = ConfigSelection(default="tar.xz", choices=backuptools)
 gz_options = []
-gz_options.append(( "0","0" ))
-gz_options.append(( "1","1" ))
-gz_options.append(( "2","2" ))
-gz_options.append(( "3","3" ))
-gz_options.append(( "4","4" ))
-gz_options.append(( "5","5" ))
-gz_options.append(( "6","6" ))
-gz_options.append(( "7","7" ))
-gz_options.append(( "8","8" ))
-gz_options.append(( "9","9" ))
+gz_options.append(("0","0"))
+gz_options.append(("1","1"))
+gz_options.append(("2","2"))
+gz_options.append(("3","3"))
+gz_options.append(("4","4"))
+gz_options.append(("5","5"))
+gz_options.append(("6","6"))
+gz_options.append(("7","7"))
+gz_options.append(("8","8"))
+gz_options.append(("9","9"))
 xz_options = []
-xz_options.append(( "0","0" ))
-xz_options.append(( "1","1" ))
-xz_options.append(( "2","2" ))
-xz_options.append(( "3","3" ))
-xz_options.append(( "4","4" ))
-xz_options.append(( "5","5" ))
-xz_options.append(( "6","6" ))
+xz_options.append(("0","0"))
+xz_options.append(("1","1"))
+xz_options.append(("2","2"))
+xz_options.append(("3","3"))
+xz_options.append(("4","4"))
+xz_options.append(("5","5"))
+xz_options.append(("6","6"))
 # needs too much memory
 #xz_options.append(( "7","7" ))
 #xz_options.append(( "8","8" ))
@@ -264,23 +264,23 @@ else:
     config.plugins.dbackup.xzcompression = ConfigSelection(default="6", choices=xz_options)
     config.plugins.dbackup.gzcompression = ConfigSelection(default="6", choices=gz_options)
 s_options = []
-s_options.append(( "0",_("none") ))
-s_options.append(( "1","1" ))
-s_options.append(( "2","2" ))
-s_options.append(( "3","3" ))
-s_options.append(( "4","4" ))
-s_options.append(( "5","5" ))
-s_options.append(( "6","6" ))
-s_options.append(( "7","7" ))
-s_options.append(( "8","8" ))
-s_options.append(( "10","10" ))
+s_options.append(("0",_("none")))
+s_options.append(("1","1"))
+s_options.append(("2","2"))
+s_options.append(("3","3"))
+s_options.append(("4","4"))
+s_options.append(("5","5"))
+s_options.append(("6","6"))
+s_options.append(("7","7"))
+s_options.append(("8","8"))
+s_options.append(("10","10"))
 config.plugins.dbackup.fadetime = ConfigSelection(default="5", choices=s_options)
 config.plugins.dbackup.overwrite = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 
 exectools=[]
-exectools.append(( "daemon", _("daemon") ))
-exectools.append(( "system", _("system") ))
-exectools.append(( "container", _("container") ))
+exectools.append(("daemon", _("daemon")))
+exectools.append(("system", _("system")))
+exectools.append(("container", _("container")))
 config.plugins.dbackup.exectool = ConfigSelection(default="system", choices=exectools)
 
 fileupload_string=_("Select tar.*z image for flashing")
@@ -471,7 +471,7 @@ class dBackup(Screen):
             config.plugins.dbackup.backuplocation.save()
             config.plugins.dbackup.backuptool.save()
 
-        self["setupActions"] = ActionMap([ "ColorActions", "SetupActions", "TextEntryActions", "ChannelSelectEPGActions", "ChannelSelectEditActions" ],
+        self["setupActions"] = ActionMap(["ColorActions", "SetupActions", "TextEntryActions", "ChannelSelectEPGActions", "ChannelSelectEditActions"],
                 {
                 "green": self.backup,
                 "red": self.leaving,
@@ -584,7 +584,7 @@ class dBackup(Screen):
             timestr=time.strftime('%Y-%m-%d %H:%M', time.localtime(int(config.plugins.dbackup.lastbackup.value)))
             text= _("Last Backup")+": "+timestr
             if int(config.plugins.dbackup.latestbackup.value) > 0:
-                timestr=time.strftime('%Y-%m-%d %H:%M', time.localtime(int(config.plugins.dbackup.lastbackup.value) + (int(config.plugins.dbackup.latestbackup.value)*3600*24) ))
+                timestr=time.strftime('%Y-%m-%d %H:%M', time.localtime(int(config.plugins.dbackup.lastbackup.value) + (int(config.plugins.dbackup.latestbackup.value)*3600*24)))
                 autoBackupType = [x for x in automatic_options if config.plugins.dbackup.automatic.value == x[0]][0][1]
                 text += "\n\n" + _("Next Backup")+": " + timestr + " (" + str(autoBackupType) + ")"
             self.session.openWithCallback(self.logging,MessageBox, text, MessageBox.TYPE_INFO)
@@ -604,7 +604,7 @@ class dBackup(Screen):
         if source is None:
             return
         else:
-            self.delimage = source [1].rstrip()
+            self.delimage = source[1].rstrip()
             self.session.openWithCallback(self.ImageDelete,MessageBox,_("deleting %s ?") %(self.delimage),MessageBox.TYPE_YESNO)
 
     def ImageDelete(self,answer):
@@ -738,14 +738,14 @@ class dBackup(Screen):
     def getImageList(self, flash=False):
         liststart = []
         list = []
-        liststart.append((_("Recovery Image from Feed"), "recovery" ))
+        liststart.append((_("Recovery Image from Feed"), "recovery"))
         if os_path.exists("/usr/sbin/update-rescue"):
-            liststart.append((_("Rescue Bios from Feed"), "rescue" ))
+            liststart.append((_("Rescue Bios from Feed"), "rescue"))
         for name in os_listdir("/tmp"):
             if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                 name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                 if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                    list.append(( name2, "/tmp/%s" % name ))
+                    list.append((name2, "/tmp/%s" % name))
                 else:
                     cprint("skips %s" % name2)
         if os_path.exists(config.plugins.dbackup.backuplocation.value):
@@ -753,7 +753,7 @@ class dBackup(Screen):
                 if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                     name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                     if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                        list.append(( name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value,name) ))
+                        list.append((name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value,name)))
                     else:
                         cprint("skips %s" % name2)
         f=open("/proc/mounts", "r")
@@ -765,7 +765,7 @@ class dBackup(Screen):
                     if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz") and not name.startswith("settings"):
                         name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                         if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                            list.append(( name2, "/data/.recovery/%s" % (name) ))
+                            list.append((name2, "/data/.recovery/%s" % (name)))
                         else:
                             cprint("skips %s" % name2)
             if os_path.exists("/data/backup") and "/data/backup" != config.plugins.dbackup.backuplocation.value:
@@ -773,7 +773,7 @@ class dBackup(Screen):
                     if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                         name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                         if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                            list.append(( name2, "/data/backup/%s" % (name) ))
+                            list.append((name2, "/data/backup/%s" % (name)))
                         else:
                             cprint("skips %s" % name2)
         for directory in os_listdir("/media"):
@@ -783,7 +783,7 @@ class dBackup(Screen):
                         if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                             name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                             if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                list.append(( name2, "/media/%s/backup/%s" % (directory,name) ))
+                                list.append((name2, "/media/%s/backup/%s" % (directory,name)))
                             else:
                                 cprint("skips %s" % name2)
                 except:
@@ -796,7 +796,7 @@ class dBackup(Screen):
                             if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                                 name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                                 if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                    list.append(( name2, "/autofs/%s/backup/%s" % (directory,name) ))
+                                    list.append((name2, "/autofs/%s/backup/%s" % (directory,name)))
                                 else:
                                     cprint("skips %s" % name2)
                     except:
@@ -842,7 +842,7 @@ class dBackup(Screen):
                     devlist.append(("%s %d %s" % (devname,mbsize,"MB"), devname,mbsize))
         f.close()
         if not found:
-            devlist.append(("no device found, shutdown, add device and reboot" , "nodev", 0))
+            devlist.append(("no device found, shutdown, add device and reboot", "nodev", 0))
         return devlist
 
     def askForDevice(self,device):
@@ -1483,8 +1483,8 @@ def startRecover(session, **kwargs):
 
 def getTaskList():
     task = []
-    task.append(( _("Reboot")+" "+_("Recovery Mode"), "boot" ))
-    task.append(( _("Software update")+" "+_("Recovery Mode"), "upgrade" ))
+    task.append((_("Reboot")+" "+_("Recovery Mode"), "boot"))
+    task.append((_("Software update")+" "+_("Recovery Mode"), "upgrade"))
     return task
 
 def askForTask(task):
@@ -1492,7 +1492,7 @@ def askForTask(task):
     if task is None:
         return
     else:
-        do = task [1].rstrip()
+        do = task[1].rstrip()
     #       print(">>>>>>>>>>>", do)
         if do == "boot":
             dsession.openWithCallback(startRecovery,MessageBox,_("Recovery Mode")+" "+_("Really shutdown now?"), MessageBox.TYPE_YESNO)
@@ -1612,7 +1612,7 @@ def autostart(reason,**kwargs):
         dBackupPowerOn()
         if os_path.exists("/usr/lib/enigma2/python/Plugins/Extensions/WebInterface/WebChilds/Toplevel.py"):
             from Plugins.Extensions.WebInterface.WebChilds.Toplevel import addExternalChild
-            addExternalChild( ("dbackup", wBackup(), "dBackup", "1", True) )
+            addExternalChild(("dbackup", wBackup(), "dBackup", "1", True))
         else:
             cprint("Webif not found")
         if os_path.exists(dbackup_busy):
@@ -1785,14 +1785,14 @@ def mainconf(menuid):
         if config.plugins.dbackup.recovering.value == "factory" or config.plugins.dbackup.recovering.value == "both":
             return [(_("Recovery Mode"), startRecover, "recover", None)]
         else:
-            return [ ]
+            return []
     elif menuid == "extended":
         if config.plugins.dbackup.recovering.value == "factory" or config.plugins.dbackup.recovering.value == "both":
             return [(_("Recovery Mode"), startRecover, "recover", None)]
         else:
-            return [ ]
+            return []
     else:
-        return [ ]
+        return []
 
 ###############################################################################
 # dBackup Webinterface by gutemine
@@ -1873,7 +1873,7 @@ class wBackup(resource.Resource):
                 if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                     name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                     if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                        list.append(( name2, "/tmp/%s" % name ))
+                        list.append((name2, "/tmp/%s" % name))
                         htmlnfi += "<option value=\"/tmp/%s\" class=\"black\">%s</option>\n" % (name,name2)
                     else:
                         cprint("skips %s" % name2)
@@ -1883,7 +1883,7 @@ class wBackup(resource.Resource):
                     if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                         name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                         if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                            list.append(( name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value,name) ))
+                            list.append((name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value,name)))
                             htmlnfi += "<option value=\"%s/%s\" class=\"black\">%s</option>\n" % (config.plugins.dbackup.backuplocation.value,name,name2)
                         else:
                             cprint("skips %s" % name2)
@@ -1896,7 +1896,7 @@ class wBackup(resource.Resource):
                         if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                             name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                             if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                list.append(( name2, "/data/backup/%s" % (name) ))
+                                list.append((name2, "/data/backup/%s" % (name)))
                                 htmlnfi += "<option value=\"/data/backup/%s\" class=\"black\">%s</option>\n" % (name,name2)
                             else:
                                 cprint("skips %s" % name2)
@@ -1908,7 +1908,7 @@ class wBackup(resource.Resource):
                             if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                                 name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                                 if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                    list.append(( name2, "/media/%s/backup/%s" % (drectory,name) ))
+                                    list.append((name2, "/media/%s/backup/%s" % (drectory,name)))
                                     htmlnfi += "<option value=\"/media/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory,name,name2)
                                 else:
                                     cprint("skips %s" % name2)
@@ -1925,7 +1925,7 @@ class wBackup(resource.Resource):
                             if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                                 name2=name.replace(".tar.gz","").replace(".tar.xz","").replace(".tar.bz2","").replace(".tar","").replace(".zip","")
                                 if  list.count(name2) < 1 and name2.find(self.boxtype) != -1:
-                                    list.append(( name2, "/autofs/%s/backup/%s" % (drectory,name) ))
+                                    list.append((name2, "/autofs/%s/backup/%s" % (drectory,name)))
                                     htmlnfi += "<option value=\"/autofs/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory,name,name2)
                                 else:
                                     cprint("skips %s" % name2)
@@ -2598,7 +2598,7 @@ class dBackupChecking(Screen):
             flashchecklist.append((_("defragment Harddisk"), "%s/bin/e4defrag -v /media/hdd" % dbackup_plugindir))
 
         self["menu"] = MenuList(flashchecklist)
-        self["setupActions"] = ActionMap([ "ColorActions", "SetupActions" ],
+        self["setupActions"] = ActionMap(["ColorActions", "SetupActions"],
                 {
                 "ok": self.go,
                 "green": self.go,
@@ -2618,7 +2618,7 @@ class dBackupChecking(Screen):
             self.session.openWithCallback(self.askForDevice,ChoiceBox,device_string,self.getDeviceList())
             return
         if not self.command is None and self.command != "none":
-            self.session.open(Console, self.checking,[ (self.command) ])
+            self.session.open(Console, self.checking,[(self.command)])
 
     def setWindowTitle(self):
         self["logo"].instance.setPixmapFromFile("%s/dbackup.png" % dbackup_plugindir)
@@ -2653,7 +2653,7 @@ class dBackupChecking(Screen):
                     devlist.append(("%s %d %s" % (devname,mbsize,"MB"), devname,mbsize))
         f.close()
         if not found:
-            devlist.append(("no device found, shutdown, add device and reboot" , "nodev", 0))
+            devlist.append(("no device found, shutdown, add device and reboot", "nodev", 0))
         return devlist
 
     def askForDevice(self,device):
@@ -2906,7 +2906,7 @@ class dBackupAbout(Screen):
         })
 
     def setWindowTitle(self):
-        self.setTitle( _("About")+" dBackup")
+        self.setTitle(_("About")+" dBackup")
 
     def cancel(self):
         self.close(False)
