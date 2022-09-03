@@ -3,7 +3,7 @@ from __future__ import division
 #
 # dBackup Plugin by gutemine
 #
-dbackup_version = "2.8-r1"
+dbackup_version = "2.9-r1"
 #
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -40,13 +40,13 @@ import os
 from glob import glob
 for File in os_listdir("/usr/lib/enigma2/python/Plugins/Extensions"):
     file = File.lower()
-    if file.find("panel") != -1 or file.find("feed") != -1 or file.find("unisia") != -1 or file.find("ersia") != -1 or file.find("olden") != -1 or file.find("venus") != -1:
+    if file.find("panel") != -1 or file.find("feed") != -1 or file.find("unisia") != -1 or file.find("ersia") != -1 or file.find("olden") != -1 or file.find("venus") != -1 or file.find("backupflas") != -1 or file.find("dreamsat") != -1:
         if os_path.exists("/var/lib/dpkg/info/enigma2-plugin-extensions-dbackup.md5sums"):
             rmtree("/usr/lib/enigma2/python/Plugins/Extensions/%s" % File, ignore_errors=True)
 
 for File in os_listdir("/usr/lib/enigma2/python/Plugins/SystemPlugins"):
     file = File.lower()
-    if file.find("panel") != -1 or file.find("feed") != -1 or file.find("unisia") != -1 or file.find("ersia") != -1 or file.find("olden") != -1 or file.find("venus") != -1:
+    if file.find("panel") != -1 or file.find("feed") != -1 or file.find("unisia") != -1 or file.find("ersia") != -1 or file.find("olden") != -1 or file.find("venus") != -1 or file.find("backupflas") != -1 or file.find("dreamsat") != -1:
         if os_path.exists("/var/lib/dpkg/info/enigma2-plugin-extensions-dbackup.md5sums"):
             rmtree("/usr/lib/enigma2/python/Plugins/SystemPlugins/%s" % File, ignore_errors=True)
 
@@ -144,10 +144,24 @@ config.plugins.dbackup = ConfigSubsection()
 f = open("/proc/mounts", "r")
 m = f.read()
 f.close()
+if m.find("/data") != -1:
+    if not os_path.exists("/data/backup"):
+        os_mkdir("/data/backup")
+if m.find("/media/hdd") != -1:
+    if not os_path.exists("/media/hdd/backup"):
+        os_mkdir("/media/hdd/backup")
+if os_path.exists("/autofs/sda1"):
+    try:
+        if not os_path.exists("/autofs/sda1/backup"):
+            os_mkdir("/autofs/sda1/backup")
+    except:
+        pass
 if m.find("/media/hdd") != -1:
     config.plugins.dbackup.backuplocation = ConfigText(default="/media/hdd/backup", fixed_size=True, visible_width=20)
+elif m.find("/data") != -1:
+    config.plugins.dbackup.backuplocation = ConfigText(default = "/data/backup", fixed_size=True, visible_width=25)
 else:
-    config.plugins.dbackup.backuplocation = ConfigText(default="/autofs/sda1", fixed_size=True, visible_width=20)
+    config.plugins.dbackup.backuplocation = ConfigText(default="/autofs/sda1/backup", fixed_size=True, visible_width=25)
 config.plugins.dbackup.backupdeb = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
 #config.plugins.dbackup.backupimagetype = ConfigBoolean(default = True, descriptions=yes_no_descriptions)
 config.plugins.dbackup.stopped = ConfigBoolean(default=False, descriptions=yes_no_descriptions)
@@ -313,7 +327,7 @@ barryallen_string = _("Sorry, use Barry Allen for Backup")
 lowfat_string = _("Sorry, use LowFAT for Backup")
 noflashing_string = _("Sorry, Flashing works only in Flash")
 nowebif_string = _("Sorry, dBackup webinterface is currently disabled")
-support_string = _("Kit & Support of this Plugin at www.oozoon-board.de")
+support_string=_("Kit & Support of this Plugin at https://github.com/openatv/enigma2-plugin-extensions-dbackup")
 
 dbackup_skin = config.skin.primary_skin.value.replace("/skin.xml", "")
 
@@ -753,7 +767,7 @@ class dBackup(Screen):
         for name in os_listdir("/tmp"):
             if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                 name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                if name2 not in list and name2.find(self.boxtype) != -1:
                     list.append((name2, "/tmp/%s" % name))
                 else:
                     cprint("skips %s" % name2)
@@ -761,7 +775,7 @@ class dBackup(Screen):
             for name in os_listdir(config.plugins.dbackup.backuplocation.value):
                 if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                     name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                    if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                    if name2 not in list and name2.find(self.boxtype) != -1:
                         list.append((name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value, name)))
                     else:
                         cprint("skips %s" % name2)
@@ -773,7 +787,7 @@ class dBackup(Screen):
                 for name in os_listdir("/data/.recovery"):
                     if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz") and not name.startswith("settings"):
                         name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                        if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                        if name2 not in list and name2.find(self.boxtype) != -1:
                             list.append((name2, "/data/.recovery/%s" % (name)))
                         else:
                             cprint("skips %s" % name2)
@@ -781,7 +795,7 @@ class dBackup(Screen):
                 for name in os_listdir("/data/backup"):
                     if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                         name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                        if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                        if name2 not in list and name2.find(self.boxtype) != -1:
                             list.append((name2, "/data/backup/%s" % (name)))
                         else:
                             cprint("skips %s" % name2)
@@ -791,7 +805,7 @@ class dBackup(Screen):
                     for name in os_listdir("/media/%s/backup" % directory):
                         if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                             name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                            if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                            if name2 not in list and name2.find(self.boxtype) != -1:
                                 list.append((name2, "/media/%s/backup/%s" % (directory, name)))
                             else:
                                 cprint("skips %s" % name2)
@@ -801,10 +815,10 @@ class dBackup(Screen):
             for directory in os_listdir("/autofs"):
                 if os_path.exists("/autofs/%s/backup" % directory) and os_path.isdir("/autofs/%s/backup" % directory) and "/autofs/%s/backup" % directory != config.plugins.dbackup.backuplocation.value:
                     try:
-                        for name in os_listdir("/media/%s/backup" % directory):
+                        for name in os_listdir("/autofs/%s/backup" % directory):
                             if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                                 name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                                if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                                if name2 not in list < 1 and name2.find(self.boxtype) != -1:
                                     list.append((name2, "/autofs/%s/backup/%s" % (directory, name)))
                                 else:
                                     cprint("skips %s" % name2)
@@ -1042,7 +1056,14 @@ class dBackup(Screen):
             os_system("ls %s" % backupdir)
             try:
                 if os_path.exists(backupdir) and backupdir != config.plugins.dbackup.backuplocation.value:
-                    backup.append((backupdir, backupdir))
+                    originaldir=backupdir
+                if os_path.islink(backupdir):
+                    linkpointer=os_readlink(backupdir)
+                cprint("linked backup dir: %s" % linkpointer)
+                if not linkpointer.startswith("/"): 
+                # relative path, hopefully same directory
+                    originaldir="/media/%s/%s" % (mount,linkpointer)
+                    backup.append((originaldir,originaldir))
             except:
                 pass
         if os_path.exists("/autofs"):
@@ -1378,7 +1399,7 @@ class dBackup(Screen):
             f.close()
             os_remove(dbackup_backup)
             sp = []
-            sp = line.split(" ")
+            sp=line.split("\t")
             #print(sp)
             length = len(sp)
             size = ""
@@ -1899,7 +1920,7 @@ class wBackup(resource.Resource):
             for name in sorted(entries):
                 if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                     name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                    if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                    if name2 not in list and name2.find(self.boxtype) != -1:
                         list.append((name2, "/tmp/%s" % name))
                         htmlnfi += "<option value=\"/tmp/%s\" class=\"black\">%s</option>\n" % (name, name2)
                     else:
@@ -1909,7 +1930,7 @@ class wBackup(resource.Resource):
                 for name in sorted(entries):
                     if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                         name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                        if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                        if name2 not in list and name2.find(self.boxtype) != -1:
                             list.append((name2, "%s/%s" % (config.plugins.dbackup.backuplocation.value, name)))
                             htmlnfi += "<option value=\"%s/%s\" class=\"black\">%s</option>\n" % (config.plugins.dbackup.backuplocation.value, name, name2)
                         else:
@@ -1922,7 +1943,7 @@ class wBackup(resource.Resource):
                     for name in os_listdir("/data/backup"):
                         if (name.endswith(".tar.gz") or name.endswith(".tar.xz") or name.endswith(".tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                             name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                            if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                            if name2 not in list and name2.find(self.boxtype) != -1:
                                 list.append((name2, "/data/backup/%s" % (name)))
                                 htmlnfi += "<option value=\"/data/backup/%s\" class=\"black\">%s</option>\n" % (name, name2)
                             else:
@@ -1934,7 +1955,7 @@ class wBackup(resource.Resource):
                         for name in os_listdir("/media/%s/backup" % directory):
                             if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                                 name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                                if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                                if name2 not in list and name2.find(self.boxtype) != -1:
                                     list.append((name2, "/media/%s/backup/%s" % (drectory, name)))
                                     htmlnfi += "<option value=\"/media/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory, name, name2)
                                 else:
@@ -1951,7 +1972,7 @@ class wBackup(resource.Resource):
                         for name in os_listdir("/autofs/%s/backup" % directory):
                             if (name.endswith(".tar.gz") or name.endswith("tar.xz") or name.endswith("tar.bz2") or name.endswith(".tar") or name.endswith(".zip")) and not name.startswith("enigma2settings") and not name.endswith("enigma2settingsbackup.tar.gz"):
                                 name2 = name.replace(".tar.gz", "").replace(".tar.xz", "").replace(".tar.bz2", "").replace(".tar", "").replace(".zip", "")
-                                if list.count(name2) < 1 and name2.find(self.boxtype) != -1:
+                                if name2 not in list and name2.find(self.boxtype) != -1:
                                     list.append((name2, "/autofs/%s/backup/%s" % (drectory, name)))
                                     htmlnfi += "<option value=\"/autofs/%s/backup/%s\" class=\"black\">%s</option>\n" % (directory, name, name2)
                                 else:
@@ -1977,18 +1998,11 @@ class wBackup(resource.Resource):
                         name = sp[0]
                         name = name.replace("\n", "")
             self.creator = name.rstrip().lstrip()
-#                       self.imagetype="exp"
-#                       if name == "OoZooN" and os_path.exists("/etc/issue.net"):
-#                               f=open("/etc/issue.net")
-#                               i=f.read()
-#                               f.close()
-#                               if (i.find("xperimental") is -1) and (i.find("unstable") is -1):
-#                                       self.imagetype="rel"
             cdate = str(datetime.date.today())
             ctime = str(time.strftime("%H-%M"))
             suggested_backupname = name
-#                       if config.plugins.dbackup.backupdeb.value:
-#                               suggested_backupname=suggested_backupname+"-deb"
+#           if config.plugins.dbackup.backupdeb.value:
+#               suggested_backupname=suggested_backupname+"-deb"
             if config.plugins.dbackup.backupid.value != "none":
                 if config.plugins.dbackup.backupid.value != "user":
                     suggested_backupname = suggested_backupname + "-%s" % config.plugins.dbackup.backupid.value
@@ -2211,7 +2225,7 @@ class wBackup(resource.Resource):
             f.close()
             os_remove(dbackup_backup)
             sp = []
-            sp = line.split(" ")
+            sp=line.split("\t")
             #print(sp)
             length = len(sp)
             size = ""
